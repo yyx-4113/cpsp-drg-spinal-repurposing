@@ -1,0 +1,8 @@
+{
+  "n_hub": 35,
+  "n_hub_in_meta": 32,
+  "pool": 800,
+  "lasso_C_min": 8.531678524172797,
+  "lasso_1se_genes": 1,
+  "n_common_genes": 13208
+}

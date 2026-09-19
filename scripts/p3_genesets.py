@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+# p3_genesets.py -- gene-set statistics on DRG-axis meta_Z (Stouffer + one-sample t + permutation null)
+import os, json
+import numpy as np, pandas as pd
+from scipy import stats
+
+ROOT="D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛"
+TAB=os.path.join(ROOT,"results/tables")
+meta=pd.read_csv(os.path.join(TAB,"META_DRG_axis_stouffer.csv"))
+meta=meta.dropna(subset=["meta_Z"]).set_index("symbol")
+Z=meta["meta_Z"]
+bg=Z.index.values
+
+SETS={
+ "TRP_channels":["TRPV1","TRPV2","TRPV3","TRPV4","TRPA1","TRPM2","TRPM3","TRPM8","TRPC1","TRPC3","TRPC5","TRPC6"],
+ "ASIC":["ASIC1","ASIC2","ASIC3","ASIC4","ACCN1","ACCN2","ACCN3","ACCN4"],
+ "Nav_SCN":["SCN1A","SCN2A","SCN3A","SCN4A","SCN5A","SCN7A","SCN8A","SCN9A","SCN10A","SCN11A","SCN1B","SCN2B","SCN3B","SCN4B"],
+ "K2P_KCNK":["KCNK1","KCNK2","KCNK3","KCNK4","KCNK5","KCNK6","KCNK7","KCNK9","KCNK10","KCNK12","KCNK13","KCNK15","KCNK16","KCNK17","KCNK18"],
+ "Kv_KCNQ_KCNH":["KCNQ1","KCNQ2","KCNQ3","KCNQ4","KCNQ5","KCNH1","KCNH2","KCNH3","KCNH4","KCNH5","KCNH6","KCNH7","KCNH8"],
+ "P2RX_P2RY":["P2RX1","P2RX2","P2RX3","P2RX4","P2RX5","P2RX6","P2RX7","P2RY1","P2RY2","P2RY12","P2RY13","P2RY14"],
+ "CACNA":["CACNA1A","CACNA1B","CACNA1C","CACNA1D","CACNA1E","CACNA1F","CACNA1G","CACNA1H","CACNA1I","CACNA1S","CACNA2D1","CACNA2D2","CACNA2D3","CACNA2D4","CACNB1","CACNB2","CACNB3","CACNB4"],
+ "Sigma1":["SIGMAR1"],
+ "Opioid_GPCR":["OPRM1","OPRD1","OPRK1","OPRL1","POMC","PENK","PDYN","PNOC"],
+ "Neuropeptides_pain":["NPY","GAL","VGF","ADCYAP1","CALCA","CALCB","TAC1","TACR1","SST","CCK","CCKBR","GRP","NMB","NPB","NPW","PROK2","NTS","NTSR1","NTSR2"],
+ "Neuroinflammation":["IL1B","IL6","TNF","CCL2","CXCL1","IL10","TLR2","TLR4","MYD88","NFKB1","NFKB2","STAT3","SOCS3","CD68","AIF1","GFAP","ATF3","JUN","FOS"],
+ "MAPK_kinase":["MAPK1","MAPK3","MAPK8","MAPK9","MAPK14","MAP2K1","MAP2K2","MAP2K3","MAP2K4","MAP2K6","MAP2K7","MAP3K1","MAP3K5","DUSP1","DUSP6"],
+ "Complement":["C1QA","C1QB","C1QC","C2","C3","C4A","C4B","CFB","CFH","CFI","SERPING1","CR1","CR2","C5","C5AR1","C6","C7","C8A","C9","CD46","CD55","CD59"],
+ "Mitochondria_OXPHOS":["NDUFA1","NDUFA2","NDUFA4","NDUFB1","NDUFB2","NDUFS1","NDUFS2","SDHA","SDHB","SDHC","SDHD","UQCRC1","UQCRC2","UQCRFS1","COX4I1","COX5A","COX6A1","ATP5F1A","ATP5F1B","ATP5MC1"],
+ "Myelin_OL":["MBP","PLP1","MAG","MOG","CNP","MOBP","CLDN11","OPALIN","MAL","SOX10","OLIG1","OLIG2","MYRF","CNTN2","MAG"],
+ "DAM_microglia":["TREM2","APOE","TYROBP","CST7","LPL","CTSD","SPP1","GPNMB","ITGAX","AXL","MERTK","CD68","CSF1R","C1QA","C1QB","C1QC"],
+ "Autophagy_mitophagy":["MAP1LC3B","ATG5","ATG7","BECN1","BNIP3","PINK1","PRKN","SQSTM1","OPTN","TFEB","GABARAP"],
+ "Synaptic":["SYN1","SNAP25","GRIA1","GRIA2","GRIA3","GRIA4","GRIN1","GRIN2A","GRIN2B","GABRA1","GABRB2","DLG4","SHANK1","SHANK2","SHANK3","NLGN1","SLC17A6","SLC17A7","GAD1","GAD2"],
+ "CPSP_literature":["SCN9A","SCN10A","SCN11A","CACNA2D1","CACNA2D2","CACNA2D3","GCH1","OPRM1","COMT","DRD2","TRPV1","P2RX7","IL6","TNF","BDNF","NGF","NTRK1","KCNS1","HCN2","GRIN2B","CACNG2","ATP1A3","KCNQ2","KCNQ3"],
+}
+
+def stouffer(zs):
+    zs=np.asarray([z for z in zs if not np.isnan(z)],float)
+    if len(zs)==0: return np.nan,np.nan,len(zs)
+    Zc=zs.sum()/np.sqrt(len(zs))
+    return Zc, 2*stats.norm.sf(abs(Zc)), len(zs)
+
+rng=np.random.default_rng(42)
+NPERM=2000
+rows=[]
+for name,genes in SETS.items():
+    mem=[g for g in set(genes) if g in Z.index]
+    if not mem: 
+        rows.append({"set":name,"n_members":0,"n_present":0,"stouffer_Z":np.nan,"stouffer_p":np.nan,
+                     "t_p":np.nan,"perm_p":np.nan,"mean_Z":np.nan}); continue
+    zs=Z.loc[mem].values
+    Zc,p,n=stouffer(zs)
+    t_p=stats.ttest_1samp(zs,0).pvalue if n>=3 else np.nan
+    # permutation null: same-size random sets
+    null=[]
+    for _ in range(NPERM):
+        s=rng.choice(bg,size=n,replace=False)
+        zc,_,_=stouffer(Z.loc[s].values)
+        null.append(abs(zc))
+    null=np.array(null)
+    perm_p=(np.sum(null>=abs(Zc))+1)/(NPERM+1)
+    rows.append({"set":name,"n_members":len(set(genes)),"n_present":n,"mean_Z":float(np.mean(zs)),
+                 "stouffer_Z":Zc,"stouffer_p":p,"t_p":t_p,"perm_p":perm_p,
+                 "frac_up":float(np.mean(zs>0))})
+gs=pd.DataFrame(rows).sort_values("perm_p")
+gs.to_csv(os.path.join(TAB,"P3_geneset_stats.csv"),index=False)
+print(gs.to_string(index=False))

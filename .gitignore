@@ -1,0 +1,48 @@
+# ---- large, exactly regenerable inputs / intermediates (do NOT commit) ----
+data/raw/
+data/processed/
+data/numba_cache/
+docking/out/
+docking/ligands/
+docking/receptors/
+docking/_scratch/
+docking/_smoke/
+docking/_stage1val/
+figures/
+
+# ---- python ----
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ---- transient logs / diagnostics (keep only curated notes) ----
+scripts/*.out
+scripts/*.err
+scripts/_axl_test.out
+scripts/_diag_*.out
+scripts/_vina_*.out
+
+# ---- OS / editor ----
+Thumbs.db
+.DS_Store
+desktop.ini
+*.swp
+
+# ---- keep (explicitly): results/, reports/, PROJECT_PLAN.md, README.md,
+# ---- CITATION.cff, LICENSE, scripts/*.py, tools/vina.exe, .workbuddy/memory/
+
+# ---- internal dev state (never part of the science deposit) ----
+.workbuddy/
+data/
+
+# ---- transient / internal status (regenerable, not for deposit) ----
+results/P6_FINALIZE_STATUS.json
+scripts/_*.py
+
+# ---- deprecated / scratch scripts (never part of the deposit) ----
+scripts/_deprecated/
+scripts/**/*.out
+scripts/**/*.err

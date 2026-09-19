@@ -1,0 +1,2 @@
+dataset,tissue,n_samples,n_cells,n_genes,cell_median_genes,cell_median_umi,cell_median_pct_mt,groups
+GSE246288,SC,4,14582,17438,2558.5,5985.0,2.451587677001953,"{""SNI|PID14|NA"": 3113, ""SNI|PID3|NA"": 3060, ""SNI|PID7|NA"": 2500, ""Sham|PID0|NA"": 5909}"

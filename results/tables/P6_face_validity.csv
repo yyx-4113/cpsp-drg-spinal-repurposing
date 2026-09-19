@@ -1,0 +1,11 @@
+level,test,n_pos,n_neg,AUC,p_one_sided,note
+A. drug-level,best_composite: analgesic vs rest,64,3014,0.538,0.1462,
+A. drug-level,drug_rank_score: analgesic vs rest,64,3014,0.507,0.4221,
+A. drug-level,top-20 analgesic count,0,20,,1.0,"observed 0, expected 0.4, OR=0.00"
+A. drug-level,top-50 analgesic count,0,50,,1.0,"observed 0, expected 1.0, OR=0.00"
+A. drug-level,top-100 analgesic count,0,100,,1.0,"observed 0, expected 2.1, OR=0.00"
+A. drug-level,top-200 analgesic count,1,199,,0.987,"observed 1, expected 4.2, OR=0.22"
+B. ADRA2A,affinity: analgesic vs rest,64,3006,0.435,0.9619,
+C. alpha-2 agonists on ADRA2A,affinity (raw),8,3062,0.292,0.9793,
+C. alpha-2 agonists on ADRA2A,affinity (MW-adjusted),8,3062,0.428,0.7598,
+C. alpha-2 agonists on ADRA2A,MW only (size baseline),8,3062,0.195,,median MW 245.6 vs 340.9

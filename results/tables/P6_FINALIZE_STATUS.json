@@ -1,0 +1,10 @@
+{
+  "started": "2026-09-19 13:58:31",
+  "audit_ok": true,
+  "rescore_ok": true,
+  "controls_ok": true,
+  "final_audit_rc": 0,
+  "breadth_rc": 0,
+  "result": "ready_to_finalise",
+  "finished": "2026-09-19 14:02:07"
+}

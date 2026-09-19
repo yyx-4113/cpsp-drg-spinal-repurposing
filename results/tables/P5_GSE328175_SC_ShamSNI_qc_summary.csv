@@ -1,0 +1,2 @@
+dataset,tissue,n_samples,n_cells,n_genes,cell_median_genes,cell_median_umi,cell_median_pct_mt,groups
+GSE328175,SC,6,54312,25506,3427.0,9672.0,0.07586774230003357,"{""SNI|NA|NA"": 31121, ""Sham|NA|NA"": 23191}"

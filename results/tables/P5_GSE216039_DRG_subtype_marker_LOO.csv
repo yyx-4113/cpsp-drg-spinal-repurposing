@@ -1,0 +1,9 @@
+dropped_marker,n_clusters_same_assignment,n_clusters,frac_same,spearman_vs_full_score,injured_clusters_full,injured_clusters_alt
+GAL,24,25,0.96,0.985,3,4
+GAP43,25,25,1.0,0.983,3,3
+SOX11,25,25,1.0,0.995,3,3
+VGF,23,25,0.92,0.988,3,5
+MMP16,25,25,1.0,0.996,3,3
+CDK5R1,25,25,1.0,0.965,3,3
+SCG2,25,25,1.0,0.97,3,3
+NCAM1,25,25,1.0,0.98,3,3

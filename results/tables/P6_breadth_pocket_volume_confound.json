@@ -1,0 +1,9 @@
+{
+  "rho_box_vol_vs_median": -0.01818181818181818,
+  "p_box_vol_vs_median": 0.9602404181286242,
+  "rho_box_vol_vs_best": 0.04242424242424241,
+  "p_box_vol_vs_best": 0.9073638178128159,
+  "rho_receptor_atoms_vs_median": 0.09090909090909088,
+  "p_receptor_atoms_vs_median": 0.8027717312071619,
+  "n_targets": 10
+}

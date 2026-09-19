@@ -1,0 +1,2 @@
+dataset,tissue,n_samples,n_cells,n_genes,cell_median_genes,cell_median_umi,cell_median_pct_mt,groups
+GSE216039,DRG,4,22063,22086,6252.0,35131.0,4.450211524963379,"{""CCI|Female|Female"": 6071, ""CCI|Male|Male"": 3731, ""Sham|Female|Female"": 7556, ""Sham|Male|Male"": 4705}"

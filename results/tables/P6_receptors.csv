@@ -1,0 +1,19 @@
+symbol,uniprot,pdb_id,file,target_chains,chain_assignment,n_candidate_ligands,status,ligand_ref,ligand_chain,ligand_n_heavy,box_center,box_size,center_min_dist_to_receptor,receptor_atoms,receptor_pdbqt,receptor_kb
+CDHR5,Q9HBB8,6OAE,6OAE.pdb,A,seqmatch,0,FAIL_no_pocket_ligand,,,,,,,,,
+GALNS,P34059,4FDJ,4FDJ.pdb,"A,B",dbref,2,OK,NGA,A,15.0,"[0.221, 0.755, 1.773]","[21.28, 19.57, 23.14]",3.45,7787.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\GALNS\receptor.pdbqt,608.9
+TFE3,P19532,7F09,7F09.pdb,"A,B,C,D",dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+PTPN23,Q9H3S7,5CRV,5CRV.pdb,"A,B",dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+SLC2A1,P11166,6THA,6THA.pdb,A,dbref,3,OK,P33,A,22.0,"[18.94, 59.098, 11.151]","[21.77, 25.35, 23.43]",3.78,3478.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\SLC2A1\receptor.pdbqt,272.0
+TNIK,Q9UKE5,6RA7,6RA7.pdb,A,dbref,1,OK,JWK,A,22.0,"[10.794, 10.872, 6.54]","[21.84, 26.79, 19.03]",3.61,2349.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\TNIK\receptor.pdbqt,183.8
+ITPKC,Q96DU7,2A98,2A98.pdb,A,seqmatch,1,OK,I3P,A,24.0,"[4.042, 33.052, 10.459]","[24.55, 20.48, 23.71]",4.45,2075.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\ITPKC\receptor.pdbqt,162.4
+FLRT3,Q9NZU0,5CMP,5CMP.pdb,"A,B,C,D",dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+CTTN,Q14247,2D1X,2D1X.pdb,"A,B,C,D",dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+AXL,P30530,5U6B,5U6B.pdb,"A,B,C,D",dbref,4,OK,7YS,A,32.0,"[24.806, -13.141, 17.571]","[25.56, 24.06, 24.39]",3.43,8918.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\AXL\receptor.pdbqt,700.6
+FLNC,Q14315,3V8O,3V8O.pdb,"A,B",dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+SERPINE1,P05121,7AQF,7AQF.pdb,"A,B",dbref,1,OK,RV2,A,27.0,"[35.52, -3.222, -1.044]","[27.6, 24.96, 25.32]",3.53,5746.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\SERPINE1\receptor.pdbqt,450.6
+MAPK14,Q16539,3LFF,3LFF.pdb,A,dbref,1,OK,Z83,A,28.0,"[18.072, -6.47, -16.501]","[24.42, 23.84, 27.76]",2.96,2675.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\MAPK14\receptor.pdbqt,209.6
+VASH2,Q86V25,6J4P,6J4P.pdb,A,dbref,1,OK,BJL,A,23.0,"[-25.681, 1.196, -21.387]","[20.51, 27.88, 20.88]",3.61,2024.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\VASH2\receptor.pdbqt,158.4
+NPY,P01303,7RTA,7RTA.pdb,N,dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+ACVR1,Q04771,6SRH,6SRH.pdb,"A,B",dbref,3,OK,LU8,A,32.0,"[-31.916, 21.803, 15.192]","[30.0, 22.6, 20.71]",3.79,4673.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\ACVR1\receptor.pdbqt,365.9
+RUBCN,Q92622,6WCW,6WCW.pdb,A,dbref,0,FAIL_no_pocket_ligand,,,,,,,,,
+ADRA2A,P08913,6KUX,6KUX.pdb,A,seqmatch,1,OK,E3F,A,25.0,"[-2.153, -7.568, -19.689]","[23.91, 19.89, 26.38]",3.86,2900.0,D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛\docking/receptors\ADRA2A\receptor.pdbqt,226.8

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this code or the derived tables, please cite both the article and this repository (including the Zenodo DOI once assigned)."
+title: "Multi-dataset target lock-in and structure-based drug repurposing for chronic postsurgical pain"
+abstract: >-
+  Computational study integrating public transcriptomic datasets across the DRG-spinal-cord axis:
+  cross-dataset meta-analysis, dual-machine-learning hub-gene prioritisation, single-cell
+  localisation, and structure-based virtual screening of the approved-drug library (ChEMBL
+  max_phase = 4) against ten tractable hub targets, with an explicit control-based validation
+  framework (docking-parameter fidelity, independently labelled enrichment, molecular-weight
+  confounder control, and a reportable face-validity test).
+type: software
+authors:
+  - family-names: Yang
+    given-names: Yongxin
+    orcid: "https://orcid.org/0009-0004-9698-6552"
+    affiliation: "The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China"
+    email: "960856791@qq.com"
+repository-code: "https://github.com/yyx-4113/cpsp-drg-spinal-repurposing"
+license: MIT
+keywords:
+  - chronic postsurgical pain
+  - dorsal root ganglion
+  - spinal cord
+  - drug repurposing
+  - virtual screening
+  - AutoDock Vina
+  - transcriptomics
+  - machine learning

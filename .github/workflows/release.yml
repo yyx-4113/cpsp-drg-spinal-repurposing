@@ -1,0 +1,84 @@
+name: release
+
+# Creates a GitHub Release (with an auto-generated source archive and a manifest of
+# every derived table/figure) whenever a version tag is pushed, e.g.:
+#   git tag -a v1.0.0 -m "Manuscript submission v1.0.0"
+#   git push origin v1.0.0
+#
+# Rationale: the archived tag is the exact snapshot to which the manuscript's numbers
+# correspond, so readers can pin a citable version instead of a moving branch.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify version consistency
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME#v}"
+          echo "Tag version: $TAG"
+          if [ -f CITATION.cff ]; then
+            if grep -q "^version:" CITATION.cff 2>/dev/null; then
+              CFFVER="$(grep '^version:' CITATION.cff | head -1 | awk '{print $2}')"
+            else
+              CFFVER=""
+            fi
+            echo "CITATION.cff version: ${CFFVER:-<unset>}"
+          fi
+
+      - name: Build artifact manifest
+        run: |
+          set -euo pipefail
+          mkdir -p _manifest
+          {
+            echo "# Artifact manifest ($GITHUB_REF_NAME)"
+            echo
+            echo "Commit: $GITHUB_SHA"
+            echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            echo "## Derived tables (results/tables)"
+            find results/tables -type f 2>/dev/null | sort | while read -r f; do
+              printf '%s  %s\n' "$(sha256sum "$f" | cut -d' ' -f1)" "$f"
+            done
+            echo
+            echo "## Figures (results/figures)"
+            find results/figures -type f 2>/dev/null | sort | while read -r f; do
+              printf '%s  %s\n' "$(sha256sum "$f" | cut -d' ' -f1)" "$f"
+            done
+            echo
+            echo "## Reports (results/*.md)"
+            find results -maxdepth 1 -name '*.md' 2>/dev/null | sort | while read -r f; do
+              printf '%s  %s\n' "$(sha256sum "$f" | cut -d' ' -f1)" "$f"
+            done
+          } > _manifest/MANIFEST.sha256
+          cat _manifest/MANIFEST.sha256
+
+      - name: Create / update release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: _manifest/MANIFEST.sha256
+          body: |
+            Reproducibility snapshot for the manuscript.
+
+            - Source archive generated automatically by GitHub for this tag.
+            - `MANIFEST.sha256` lists SHA-256 checksums of every derived table, figure and
+              phase report under `results/`, so a reviewer can verify the artefacts locally.
+
+            The authoritative machine-generated summary of the virtual screen is
+            `results/P6_RESULTS.md`.
