@@ -1,0 +1,25 @@
+{
+  "title": "Multi-dataset target lock-in and structure-based drug repurposing for chronic postsurgical pain",
+  "upload_type": "software",
+  "description": "Computational reproducibility package for the CPSP (chronic postsurgical pain) DRG-spinal-axis target-lock-in and approved-drug repurposing study. It integrates public transcriptomic datasets across the dorsal-root-ganglion and spinal-cord axis (cross-dataset Stouffer meta-analysis, dual-machine-learning hub-gene prioritisation, single-cell localisation) with structure-based virtual screening of the ChEMBL max_phase=4 approved-drug library (3,085 unique drugs) against ten tractable hub targets using AutoDock Vina, under an explicit control-based validation framework: docking-parameter fidelity, independently labelled (ChEMBL) enrichment, molecular-weight confounder control (size-only and 2D-physicochemical baselines with paired delta-AUC confidence intervals), and a reportable face-validity test. Code, derived ranking tables, breadth/enrichment summary tables, and figures are included. Raw prepared ligand/receptor structures are excluded (regenerable from documented ChEMBL SMILES and RCSB PDB IDs); the consolidated docking-score table (P6_docking_scores_merged.csv) is the screen output of record.",
+  "creators": [
+    {
+      "name": "Yang, Yongxin",
+      "orcid": "0009-0004-9698-6552",
+      "affiliation": "The Second Affiliated Hospital of Fujian University of Traditional Chinese Medicine, Fuzhou, Fujian 350003, China"
+    }
+  ],
+  "license": "mit",
+  "keywords": [
+    "chronic postsurgical pain",
+    "dorsal root ganglion",
+    "spinal cord",
+    "drug repurposing",
+    "virtual screening",
+    "AutoDock Vina",
+    "transcriptomics",
+    "machine learning"
+  ],
+  "access_right": "open",
+  "version": "v1.0.0"
+}
