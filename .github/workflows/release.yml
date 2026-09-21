@@ -43,6 +43,7 @@ jobs:
       - name: Build artifact manifest
         run: |
           set -uo pipefail
+          set +e
           mkdir -p _manifest
           {
             echo "# Artifact manifest ($GITHUB_REF_NAME)"
@@ -66,6 +67,7 @@ jobs:
             done
           } > _manifest/MANIFEST.sha256
           cat _manifest/MANIFEST.sha256
+          exit 0
 
       - name: Create / update release
         uses: softprops/action-gh-release@v2
