@@ -17,7 +17,7 @@ approved-drug library** with an explicit control-based validation framework.
 |---|---|---|---|
 | P1 | Are the public datasets real, well-designed and harmonisable? | `scripts/geo_verify.py`, `scripts/common_map.py`, `scripts/p1_build.py`, `scripts/p2_decode_samples.py`, `scripts/p2_build_matrices.py` | `data/processed/*_symbol_*.csv`, sample tables |
 | P2 | Per-dataset DEGs and cross-dataset meta-analysis | `scripts/p2_deg_meta.py`, `scripts/p2_figure.py` | `results/tables/DEG_*.csv`, `META_DRG_axis_*.csv` |
-| P3 | Which gene programmes are coordinately regulated, and which genes are robust hubs? | `scripts/p3_genesets.py`, `scripts/p3_ml.py`, `scripts/p3_finalize.py` | `P3_geneset_stats.csv`, `P3_hub_genes.csv`, `P3_lodo_auc_ci.csv` |
+| P3 | Which gene programmes are coordinately regulated, and which genes are robust hubs? | `scripts/p3_genesets.py`, `scripts/p3_ml.py`, `scripts/p3_ml_leakage_controlled.py`, `scripts/p3_finalize.py` | `P3_geneset_stats.csv`, `P3_hub_genes.csv`, `P3_lodo_auc_ci.csv`, `P3_lodo_auc_ci_leakage_controlled.csv` |
 | P4 | Human-side (miRNA / compartment) corroboration | `scripts/p4_mirna.py`, `scripts/p4_targets.py`, `scripts/p4_integrate.py` | `P4_*.csv` |
 | P5 | Which cell types host the hub programme? | `scripts/p5_sc.py`, `scripts/p5_subtype.py`, `scripts/p5_microglia_tc.py`, `scripts/p5_summarize.py` | `P5_*.csv`, localisation figures |
 | P6 | Which approved drugs plausibly engage those targets? | `scripts/p6_*.py` (see §4) | `results/tables/P6_*.csv`, `results/figures/P6_*.png`, `results/P6_RESULTS.md` |
@@ -58,6 +58,46 @@ tools/vina.exe               AutoDock Vina 1.2.5 (Windows x86-64), unmodified up
 
 `data/` and `docking/out/` are excluded from version control because they are large and exactly
 regenerable. Everything required to regenerate them is in `scripts/`.
+
+### 2b. Sensitivity / remediation artifacts (added for the round-4 review)
+
+These are *additional* analyses requested by peer review; they do not replace the primary
+outputs above, and every number in the manuscript traces to one of these files.
+
+| File | Question it answers | Producing script |
+|---|---|---|
+| `results/tables/_R4_random_effects_meta.csv` | Per-gene DerSimonian–Laird τ², I², and random-effects Z/FDR alongside the fixed-effect values | `scripts/p7_round4_supplementary.py` |
+| `results/tables/_R4_geneset_setlevel_bh.csv` | Set-level BH q across the 18 multi-member gene sets, under fixed and random effects | `scripts/p7_round4_supplementary.py` |
+| `results/tables/_R4_geneset_members.json` | The a priori gene-set member lists (recovered verbatim from `p3_genesets.py`) | `scripts/p7_round4_supplementary.py` |
+| `results/tables/_R4_translation_concordance_effectsize.csv` | Incision concordance as proportions with Wilson CIs and a label-permutation null | `scripts/p7_round4_supplementary.py` |
+| `results/tables/_R4_translation_noncircular.csv` / `.json` | Same test with consistency restricted to nerve-injury contrasts | `scripts/p7b_translation_noncircular.py` |
+| `results/tables/_R4_nerveinjury_only_meta.csv` / `.json` | Fully non-circular test: signature built on the 5 nerve-injury contrasts, incision held out | `scripts/p7c_nerveinjury_only_meta.py` |
+| `results/tables/_R4_targets_fixed_vs_random.csv` | The 10 docking targets under fixed vs random effects | `scripts/p7b_translation_noncircular.py` |
+| `results/tables/_R4_targetset_bootstrap.csv` / `.json` | Bootstrap reproducibility of the 17 dock-eligible and 9 docked targets | `scripts/p7_targetset_bootstrap.py` |
+| `results/tables/_R4_supplementary_summary.json` | Machine-readable summary of the above | `scripts/p7_round4_supplementary.py` |
+| `results/tables/META_bulkonly_sensitivity_summary.json` | Bulk-only sensitivity meta (renamed from `_R3_bulkonly_meta_summary.json`) | `scripts/p2_meta_sensitivity.py` |
+| `results/tables/P6_target_plausibility.json` | 10-target plausibility/eligibility table (renamed from `_R3_plausibility.json`) | `scripts/p6_*.py` |
+
+Two maintenance scripts were added as well: `scripts/p7_renumber_refs.py` (numbers references by
+first citation from `{{key}}` markers in `reports/_v14_source.md`) and
+`scripts/p7_consistency_gate.py` (pre-submission gate: forbidden tokens, Nature limits,
+reference order, and re-derivation of every headline number from source files).
+
+A consolidated reference renumber is in `scripts/p8_reference_renumber.py`: it derives the
+old→new numbering from the manuscript's actual first-citation order (asserting it matches the
+gate's expected sequence), remaps every superscript *citation* across the manuscript +
+supplementary + cover letter + reporting summary with one consistent map, and reorders the
+manuscript reference list. It SAFEGUARDS math exponents (runs preceded by ⁻/–/a digit, e.g.
+`Φ⁻¹`, p≈`10⁻²⁰`) so they are never renumbered. Run it only after a gate failure flags
+reference-order; the pre-edit backup was deleted after verification (2026-09-21).
+
+An independent supplementary check (beyond `p7_consistency_gate.py`) is `scripts/p9_supplemental_checks.py`:
+it re-verifies the Scientific Reports hard limits (title ≤20 words, abstract ≤200 words *and* no
+references, display items ≤8, per-figure legend ≤350 words) and adds checks p7 omits — abstract
+reference scan, display-item inline-citation coverage (no orphan figures/tables), and S1–S7
+supplementary-table presence. Scientific Reports limits were confirmed against the official author
+instructions (2026-09-21): title ≤20w, abstract ≤200w unstructured/no-refs, display items ≤8,
+figure legends ≤350w; main text ≤4,500w is a *guideline*, not enforced. Output: `results/checks/P9_supplemental_checks_*.md`.
 
 ---
 

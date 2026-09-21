@@ -241,3 +241,44 @@ GSE328175 是唯一有功效的样本级对比（Sham n=3 vs SNI n=3）。QC 后
 | `P5_hub_lineage_consensus.png` | A 逐数据集 top 谱系热图（粗体=两数据集一致）；B 共识谱系条形图 |
 | `P5_GSE216039_DRG_subtype_localisation.png` | A cluster 级富集；B 亚型级富集；C hub top 亚型分布 |
 | `P5_GSE216039_DRG_localisation.png` / `P5_GSE328175_SC_ShamSNI_localisation.png` / `P5_GSE246288_SC_localisation.png` | 各数据集 UMAP + hub 富集 |
+| `P5_GSE325938_hub_spatial.png` | Visium 代表性 hub 空间表达（鼠 Sham 切片1，叠加 H&E） |
+| `P5_GSE325938_regions.png` | 空间区域（PCA/域图/标注） |
+| `P5_GSE325938_hub_region_heatmap.png` | 35 hub × 空间区域 log2 富集热图 |
+
+**表（`results/tables/`，Visium Stretch）**
+
+| 文件 | 内容 |
+|---|---|
+| `P5_GSE325938_spot_qc.csv` | 4 张鼠切片 spot QC（n / 中位计数 / hub 程序均值） |
+| `P5_GSE325938_region_annotation.csv` | 7 个空间区域标注（marker argmax） |
+| `P5_GSE325938_hub_regionalization.csv` | 35 hub 空间区域化（top 区域 / tier / 跨切片 mean±sd / 全区域 log2） |
+| `P5_GSE325938_crossmodal.csv` | 跨模态（vs P5 snRNA 谱系）：consistent / divergent |
+
+---
+
+## 9. Stretch · GSE325938 Visium 空间定位（35 hub 程序的空间区域化）
+
+> 数据源：GEO GSE325938 Visium（`processed_data.tar.gz`，214 MB，spaceranger-1.3.1）。脚本 `scripts/p5_visium325938.py`（v2）。
+> 完整方法/结果/局限见 `results/P5_GSE325938_note.md`。
+
+### 9.1 数据事实（不可绕过）
+- 8 样本 = **4 鼠(Sham, ENSMUS) + 4 人源移植(ENSG)**；**无鼠 SNI 空间臂**（标题 `Mouse_Sham1-4` / `Human_2/4/6/8`）。
+- 主分析仅取鼠 4 切片（5,853 in-tissue spot）；人源移植臂（物种注释不同）按 P5 纪律剔除。
+- 因无鼠 SNI 臂，**空间 Sham-vs-SNI DE 不可得** → 改为 4 张鼠 Sham 切片的 hub 程序**空间区域化**，并与 P5 snRNA 细胞类型定位做**跨模态互证**。
+
+### 9.2 结果（已落盘，可审计）
+- **35/35 hub 在鼠 Visium 有表达**（初版因 Visium 鼠符号 title-case 与 hub 表大写不匹配导致 0/35，已用大小写不敏感匹配修复）。
+- 7 个空间区域（marker-argmax 标注）：MeningealFibro(208/104) · WhiteMatter(678/2693) · **DorsalHorn(285)** · **VentralHorn(348)** · Ependymal(1537)。
+- hub 空间富集分层（沿用 P5 阈值）：**restricted=26，enriched=7**。
+- **top 区域落在 DorsalHorn（背角，痛觉传入第一站）的 hub = 17/35**（TFE3/GALNS/CHL1/RNF19B/SRRM4/FLRT3/PTPN23/MAPK14/VASH2/TNIK/ANKRD13B/NPY/ITPKC/ACVR1/AGRN/CTTN/RUBCN）；VentralHorn=4；MeningealFibro=11；Ependymal=2；WhiteMatter=1。
+- **跨模态（vs P5 snRNA 谱系）：consistent=6 / divergent=9**。6 个 consistent **全部是 Neuronal→DorsalHorn**（GALNS/SRRM4/PTPN23/VASH2/ANKRD13B/CTTN）——snRNA 神经元谱系与 Visium 背角空间位置干净互证，独立支撑"DRG–脊髓轴神经元分支"。9 个 divergent 集中在 Immune→MeningealFibro（AXL/WBP1L/TFE3，符合脑膜免疫重叠）与 Glial/Neuronal→VentralHorn（MEGF11/WDR81/SPRR1A/ECEL1，再生程序不限于背角），属生物学预期重叠，非定位失败。
+
+### 9.3 三个必须随结论的诚实点
+1. **ATF3（元分析第 1 命中）在 Visium 落在 MeningealFibro 区域（log2=2.24），并非背角神经元**——与其 snRNA"神经元损伤"归属不一致；呼应 P5 §7.4 的 ambient/归属降级警示，ATF3 空间信号应按"泛损伤/脑膜"谨慎解读。
+2. **Ependymal 区域 = 1,537 spot（占 28%）明显过大**，几乎肯定是 central-gray/periependymal 误标（marker-argmax 非 lamina 金标准）；背角 R3=285 大小合理，背角结论不受影响。
+3. 全部区域化在 **Sham** 组织上、描述性、跨 4 切片 mean±sd；**不能宣称损伤诱导的空间重分布**。
+
+### 9.4 对全项目的增量价值
+- 这是 35-hub 程序**第一次获得空间坐标**：snRNA 只给细胞类型，Visium 补上"在脊髓哪一层"。
+- 与 P5 snRNA 形成**正交双模态互证**——神经元分支（snRNA 定 Neuron + Visium 定背角）被两独立模态共同支持，是稿件最稳健的"轴"证据之一。
+- 诚实边界不变：仍需人源前瞻性验证 + 湿实验，且本 Visium 无 SNI 臂，空间差异层仍空缺。

@@ -1,0 +1,149 @@
+{
+  "plausibility": [
+    {
+      "target": "GALNS",
+      "meta_Z": 5.793467826605427,
+      "meta_FDR": 1.846638037212207e-07,
+      "consistency": 0.8333333333333334,
+      "n_pdb_holo": 2.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "lysosomal sulfatase (no analgesic link)"
+    },
+    {
+      "target": "SLC2A1",
+      "meta_Z": 6.830051928649309,
+      "meta_FDR": 6.272313950750183e-10,
+      "consistency": 1.0,
+      "n_pdb_holo": 5.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "glucose transporter (no analgesic link)"
+    },
+    {
+      "target": "TNIK",
+      "meta_Z": 8.00172191011777,
+      "meta_FDR": 4.320819658866348e-13,
+      "consistency": 1.0,
+      "n_pdb_holo": 10.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "TGF-beta/WNK kinase (no analgesic link)"
+    },
+    {
+      "target": "ITPKC",
+      "meta_Z": 7.178838587606487,
+      "meta_FDR": 8.13780704029419e-11,
+      "consistency": 1.0,
+      "n_pdb_holo": 1.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "inositol kinase (no analgesic link)"
+    },
+    {
+      "target": "AXL",
+      "meta_Z": 6.142415639430664,
+      "meta_FDR": 2.911856703750467e-08,
+      "consistency": 1.0,
+      "n_pdb_holo": 4.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "microglial receptor tyrosine kinase; implicated in glial pain signalling"
+    },
+    {
+      "target": "SERPINE1",
+      "meta_Z": 6.919855555636426,
+      "meta_FDR": 3.7045702112037803e-10,
+      "consistency": 1.0,
+      "n_pdb_holo": 16.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "PAI-1 (plasminogen system; neuroimmune)"
+    },
+    {
+      "target": "MAPK14",
+      "meta_Z": 6.08652240527476,
+      "meta_FDR": 3.9137854064958615e-08,
+      "consistency": 1.0,
+      "n_pdb_holo": 25.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "p38 MAPK; canonical inflammatory-pain kinase"
+    },
+    {
+      "target": "VASH2",
+      "meta_Z": 5.997392714628557,
+      "meta_FDR": 6.394708905948252e-08,
+      "consistency": 0.8333333333333334,
+      "n_pdb_holo": 6.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "vasohibin (no analgesic link)"
+    },
+    {
+      "target": "ACVR1",
+      "meta_Z": 6.94577956668964,
+      "meta_FDR": 3.196591231838135e-10,
+      "consistency": 1.0,
+      "n_pdb_holo": 25.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "ALK2 BMP receptor (no analgesic link)"
+    },
+    {
+      "target": "ADRA2A",
+      "meta_Z": 4.836987432366695,
+      "meta_FDR": 1.5089306777420508e-05,
+      "consistency": 1.0,
+      "n_pdb_holo": 14.0,
+      "decision": "DOCK",
+      "in_meta_core": "True",
+      "known_link": "alpha2A adrenergic receptor; established descending anti-nociception"
+    }
+  ],
+  "dock_eligible": [
+    "ACVR1",
+    "AXL",
+    "CDHR5",
+    "CTTN",
+    "FLNC",
+    "FLRT3",
+    "GALNS",
+    "ITPKC",
+    "MAPK14",
+    "NPY",
+    "PTPN23",
+    "RUBCN",
+    "SERPINE1",
+    "SLC2A1",
+    "TFE3",
+    "TNIK",
+    "VASH2"
+  ],
+  "scn_translatome": {
+    "SCN9A": {
+      "Day4": -0.303476446230354,
+      "Day63": -0.500686830516433,
+      "Day4_dir": "DN",
+      "Day63_dir": "DN"
+    },
+    "SCN10A": {
+      "Day4": -0.196107840550922,
+      "Day63": -0.26722053353925,
+      "Day4_dir": "DN",
+      "Day63_dir": "DN"
+    },
+    "SCN11A": {
+      "Day4": -0.167608096076043,
+      "Day63": -0.428722039386405,
+      "Day4_dir": "DN",
+      "Day63_dir": "DN"
+    },
+    "SCN8A": {
+      "Day4": -0.617814278512715,
+      "Day63": -0.241842213738171,
+      "Day4_dir": "DN",
+      "Day63_dir": "DN"
+    }
+  }
+}

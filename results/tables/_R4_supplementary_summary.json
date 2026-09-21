@@ -1,0 +1,62 @@
+{
+  "n_genes_tested": 16552,
+  "core_fixed_effect": 4055,
+  "core_random_effects": 1008,
+  "RE_retains_of_FE_core": 1008,
+  "RE_retains_pct": 24.9,
+  "median_tau2": 0.232,
+  "median_I2_pct": 38.8,
+  "pct_genes_I2_gt50": 41.9,
+  "pct_genes_tau2_gt0": 68.1,
+  "translation": {
+    "all_shared": {
+      "k": 7751,
+      "n": 14390,
+      "rate": 0.5386,
+      "ci": [
+        0.5305,
+        0.5468
+      ],
+      "note": "published-CSV universe (META_DRG_axis_stouffer.csv)"
+    },
+    "meta_sig": {
+      "k": 3261,
+      "n": 5460,
+      "rate": 0.5973,
+      "ci": [
+        0.5842,
+        0.6102
+      ],
+      "perm_p": 0.0001999600079984003
+    },
+    "core": {
+      "k": 2473,
+      "n": 3556,
+      "rate": 0.6954,
+      "ci": [
+        0.6801,
+        0.7104
+      ],
+      "perm_p": 0.0001999600079984003,
+      "note": "circular: pooled consistency includes the incision contrast"
+    },
+    "meta_sig_not_core": {
+      "k": 788,
+      "n": 1896,
+      "rate": 0.4156
+    },
+    "risk_difference_core_vs_sig_not_core_pp": 27.8
+  },
+  "consistency_split": {
+    "core_n": 4055,
+    "core_incision_measured": 3556,
+    "core_incision_concordant": 2473,
+    "core_incision_concordant_pct": 69.5,
+    "core_incision_discordant": 1083,
+    "core_ni_consistency_ge08": 3889,
+    "core_both_ni_ge08_and_incision_concordant": 2308,
+    "mean_nerve_injury_consistency_in_core": 0.938,
+    "mean_pooled_consistency_in_core": 0.903,
+    "source": "recomputed from results/tables/META_DRG_axis_stouffer.csv (published universe)"
+  }
+}

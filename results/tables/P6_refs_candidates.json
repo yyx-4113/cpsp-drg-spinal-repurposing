@@ -1,0 +1,1173 @@
+{
+  "A_CPSP_epi": [
+    {
+      "pmid": "39909543",
+      "title": "Mechanisms of chronic postsurgical pain.",
+      "journal": "Reg Anesth Pain Med",
+      "year": "2025",
+      "authors": [
+        "Tassou A",
+        "Richebe P",
+        "Rivat C"
+      ],
+      "doi": "10.1136/rapm-2024-105964"
+    },
+    {
+      "pmid": "38705678",
+      "title": "Local Anesthetics, Local Anesthetic Systemic Toxicity (LAST), and Liposomal Bupivacaine.",
+      "journal": "Anesthesiol Clin",
+      "year": "2024",
+      "authors": [
+        "On'Gele MO",
+        "Weintraub S",
+        "Qi V"
+      ],
+      "doi": "10.1016/j.anclin.2023.11.011"
+    },
+    {
+      "pmid": "38414426",
+      "title": "Chronic postsurgical pain: A European survey.",
+      "journal": "Eur J Anaesthesiol",
+      "year": "2024",
+      "authors": [
+        "Martinez V",
+        "Lehman T",
+        "Lavand'homme P"
+      ],
+      "doi": "10.1097/EJA.0000000000001974"
+    },
+    {
+      "pmid": "37671225",
+      "title": "Advances in the Management of Acute Postsurgical Pain: A Review.",
+      "journal": "Cureus",
+      "year": "2023",
+      "authors": [
+        "Paladini A",
+        "Rawal N",
+        "Coca Martinez M"
+      ],
+      "doi": "10.7759/cureus.42974"
+    },
+    {
+      "pmid": "37326643",
+      "title": "Predicting chronic postsurgical pain: current evidence and a novel program to develop predictive biomarker signatures.",
+      "journal": "Pain",
+      "year": "2023",
+      "authors": [
+        "Sluka KA",
+        "Wager TD",
+        "Sutherland SP"
+      ],
+      "doi": "10.1097/j.pain.0000000000002938"
+    },
+    {
+      "pmid": "37999989",
+      "title": "Identifying risk factors for chronic postsurgical pain and preventive measures: a comprehensive update.",
+      "journal": "Expert Rev Neurother",
+      "year": "2023",
+      "authors": [
+        "Pergolizzi JV Jr",
+        "LeQuang JA",
+        "Magnusson P"
+      ],
+      "doi": "10.1080/14737175.2023.2284872"
+    },
+    {
+      "pmid": "39909548",
+      "title": "Evidence for regional anesthesia in preventing chronic postsurgical pain.",
+      "journal": "Reg Anesth Pain Med",
+      "year": "2025",
+      "authors": [
+        "Elsharkawy H",
+        "Clark JD",
+        "El-Boghdadly K"
+      ],
+      "doi": "10.1136/rapm-2024-105611"
+    },
+    {
+      "pmid": "39909553",
+      "title": "Chronic postsurgical pain and transitional pain services: a narrative review highlighting European perspectives.",
+      "journal": "Reg Anesth Pain Med",
+      "year": "2025",
+      "authors": [
+        "Moka E",
+        "Aguirre JA",
+        "Sauter AR"
+      ],
+      "doi": "10.1136/rapm-2024-105614"
+    }
+  ],
+  "A_CPSP_mech": [
+    {
+      "pmid": "39909543",
+      "title": "Mechanisms of chronic postsurgical pain.",
+      "journal": "Reg Anesth Pain Med",
+      "year": "2025",
+      "authors": [
+        "Tassou A",
+        "Richebe P",
+        "Rivat C"
+      ],
+      "doi": "10.1136/rapm-2024-105964"
+    },
+    {
+      "pmid": "38414426",
+      "title": "Chronic postsurgical pain: A European survey.",
+      "journal": "Eur J Anaesthesiol",
+      "year": "2024",
+      "authors": [
+        "Martinez V",
+        "Lehman T",
+        "Lavand'homme P"
+      ],
+      "doi": "10.1097/EJA.0000000000001974"
+    },
+    {
+      "pmid": "37999989",
+      "title": "Identifying risk factors for chronic postsurgical pain and preventive measures: a comprehensive update.",
+      "journal": "Expert Rev Neurother",
+      "year": "2023",
+      "authors": [
+        "Pergolizzi JV Jr",
+        "LeQuang JA",
+        "Magnusson P"
+      ],
+      "doi": "10.1080/14737175.2023.2284872"
+    },
+    {
+      "pmid": "39909553",
+      "title": "Chronic postsurgical pain and transitional pain services: a narrative review highlighting European perspectives.",
+      "journal": "Reg Anesth Pain Med",
+      "year": "2025",
+      "authors": [
+        "Moka E",
+        "Aguirre JA",
+        "Sauter AR"
+      ],
+      "doi": "10.1136/rapm-2024-105614"
+    },
+    {
+      "pmid": "37059625",
+      "title": "Non-opioid analgesics for the prevention of chronic postsurgical pain: a systematic review and network meta-analysis.",
+      "journal": "Br J Anaesth",
+      "year": "2023",
+      "authors": [
+        "Doleman B",
+        "Mathiesen O",
+        "Sutton AJ"
+      ],
+      "doi": "10.1016/j.bja.2023.02.041"
+    },
+    {
+      "pmid": "38731944",
+      "title": "Mechanisms and Preventative Strategies for Persistent Pain following Knee and Hip Joint Replacement Surgery: A Narrative Review.",
+      "journal": "Int J Mol Sci",
+      "year": "2024",
+      "authors": [
+        "Murphy J",
+        "Pak S",
+        "Shteynman L"
+      ],
+      "doi": "10.3390/ijms25094722"
+    },
+    {
+      "pmid": "41638723",
+      "title": "Protocol for Personalised Prediction of Persistent Postsurgical Pain.",
+      "journal": "BMJ Open",
+      "year": "2026",
+      "authors": [
+        "Holzer KJ",
+        "Alaverdyan H",
+        "Xu Z"
+      ],
+      "doi": "10.1136/bmjopen-2025-107055"
+    },
+    {
+      "pmid": "39909798",
+      "title": "Chronic postsurgical inguinal pain: incidence and diagnostic biomarkers from a large German national claims database.",
+      "journal": "Br J Anaesth",
+      "year": "2025",
+      "authors": [
+        "Herrmann E",
+        "Schindehütte M",
+        "Kindl G"
+      ],
+      "doi": "10.1016/j.bja.2024.11.048"
+    }
+  ],
+  "B_DRG_transcript": [
+    {
+      "pmid": "41279342",
+      "title": "A Reference Atlas of the Human Dorsal Root Ganglion.",
+      "journal": "bioRxiv",
+      "year": "2025",
+      "authors": [
+        "Bhuiyan SA",
+        "Nagi SS",
+        "Sankaranarayanan I"
+      ],
+      "doi": "10.1101/2025.11.05.686654"
+    },
+    {
+      "pmid": "42127222",
+      "title": "Sensory nerves protect against preclinical tendinopathic changes through FGF1 signaling.",
+      "journal": "Sci Transl Med",
+      "year": "2026",
+      "authors": [
+        "Zhu M",
+        "Xing X",
+        "Li Z"
+      ],
+      "doi": "10.1126/scitranslmed.aec1380"
+    },
+    {
+      "pmid": "39496796",
+      "title": "Leveraging deep single-soma RNA sequencing to explore the neural basis of human somatosensation.",
+      "journal": "Nat Neurosci",
+      "year": "2024",
+      "authors": [
+        "Yu H",
+        "Nagi SS",
+        "Usoskin D"
+      ],
+      "doi": "10.1038/s41593-024-01794-1"
+    },
+    {
+      "pmid": "38117255",
+      "title": "CD163+ macrophages monitor enhanced permeability at the blood-dorsal root ganglion barrier.",
+      "journal": "J Exp Med",
+      "year": "2024",
+      "authors": [
+        "Lund H",
+        "Hunt MA",
+        "Kurtović Z"
+      ],
+      "doi": "10.1084/jem.20230675"
+    },
+    {
+      "pmid": "38190982",
+      "title": "Injured sensory neurons-derived galectin-3 contributes to neuropathic pain via programming microglia in the spinal dorsal horn.",
+      "journal": "Brain Behav Immun",
+      "year": "2024",
+      "authors": [
+        "Shan L",
+        "Xu K",
+        "Ji L"
+      ],
+      "doi": "10.1016/j.bbi.2024.01.002"
+    },
+    {
+      "pmid": "41643676",
+      "title": "Molecular architecture of human dermal sleeping nociceptors.",
+      "journal": "Cell",
+      "year": "2026",
+      "authors": [
+        "Körner J",
+        "Howard D",
+        "Solinski HJ"
+      ],
+      "doi": "10.1016/j.cell.2025.12.048"
+    },
+    {
+      "pmid": "40956003",
+      "title": "Botulinum Neurotoxin A Signaling in Pain Modulation Within Human Sensory Neurons.",
+      "journal": "J Neurochem",
+      "year": "2025",
+      "authors": [
+        "Gabriel KA",
+        "Hankerd K",
+        "Barragan-Iglesias P"
+      ],
+      "doi": "10.1111/jnc.70236"
+    },
+    {
+      "pmid": "42146464",
+      "title": "T-cell distribution in the dorsal root ganglion across species, sex, and age.",
+      "journal": "bioRxiv",
+      "year": "2026",
+      "authors": [
+        "O'Brien JA",
+        "Kuttanna N",
+        "Mazhar K"
+      ],
+      "doi": "10.64898/2026.04.30.722027"
+    }
+  ],
+  "B_SpinalCord_sc": [
+    {
+      "pmid": "39952243",
+      "title": "GPR37L1 identifies spinal cord astrocytes and protects neuropathic pain after nerve injury.",
+      "journal": "Neuron",
+      "year": "2025",
+      "authors": [
+        "Xu J",
+        "Yan Z",
+        "Bang S"
+      ],
+      "doi": "10.1016/j.neuron.2025.01.012"
+    },
+    {
+      "pmid": "37032648",
+      "title": "Paeonol alleviates neuropathic pain by modulating microglial M1 and M2 polarization via the RhoA/p38MAPK signaling pathway.",
+      "journal": "CNS Neurosci Ther",
+      "year": "2023",
+      "authors": [
+        "Li X",
+        "Shi H",
+        "Zhang D"
+      ],
+      "doi": "10.1111/cns.14211"
+    },
+    {
+      "pmid": "39453813",
+      "title": "Spatial, transcriptomic, and epigenomic analyses link dorsal horn neurons to chronic pain genetic predisposition.",
+      "journal": "Cell Rep",
+      "year": "2024",
+      "authors": [
+        "Arokiaraj CM",
+        "Leone MJ",
+        "Kleyman M"
+      ],
+      "doi": "10.1016/j.celrep.2024.114876"
+    },
+    {
+      "pmid": "38805282",
+      "title": "Deep sequencing of Phox2a nuclei reveals five classes of anterolateral system neurons.",
+      "journal": "Proc Natl Acad Sci U S A",
+      "year": "2024",
+      "authors": [
+        "Bell AM",
+        "Utting C",
+        "Dickie AC"
+      ],
+      "doi": "10.1073/pnas.2314213121"
+    },
+    {
+      "pmid": "37582709",
+      "title": "Astrocyte senescence-like response related to peripheral nerve injury-induced neuropathic pain.",
+      "journal": "Cell Mol Biol Lett",
+      "year": "2023",
+      "authors": [
+        "Du J",
+        "Cheng N",
+        "Deng Y"
+      ],
+      "doi": "10.1186/s11658-023-00474-5"
+    },
+    {
+      "pmid": "41387458",
+      "title": "Identification of a reactive astrocyte subpopulation during HIV-associated pain pathogenesis in mouse models.",
+      "journal": "Nat Commun",
+      "year": "2025",
+      "authors": [
+        "Zheng J",
+        "Spurgat M",
+        "Maurelli M"
+      ],
+      "doi": "10.1038/s41467-025-67368-2"
+    },
+    {
+      "pmid": "42457652",
+      "title": "Spinal signatures of entrenched and treated neuropathic pain in male mice.",
+      "journal": "Nat Commun",
+      "year": "2026",
+      "authors": [
+        "Loo L",
+        "Fujikake K",
+        "Winters BL"
+      ],
+      "doi": "10.1038/s41467-026-74144-3"
+    },
+    {
+      "pmid": "39217340",
+      "title": "Single-cell sequencing reveals glial cell involvement in development of neuropathic pain via myelin sheath lesion formation in the spinal cord.",
+      "journal": "J Neuroinflammation",
+      "year": "2024",
+      "authors": [
+        "Li D",
+        "Yang K",
+        "Li J"
+      ],
+      "doi": "10.1186/s12974-024-03207-3"
+    }
+  ],
+  "B_DRG_atlas": [
+    {
+      "pmid": "39775738",
+      "title": "Pharmacology and Mechanism of Action of Suzetrigine, a Potent and Selective Na(V)1.8 Pain Signal Inhibitor for the Treatment of Moderate to Severe Pain.",
+      "journal": "Pain Ther",
+      "year": "2025",
+      "authors": [
+        "Osteen JD",
+        "Immani S",
+        "Tapley TL"
+      ],
+      "doi": "10.1007/s40122-024-00697-0"
+    },
+    {
+      "pmid": "41031034",
+      "title": "Identification of SLC45A4 as a pain gene encoding a neuronal polyamine transporter.",
+      "journal": "bioRxiv",
+      "year": "2024",
+      "authors": [
+        "Middleton SJ",
+        "Markússon S",
+        "Åkerlund M"
+      ],
+      "doi": "10.1101/2024.09.25.615046"
+    },
+    {
+      "pmid": "37044067",
+      "title": "Scalable generation of sensory neurons from human pluripotent stem cells.",
+      "journal": "Stem Cell Reports",
+      "year": "2023",
+      "authors": [
+        "Deng T",
+        "Jovanovic VM",
+        "Tristan CA"
+      ],
+      "doi": "10.1016/j.stemcr.2023.03.006"
+    },
+    {
+      "pmid": "39548079",
+      "title": "Membrane lipid nanodomains modulate HCN pacemaker channels in nociceptor DRG neurons.",
+      "journal": "Nat Commun",
+      "year": "2024",
+      "authors": [
+        "Handlin LJ",
+        "Macchi NL",
+        "Dumaire NLA"
+      ],
+      "doi": "10.1038/s41467-024-54053-z"
+    },
+    {
+      "pmid": "40836097",
+      "title": "SLC45A4 is a pain gene encoding a neuronal polyamine transporter.",
+      "journal": "Nature",
+      "year": "2025",
+      "authors": [
+        "Middleton SJ",
+        "Markússon S",
+        "Åkerlund M"
+      ],
+      "doi": "10.1038/s41586-025-09326-y"
+    },
+    {
+      "pmid": "42127222",
+      "title": "Sensory nerves protect against preclinical tendinopathic changes through FGF1 signaling.",
+      "journal": "Sci Transl Med",
+      "year": "2026",
+      "authors": [
+        "Zhu M",
+        "Xing X",
+        "Li Z"
+      ],
+      "doi": "10.1126/scitranslmed.aec1380"
+    },
+    {
+      "pmid": "38829801",
+      "title": "Nociceptors are functionally male or female: from mouse to monkey to man.",
+      "journal": "Brain",
+      "year": "2024",
+      "authors": [
+        "Stratton H",
+        "Lee G",
+        "Dolatyari M"
+      ],
+      "doi": "10.1093/brain/awae179"
+    },
+    {
+      "pmid": "41004224",
+      "title": "Nav1.8: Intrinsic limits on the functional effect of abrogation in DRG neurons.",
+      "journal": "Proc Natl Acad Sci U S A",
+      "year": "2025",
+      "authors": [
+        "Vasylyev DV",
+        "Zhao P",
+        "Schulman BR"
+      ],
+      "doi": "10.1073/pnas.2507342122"
+    }
+  ],
+  "C_meta_omics": [
+    {
+      "pmid": "40470564",
+      "title": "Fibromyalgia: one year in review 2025.",
+      "journal": "Clin Exp Rheumatol",
+      "year": "2025",
+      "authors": [
+        "Iannuccelli C",
+        "Favretti M",
+        "Dolcini G"
+      ],
+      "doi": "10.55563/clinexprheumatol/buhd2z"
+    },
+    {
+      "pmid": "42056605",
+      "title": "Multi-ancestry genome-wide association and integrated multi-omics analyses of endometriosis and its clinical manifestations.",
+      "journal": "Nat Genet",
+      "year": "2026",
+      "authors": [
+        "Koller D",
+        "He J",
+        "Løkhammer S"
+      ],
+      "doi": "10.1038/s41588-026-02582-2"
+    },
+    {
+      "pmid": "38028432",
+      "title": "Transcriptional profiles of non-neuronal and immune cells in mouse trigeminal ganglia.",
+      "journal": "Front Pain Res (Lausanne)",
+      "year": "2023",
+      "authors": [
+        "Mecklenburg J",
+        "Shein SA",
+        "Malmir M"
+      ],
+      "doi": "10.3389/fpain.2023.1274811"
+    },
+    {
+      "pmid": "41001447",
+      "title": "Complex Genetics and Regulatory Drivers of Hypermobile Ehlers-Danlos Syndrome: Insights from Genome-Wide Association Study Meta-analysis.",
+      "journal": "medRxiv",
+      "year": "2025",
+      "authors": [
+        "Petrucci-Nelson T",
+        "Guilhaumou S",
+        "Berrandou TE"
+      ],
+      "doi": "10.1101/2025.09.19.25336146"
+    },
+    {
+      "pmid": "39453813",
+      "title": "Spatial, transcriptomic, and epigenomic analyses link dorsal horn neurons to chronic pain genetic predisposition.",
+      "journal": "Cell Rep",
+      "year": "2024",
+      "authors": [
+        "Arokiaraj CM",
+        "Leone MJ",
+        "Kleyman M"
+      ],
+      "doi": "10.1016/j.celrep.2024.114876"
+    },
+    {
+      "pmid": "41279342",
+      "title": "A Reference Atlas of the Human Dorsal Root Ganglion.",
+      "journal": "bioRxiv",
+      "year": "2025",
+      "authors": [
+        "Bhuiyan SA",
+        "Nagi SS",
+        "Sankaranarayanan I"
+      ],
+      "doi": "10.1101/2025.11.05.686654"
+    },
+    {
+      "pmid": "39581285",
+      "title": "Multi-omics analysis combined with network pharmacology revealed the mechanisms of rutaecarpine in chronic atrophic gastritis.",
+      "journal": "J Ethnopharmacol",
+      "year": "2025",
+      "authors": [
+        "Chen L",
+        "Chang L",
+        "Wu W"
+      ],
+      "doi": "10.1016/j.jep.2024.119151"
+    },
+    {
+      "pmid": "41169383",
+      "title": "Multi-omics analysis and evidence of IL1R1 as a potential biomarker for diabetes-associated intervertebral disc degeneration.",
+      "journal": "Front Immunol",
+      "year": "2025",
+      "authors": [
+        "Yi M",
+        "Lin W",
+        "Liu S"
+      ],
+      "doi": "10.3389/fimmu.2025.1692185"
+    }
+  ],
+  "C_ML_hub": [
+    {
+      "pmid": "39383872",
+      "title": "Advances and challenges in neuroimaging-based pain biomarkers.",
+      "journal": "Cell Rep Med",
+      "year": "2024",
+      "authors": [
+        "Zhang LB",
+        "Chen YX",
+        "Li ZJ"
+      ],
+      "doi": "10.1016/j.xcrm.2024.101784"
+    },
+    {
+      "pmid": "40355673",
+      "title": "Biological markers and psychosocial factors predict chronic pain conditions.",
+      "journal": "Nat Hum Behav",
+      "year": "2025",
+      "authors": [
+        "Fillingim M",
+        "Tanguay-Sabourin C",
+        "Parisien M"
+      ],
+      "doi": "10.1038/s41562-025-02156-y"
+    },
+    {
+      "pmid": "38716040",
+      "title": "Identification of Key Genes and Pathways in Oxaliplatin-Induced Neuropathic Pain Through Bioinformatic Analysis.",
+      "journal": "J Pain Res",
+      "year": "2024",
+      "authors": [
+        "Lou Y",
+        "Xu X",
+        "Wang R"
+      ],
+      "doi": "10.2147/JPR.S452594"
+    },
+    {
+      "pmid": "41480182",
+      "title": "Identification and functional analysis of hub genes in knee osteoarthritis via bioinformatics and experimental validation.",
+      "journal": "Front Bioinform",
+      "year": "2025",
+      "authors": [
+        "Jiang S",
+        "Cao J",
+        "Lu J"
+      ],
+      "doi": "10.3389/fbinf.2025.1671693"
+    },
+    {
+      "pmid": "41129067",
+      "title": "CALB2 Overexpression Attenuates Neuropathic Pain by Inhibiting Oxidative Stress and Modulating Microglia M1/M2 Polarization Through Activation of the cAMP/CREB Pathway.",
+      "journal": "Neurochem Res",
+      "year": "2025",
+      "authors": [
+        "Jin J",
+        "Xu X",
+        "Xu X"
+      ],
+      "doi": "10.1007/s11064-025-04576-8"
+    },
+    {
+      "pmid": "39210607",
+      "title": "Disease Phenotypes in Refractory Musculoskeletal Pain Syndromes Identified by Unsupervised Machine Learning.",
+      "journal": "ACR Open Rheumatol",
+      "year": "2024",
+      "authors": [
+        "Hügle T",
+        "Prétat T",
+        "Suter M"
+      ],
+      "doi": "10.1002/acr2.11699"
+    },
+    {
+      "pmid": "39869323",
+      "title": "Predicting Individual Pain Sensitivity Using a Novel Cortical Biomarker Signature.",
+      "journal": "JAMA Neurol",
+      "year": "2025",
+      "authors": [
+        "Chowdhury NS",
+        "Bi C",
+        "Furman AJ"
+      ],
+      "doi": "10.1001/jamaneurol.2024.4857"
+    },
+    {
+      "pmid": "41424583",
+      "title": "Bioinformatics Analysis of Hypoxia-Related Mechanisms in Endometriosis: DDR2 as a Potential Diagnostic and Therapeutic Biomarker.",
+      "journal": "Biomed Res Int",
+      "year": "2025",
+      "authors": [
+        "Zhao M",
+        "Zhao P",
+        "Wang C"
+      ],
+      "doi": "10.1155/bmri/4765791"
+    }
+  ],
+  "D_alpha2": [
+    {
+      "pmid": "40388916",
+      "title": "Dexmedetomidine- or Clonidine-Based Sedation Compared With Propofol in Critically Ill Patients: The A2B Randomized Clinical Trial.",
+      "journal": "JAMA",
+      "year": "2025",
+      "authors": [
+        "Walsh TS",
+        "Parker RA",
+        "Aitken LM"
+      ],
+      "doi": "10.1001/jama.2025.7200"
+    },
+    {
+      "pmid": "40463450",
+      "title": "CHRONIC POSTOPERATIVE PAIN.",
+      "journal": "Acta Clin Croat",
+      "year": "2023",
+      "authors": [
+        "Ladjević N",
+        "Milinić M",
+        "Jovanović V"
+      ],
+      "doi": "10.20471/acc.2023.62.s4.13"
+    },
+    {
+      "pmid": "29083638",
+      "title": "Clonidine.",
+      "journal": "",
+      "year": "2025",
+      "authors": [
+        "Patel P",
+        "Saadabadi A"
+      ],
+      "doi": ""
+    },
+    {
+      "pmid": "37220544",
+      "title": "Dexmedetomidine as an Adjuvant in Peripheral Nerve Block.",
+      "journal": "Drug Des Devel Ther",
+      "year": "2023",
+      "authors": [
+        "Chen Z",
+        "Liu Z",
+        "Feng C"
+      ],
+      "doi": "10.2147/DDDT.S405294"
+    },
+    {
+      "pmid": "40888444",
+      "title": "Neuraxial anesthesia and pain management for cesarean delivery.",
+      "journal": "Am J Obstet Gynecol",
+      "year": "2026",
+      "authors": [
+        "Landau R",
+        "Sultan P"
+      ],
+      "doi": "10.1016/j.ajog.2025.05.018"
+    },
+    {
+      "pmid": "39366846",
+      "title": "Efficacy of nonopioid analgesics and adjuvants in multimodal analgesia for reducing postoperative opioid consumption and complications in obesity: a systematic review and network meta-analysis.",
+      "journal": "Br J Anaesth",
+      "year": "2024",
+      "authors": [
+        "Carron M",
+        "Tamburini E",
+        "Linassi F"
+      ],
+      "doi": "10.1016/j.bja.2024.08.009"
+    },
+    {
+      "pmid": "39598860",
+      "title": "Cannabigerol (CBG): A Comprehensive Review of Its Molecular Mechanisms and Therapeutic Potential.",
+      "journal": "Molecules",
+      "year": "2024",
+      "authors": [
+        "Li S",
+        "Li W",
+        "Malhi NK"
+      ],
+      "doi": "10.3390/molecules29225471"
+    },
+    {
+      "pmid": "40543302",
+      "title": "Xylazine exacerbates fentanyl-induced respiratory depression and bradycardia.",
+      "journal": "J Pharmacol Exp Ther",
+      "year": "2025",
+      "authors": [
+        "Demery C",
+        "Moore SC",
+        "Levitt ES"
+      ],
+      "doi": "10.1016/j.jpet.2025.103616"
+    }
+  ],
+  "D_dexmed": [
+    {
+      "pmid": "39129451",
+      "title": "Pain management after laparoscopic cholecystectomy: A systematic review and procedure-specific postoperative pain management (PROSPECT) recommendations.",
+      "journal": "Eur J Anaesthesiol",
+      "year": "2024",
+      "authors": [
+        "Bourgeois C",
+        "Oyaert L",
+        "Van de Velde M"
+      ],
+      "doi": "10.1097/EJA.0000000000002047"
+    },
+    {
+      "pmid": "40888444",
+      "title": "Neuraxial anesthesia and pain management for cesarean delivery.",
+      "journal": "Am J Obstet Gynecol",
+      "year": "2026",
+      "authors": [
+        "Landau R",
+        "Sultan P"
+      ],
+      "doi": "10.1016/j.ajog.2025.05.018"
+    },
+    {
+      "pmid": "38911034",
+      "title": "Esketamine Combined with Dexmedetomidine to reduce Visceral Pain During elective Cesarean Section Under Combined Spinal-Epidural Anesthesia: A double-Blind Randomized Controlled Study.",
+      "journal": "Drug Des Devel Ther",
+      "year": "2024",
+      "authors": [
+        "Yang JR",
+        "Li YY",
+        "Ran TJ"
+      ],
+      "doi": "10.2147/DDDT.S460924"
+    },
+    {
+      "pmid": "41258190",
+      "title": "Noradrenergic α(2) Receptor Modulates Cav2.2-Mediated Nociception in Parkinson's Disease Through Spinal Neuro-glial Network.",
+      "journal": "Mol Neurobiol",
+      "year": "2025",
+      "authors": [
+        "Cui S",
+        "He Y",
+        "Gu Y"
+      ],
+      "doi": "10.1007/s12035-025-05340-3"
+    },
+    {
+      "pmid": "40773228",
+      "title": "Discovery and development of an oral analgesic targeting the α2B adrenoceptor.",
+      "journal": "Proc Natl Acad Sci U S A",
+      "year": "2025",
+      "authors": [
+        "Toyomoto M",
+        "Kurihara T",
+        "Nakagawa T"
+      ],
+      "doi": "10.1073/pnas.2500006122"
+    },
+    {
+      "pmid": "38023998",
+      "title": "Dexmedetomidine Versus Clonidine as Additives for Spinal Anesthesia: A Comparative Study.",
+      "journal": "Anesth Pain Med",
+      "year": "2023",
+      "authors": [
+        "Manoharan MM",
+        "Paneer M",
+        "Elavarasan K"
+      ],
+      "doi": "10.5812/aapm-138274"
+    },
+    {
+      "pmid": "38869262",
+      "title": "Opioid-free versus opioid-based anesthesia in major spine surgery: a prospective, randomized, controlled clinical trial.",
+      "journal": "Minerva Anestesiol",
+      "year": "2024",
+      "authors": [
+        "Barakat H",
+        "Al Nawwar R",
+        "Abou Nader J"
+      ],
+      "doi": "10.23736/S0375-9393.24.17962-X"
+    },
+    {
+      "pmid": "39682043",
+      "title": "Efficacy of Perineural Dexmedetomidine in Ultrasound-guided Interscalene Block on Rebound Pain After Shoulder Arthroscopy.",
+      "journal": "Clin J Pain",
+      "year": "2025",
+      "authors": [
+        "Huan X",
+        "Zhang T",
+        "Zhou M"
+      ],
+      "doi": "10.1097/AJP.0000000000001267"
+    }
+  ],
+  "D_ADRA2A": [
+    {
+      "pmid": "41454868",
+      "title": "The Role of Intrinsically Disordered Domains in Regulating G Protein-Coupled Receptor Signaling.",
+      "journal": "J Am Chem Soc",
+      "year": "2026",
+      "authors": [
+        "Xu J",
+        "Qiu R",
+        "Garces AM"
+      ],
+      "doi": "10.1021/jacs.5c17796"
+    },
+    {
+      "pmid": "38474611",
+      "title": "Novel Scaffold Agonists of the α(2A) Adrenergic Receptor Identified via Ensemble-Based Strategy.",
+      "journal": "Molecules",
+      "year": "2024",
+      "authors": [
+        "Sun S",
+        "Li P",
+        "Wang J"
+      ],
+      "doi": "10.3390/molecules29051097"
+    },
+    {
+      "pmid": "40964316",
+      "title": "The role of intrinsically disordered domains in regulating G protein coupled receptor signaling.",
+      "journal": "bioRxiv",
+      "year": "2025",
+      "authors": [
+        "Xu J",
+        "Qiu R",
+        "Garces AM"
+      ],
+      "doi": "10.1101/2025.09.10.675278"
+    },
+    {
+      "pmid": "40313598",
+      "title": "Correlation between gene polymorphisms and perioperative analgesia in patients undergoing gynecological surgery.",
+      "journal": "Front Genet",
+      "year": "2025",
+      "authors": [
+        "Cai M",
+        "Lei X",
+        "Gan L"
+      ],
+      "doi": "10.3389/fgene.2025.1509042"
+    },
+    {
+      "pmid": "38212003",
+      "title": "[Baimai Ointment relieves chronic pain induced by chronic compression of dorsal root ganglion in rats by regulating neuroactive ligand-receptor interaction and HIF-1 signaling pathway].",
+      "journal": "Zhongguo Zhong Yao Za Zhi",
+      "year": "2023",
+      "authors": [
+        "Zhou FT",
+        "Zong Y",
+        "Hou WQ"
+      ],
+      "doi": "10.19540/j.cnki.cjcmm.20230721.401"
+    },
+    {
+      "pmid": "42480510",
+      "title": "Discovery of a peripherally restricted α(2A)AR agonist as a safe and broad-spectrum oral analgesic.",
+      "journal": "Cell Rep Med",
+      "year": "2026",
+      "authors": [
+        "Cheng Z",
+        "Moore C",
+        "Li H"
+      ],
+      "doi": "10.1016/j.xcrm.2026.102864"
+    },
+    {
+      "pmid": "37828025",
+      "title": "ADRA2A and IRX1 are putative risk genes for Raynaud's phenomenon.",
+      "journal": "Nat Commun",
+      "year": "2023",
+      "authors": [
+        "Hartmann S",
+        "Yasmeen S",
+        "Jacobs BM"
+      ],
+      "doi": "10.1038/s41467-023-41876-5"
+    },
+    {
+      "pmid": "37016045",
+      "title": "Rat model of attention-deficit hyperactivity disorder exhibits delayed recovery from acute incisional pain due to impaired descending noradrenergic inhibition.",
+      "journal": "Sci Rep",
+      "year": "2023",
+      "authors": [
+        "Suto T",
+        "Kato D",
+        "Koibuchi I"
+      ],
+      "doi": "10.1038/s41598-023-32512-9"
+    }
+  ],
+  "E_repurposing": [
+    {
+      "pmid": "40872572",
+      "title": "Evaluating Potential Therapeutic Targets and Drug Repurposing Based on the Esophageal Cancer Subtypes.",
+      "journal": "Pharmaceuticals (Basel)",
+      "year": "2025",
+      "authors": [
+        "Oh J",
+        "Han J",
+        "Lee H"
+      ],
+      "doi": "10.3390/ph18081181"
+    },
+    {
+      "pmid": "39737570",
+      "title": "Machine learning-enabled virtual screening indicates the anti-tuberculosis activity of aldoxorubicin and quarfloxin with verification by molecular docking, molecular dynamics simulations, and biological evaluations.",
+      "journal": "Brief Bioinform",
+      "year": "2024",
+      "authors": [
+        "Zheng S",
+        "Gu Y",
+        "Gu Y"
+      ],
+      "doi": "10.1093/bib/bbae696"
+    },
+    {
+      "pmid": "40234619",
+      "title": "Integration of machine learning and experimental validation reveals new lipid-lowering drug candidates.",
+      "journal": "Acta Pharmacol Sin",
+      "year": "2025",
+      "authors": [
+        "Chen JH",
+        "Li KX",
+        "Fan CF"
+      ],
+      "doi": "10.1038/s41401-025-01539-1"
+    },
+    {
+      "pmid": "39577323",
+      "title": "A promising drug repurposing approach for Alzheimer's treatment: Givinostat improves cognitive behavior and pathological features in APP/PS1 mice.",
+      "journal": "Redox Biol",
+      "year": "2024",
+      "authors": [
+        "Gao QC",
+        "Liu GL",
+        "Wang Q"
+      ],
+      "doi": "10.1016/j.redox.2024.103420"
+    },
+    {
+      "pmid": "41361767",
+      "title": "Integrated screening for small molecules interfering with PKM2: a drug repurposing strategy against glioblastoma.",
+      "journal": "J Transl Med",
+      "year": "2025",
+      "authors": [
+        "Costantini S",
+        "Romeo I",
+        "Fanelli G"
+      ],
+      "doi": "10.1186/s12967-025-07444-9"
+    },
+    {
+      "pmid": "41850287",
+      "title": "Deep-learning-based de novo discovery and design of therapeutics that reverse disease-associated transcriptional phenotypes.",
+      "journal": "Cell",
+      "year": "2026",
+      "authors": [
+        "Xing J",
+        "Tan M",
+        "Leshchiner D"
+      ],
+      "doi": "10.1016/j.cell.2026.02.016"
+    },
+    {
+      "pmid": "40764606",
+      "title": "Integrative genomic and bioinformatic prioritization of drug repurposing candidates for prostate cancer.",
+      "journal": "BMC Pharmacol Toxicol",
+      "year": "2025",
+      "authors": [
+        "Irham LM",
+        "Adikusuma W",
+        "Afief AR"
+      ],
+      "doi": "10.1186/s40360-025-00983-3"
+    },
+    {
+      "pmid": "38228226",
+      "title": "Computational drug repurposing for primary hyperparathyroidism.",
+      "journal": "Mol Cell Endocrinol",
+      "year": "2024",
+      "authors": [
+        "Kubat Öktem E",
+        "Yazar M",
+        "Aysan E"
+      ],
+      "doi": "10.1016/j.mce.2024.112159"
+    }
+  ],
+  "F_pseudo": [
+    {
+      "pmid": "38981475",
+      "title": "Directly selecting cell-type marker genes for single-cell clustering analyses.",
+      "journal": "Cell Rep Methods",
+      "year": "2024",
+      "authors": [
+        "Chen Z",
+        "Wang C",
+        "Huang S"
+      ],
+      "doi": "10.1016/j.crmeth.2024.100810"
+    },
+    {
+      "pmid": "41817007",
+      "title": "From Single-Cell Clusters to Causality: ITCH Engagement for CKD Uncovered by Integrative Analysis of MR and MAGMA.",
+      "journal": "FASEB J",
+      "year": "2026",
+      "authors": [
+        "Zhang X",
+        "Zhang D",
+        "Shang J"
+      ],
+      "doi": "10.1096/fj.202502366R"
+    },
+    {
+      "pmid": "37546812",
+      "title": "Synthetic control removes spurious discoveries from double dipping in single-cell and spatial transcriptomics data analyses.",
+      "journal": "bioRxiv",
+      "year": "2024",
+      "authors": [
+        "Song D",
+        "Chen S",
+        "Lee C"
+      ],
+      "doi": "10.1101/2023.07.21.550107"
+    },
+    {
+      "pmid": "41307600",
+      "title": "The Dynamic UPR Rheostat Orchestrates Single-Cell Plasticity in Glioblastoma.",
+      "journal": "J Mol Neurosci",
+      "year": "2025",
+      "authors": [
+        "Duzgun Z"
+      ],
+      "doi": "10.1007/s12031-025-02447-z"
+    },
+    {
+      "pmid": "40081375",
+      "title": "Artificial variables help to avoid over-clustering in single-cell RNA sequencing.",
+      "journal": "Am J Hum Genet",
+      "year": "2025",
+      "authors": [
+        "DenAdel A",
+        "Ramseier ML",
+        "Navia AW"
+      ],
+      "doi": "10.1016/j.ajhg.2025.02.014"
+    },
+    {
+      "pmid": "41959525",
+      "title": "Classification with Missing Data - A NIFty Pipeline for Single-Cell Proteomics.",
+      "journal": "bioRxiv",
+      "year": "2026",
+      "authors": [
+        "Nitz AA",
+        "McGee B",
+        "Echarry B"
+      ],
+      "doi": "10.64898/2026.03.06.710179"
+    },
+    {
+      "pmid": "37577698",
+      "title": "ClusterDE: a post-clustering differential expression (DE) method robust to false-positive inflation caused by double dipping.",
+      "journal": "Res Sq",
+      "year": "2023",
+      "authors": [
+        "Song D",
+        "Li K",
+        "Ge X"
+      ],
+      "doi": "10.21203/rs.3.rs-3211191/v1"
+    },
+    {
+      "pmid": "42326774",
+      "title": "Adiposity-Associated Monocyte Costimulatory Programming in Rheumatoid Arthritis Identified by Single-Cell Transcriptomics.",
+      "journal": "medRxiv",
+      "year": "2026",
+      "authors": [
+        "Swamy SN",
+        "Zhong H",
+        "Williams K"
+      ],
+      "doi": "10.64898/2026.06.09.26355275"
+    }
+  ]
+}

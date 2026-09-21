@@ -1,0 +1,9 @@
+metric,value
+orig_inputs,6.0
+orig_core,4055.0
+collapsed_inputs,5.0
+collapsed_core,4294.0
+shared_core,3707.0
+only_in_original,348.0
+only_in_collapsed,587.0
+retained_fraction,0.9142

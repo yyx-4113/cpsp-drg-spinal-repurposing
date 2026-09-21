@@ -1,0 +1,50 @@
+{
+  "strata": {
+    "all_measured": {
+      "k": 7751,
+      "n": 14445,
+      "rate": 0.5366,
+      "ci": [
+        0.5284,
+        0.5447
+      ],
+      "perm_p": 1.0
+    },
+    "meta_FDR05_NIcons_ge08": {
+      "k": 2318,
+      "n": 4306,
+      "rate": 0.5383,
+      "ci": [
+        0.5234,
+        0.5532
+      ],
+      "perm_p": 0.7866426714657069
+    },
+    "meta_FDR05_NIcons_lt08": {
+      "k": 1048,
+      "n": 1598,
+      "rate": 0.6558,
+      "ci": [
+        0.6322,
+        0.6787
+      ],
+      "perm_p": 0.0001999600079984003
+    },
+    "meta_FDR05_pooled_ge08": {
+      "k": 2473,
+      "n": 3564,
+      "rate": 0.6939,
+      "ci": [
+        0.6786,
+        0.7088
+      ],
+      "perm_p": 0.0001999600079984003
+    }
+  },
+  "noncircular_risk_difference_pp": -11.8,
+  "circularity_inflation_pp": 15.6,
+  "hubs_p_RE_lt05": 32,
+  "hubs_FDR_RE_lt05": 18,
+  "hubs_p_FE_lt05": 35,
+  "hubs_median_I2": 72.8
+}

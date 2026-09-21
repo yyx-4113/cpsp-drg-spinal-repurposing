@@ -1,0 +1,41 @@
+{
+  "B": 200,
+  "resamples_completed": 200,
+  "POOL_size": 800,
+  "hub_set_size": {
+    "median": 6.0,
+    "q25": 5.0,
+    "q75": 8.0
+  },
+  "jaccard_vs_published35": {
+    "median": 0.026,
+    "q25": 0.024,
+    "q75": 0.051
+  },
+  "dock_eligible_17": {
+    "n_in_pool": 17,
+    "mean_recovered": 0.79,
+    "median_recovered": 1.0,
+    "min": 0,
+    "max": 4,
+    "P_ge1": 0.57,
+    "P_ge2": 0.165,
+    "P_ge3": 0.04,
+    "P_ge4": 0.01,
+    "P_ge5": 0.0,
+    "P_ge9": 0.0,
+    "P_all17": 0.0
+  },
+  "docked_9": {
+    "n_in_pool": 9,
+    "mean_recovered": 0.35,
+    "median_recovered": 0.0,
+    "min": 0,
+    "max": 3,
+    "P_ge1": 0.32,
+    "P_ge2": 0.025,
+    "P_ge3": 0.005,
+    "P_ge5": 0.0,
+    "P_all9": 0.0
+  }
+}

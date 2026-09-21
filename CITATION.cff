@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or the derived tables, please cite both the article and this repository (including the Zenodo DOI once assigned)."
-title: "Multi-dataset target lock-in and structure-based drug repurposing for chronic postsurgical pain"
+title: "Conserved nerve-injury-associated transcriptional response on the dorsal root ganglion–spinal axis: non-predictive incision translation and an honest repurposing null"
 abstract: >-
   Computational study integrating public transcriptomic datasets across the DRG-spinal-cord axis:
   cross-dataset meta-analysis, dual-machine-learning hub-gene prioritisation, single-cell

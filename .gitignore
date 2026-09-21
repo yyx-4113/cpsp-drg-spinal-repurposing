@@ -38,6 +38,10 @@ desktop.ini
 .workbuddy/
 data/
 
+# ---- internal submission docs (not part of the public science deposit) ----
+submission_pack/SUBMISSION_MANIFEST.md
+submission_pack/GITHUB_PUSH_LIST_v1.4.md
+
 # ---- transient / internal status (regenerable, not for deposit) ----
 results/P6_FINALIZE_STATUS.json
 scripts/_*.py
