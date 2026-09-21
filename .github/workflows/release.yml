@@ -28,7 +28,7 @@ jobs:
 
       - name: Verify version consistency
         run: |
-          set -euo pipefail
+          set -uo pipefail
           TAG="${GITHUB_REF_NAME#v}"
           echo "Tag version: $TAG"
           if [ -f CITATION.cff ]; then
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build artifact manifest
         run: |
-          set -euo pipefail
+          set -uo pipefail
           mkdir -p _manifest
           {
             echo "# Artifact manifest ($GITHUB_REF_NAME)"
