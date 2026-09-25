@@ -1,6 +1,6 @@
 # GitHub 存缴操作手册（中文）· `cpsp-drg-spinal-repurposing`
 
-> 目的：把本工作目录**平铺**为仓库根，一次性推上 GitHub，并建立"打 tag → 自动 Release → Zenodo 取 DOI"的可引用链路。
+> 目的：把本工作目录**平铺**为仓库根，一次性推上 GitHub，并建立"打 tag → 自动 Release + MANIFEST.sha256"的可引用链路（Zenodo DOI 为可选增强，非必需）。
 > 平铺纪律：仓库根 = 工作目录 `D:\2026.9\极速交付9月会员日优惠套路\01_AI生信-虚拟多重筛药\慢性疼痛`。
 > **账号纪律：科研仓库一律用 `yyx-4113`。** 早年课程作业账号 `yongxinyang` 与本项目无关，**不得**在任何稿件或仓库中出现。
 
@@ -97,13 +97,10 @@ git push origin v1.0.0
 3. Zenodo 会自动生成 DOI（形如 `10.5281/zenodo.XXXXXXX`），在 Zenodo 记录页把 metadata（作者 ORCID、单位、关键词、License=MIT）补全。
 4. 若走 **InvenioRDM 新接口**手工上传（不经 GitHub 联动），流程为：创建 draft record → 注册文件 → 上传文件 → 发布取 DOI。注意 draft 与 published 是两套 URL，稿件里引用 **published** 的那个。
 
-**拿到 DOI 后必须回填的三处：**
-
-| 位置 | 回填内容 |
-|---|---|
-| `README.md` §7 Data availability | `mirrored to Zenodo with DOI 10.5281/zenodo.XXXXXXX` |
-| `CITATION.cff` | 追加 `doi:` 与 `version:`（并让 version 与 tag 一致） |
-| 稿件 Data availability | 实名仓库 URL + Zenodo DOI（**禁止** "available on request"） |
+**数据可用性声明（二选一，均合规）：**
+- **(A) 有 Zenodo DOI（可选）**：回填 `README.md` §7、`CITATION.cff`（`doi:` + `version:`）、稿件 Data availability 三处，写实名仓库 URL + Zenodo DOI。
+- **(B) 无 DOI（本项目采用）**：公开 GitHub 仓库 + `v1.0.0` tag + `MANIFEST.sha256` 校验和即满足 Scientific Reports 数据可用性要求。三处统一写 `version v1.0.0; integrity verifiable via MANIFEST.sha256`，**禁止** "available on request"。
+- 无论 A/B，实名仓库 URL 必须出现，且不得写 "available on request"。
 
 ---
 

@@ -186,7 +186,7 @@
 
 - 仓库名（kebab-case）：**`cpsp-drg-spinal-repurposing`**
 - 标准内容：README(英文文件地图+复现命令+软件版本)、CITATION.cff、MIT LICENSE、.github/workflows/release.yml、GITHUB_DEPOSIT_SOP.md(中文)、author_verification_statement.md
-- 数据可用性措辞：**实名仓库 URL** + "mirrored to Zenodo with citable DOI on acceptance"，**禁止** "available on request"
+- 数据可用性措辞：**实名仓库 URL** + `v1.0.0` tag + `MANIFEST.sha256` 校验和（Zenodo DOI 可选、非必需），**禁止** "available on request"
 - 平铺纪律：仓库根=工作目录；中央脚本与产物必须入库；稿件侧文件排除。
 
 ---

@@ -275,6 +275,13 @@ def build_table2(doc) -> None:
     add_table(doc, rows, size=8.5, caption=cap)
 
 
+def _fig_png(num: str) -> str | None:
+    """Locate figures/Fig{num}_*.png for inline embedding."""
+    import glob
+    hits = sorted(glob.glob(os.path.join(FIG, f"Fig{num}_*.png")))
+    return hits[0] if hits else None
+
+
 def build_manuscript() -> str:
     doc = new_document()
     text = open(MS, encoding="utf-8").read()
@@ -283,13 +290,20 @@ def build_manuscript() -> str:
     # front + body + declarations + references (Table 3a renders from Results)
     render_markdown(doc, part_a)
 
-    # figure legends extracted from the Display items block
+    # figure legends extracted from the Display items block; the PNG images are
+    # EMBEDDED inline immediately after each legend (Scientific Reports technical
+    # check rejects manuscripts that only attach figures as separate EM items).
     para(doc, "Figure legends", bold=True, size=13, space_before=12, space_after=6)
     for f in extract_legends(display):
         para(doc, f"Figure {f['num']}. {f['cap']}", bold=True, size=11,
              space_before=8, space_after=2)
         if f["legend"]:
             para(doc, f["legend"], size=10)
+        png = _fig_png(f["num"])
+        if png is None:
+            raise SystemExit(f"MISSING figure PNG for Fig.{f['num']}")
+        # width = 6 in (~15.2 cm) keeps the 350-DPI rasters at >=300 effective DPI
+        doc.add_picture(png, width=Cm(15.2))
 
     # three main tables, after the references.
     # v1.3 renders Tables 1 and 3 as editable entities inside the manuscript's
@@ -317,10 +331,21 @@ def build_supporting() -> str:
     return path
 
 
+CL_PLOSONE = os.path.join(REP, "MVP_PLOSONE_cover_letter.md")
+
+
 def build_cover() -> str:
     doc = new_document()
     render_markdown(doc, open(CL, encoding="utf-8").read())
     path = os.path.join(OUT, "Cover_Letter.docx")
+    doc.save(path)
+    return path
+
+
+def build_cover_plosone() -> str:
+    doc = new_document()
+    render_markdown(doc, open(CL_PLOSONE, encoding="utf-8").read())
+    path = os.path.join(OUT, "Cover_Letter_PLOSONE.docx")
     doc.save(path)
     return path
 
@@ -348,10 +373,11 @@ def main() -> int:
     ms = build_manuscript()
     si = build_supporting()
     cl = build_cover()
+    clp = build_cover_plosone()
     figs = copy_figures()
     extras = copy_extras()
     print("built:")
-    for p in [ms, si, cl, *figs, *extras]:
+    for p in [ms, si, cl, clp, *figs, *extras]:
         print(f"  {os.path.relpath(p, ROOT):55s} {os.path.getsize(p)/1024:8.1f} KB")
     return 0
 

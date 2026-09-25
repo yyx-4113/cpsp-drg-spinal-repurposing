@@ -19,10 +19,10 @@
 
 ## Software and code
 - **Data collection:** Public GEO datasets retrieved via GEO/ENTREZ; no bespoke collection software.
-- **Data analysis:** Python 3.13 (managed venv) with numpy/scipy/scikit-learn/xgboost/RDKit/Meeko/Open Babel/gemmi; AutoDock Vina 1.2.5. Custom scripts in `scripts/` (p2–p6). Code deposited in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (MIT LICENSE, CITATION.cff); Zenodo DOI on acceptance.
+- **Data analysis:** Python 3.13 (managed venv) with numpy/scipy/scikit-learn/xgboost/RDKit/Meeko/Open Babel/gemmi; AutoDock Vina 1.2.5. Custom scripts in `scripts/` (p2–p6). Code deposited in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (MIT LICENSE, CITATION.cff; version v1.0.0, integrity verifiable via MANIFEST.sha256).
 
 ## Data
-- **Availability statement (manuscript):** All code/tables/figures in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing; processed data mirrored to Zenodo (DOI on acceptance); not "available on request". GEO accessions: GSE267799, GSE212311, GSE278227, GSE241361, GSE265957, GSE158825, GSE222979, GSE216039, GSE328175, GSE246288, GSE306403, GSE325938.
+- **Availability statement (manuscript):** All code/tables/figures in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (version v1.0.0; integrity verifiable via MANIFEST.sha256); not "available on request". GEO accessions: GSE267799, GSE212311, GSE278227, GSE241361, GSE265957, GSE158825, GSE222979, GSE216039, GSE328175, GSE246288, GSE306403, GSE325938.
 - **Restrictions:** None beyond GEO access terms.
 
 ## Research involving human participants, their data, or biological material

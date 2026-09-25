@@ -137,6 +137,10 @@ def extract_legend_text(display_text: str) -> str:
     return "\n".join(figs)
 
 
+def docx_inline_shapes(path):
+    return len(Document(path).inline_shapes)
+
+
 def png_dpi(path):
     with open(path, "rb") as f:
         data = f.read()
@@ -254,7 +258,9 @@ def main() -> int:
             "ADRA2A" in t_txt(t_verd) and "0.532" in t_txt(t_verd)
             and "0.0025" in t_txt(t_verd))
 
-    # 7. figure DPI
+    # 7. figure DPI + inline embedding (Tech-Check hard fail: figures must be
+    #    IN the manuscript, not only attached as separate EM items)
+    chk("Manuscript has 5 inline figures", docx_inline_shapes(ms), 5)
     dpi_all_ok = True
     for fn in sorted(os.listdir(FIG)):
         if fn.endswith(".png"):

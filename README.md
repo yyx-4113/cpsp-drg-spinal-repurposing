@@ -235,8 +235,8 @@ All input data are public and are re-downloaded by the scripts in `scripts/` fro
 repositories (NCBI GEO; ChEMBL; RCSB PDB; Drug Repurposing Hub). No primary data were generated.
 
 Code, derived tables and figures are deposited at
-`https://github.com/yyx-4113/cpsp-drg-spinal-repurposing` and mirrored to Zenodo with a citable DOI
-on acceptance.
+`https://github.com/yyx-4113/cpsp-drg-spinal-repurposing` (version v1.0.0; integrity verifiable via
+`MANIFEST.sha256` attached to the v1.0.0 GitHub Release).
 
 ---
 
