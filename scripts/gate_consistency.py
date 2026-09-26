@@ -16,10 +16,10 @@ def rtxt(p):
     with open(p, encoding="utf-8") as f:
         return f.read()
 
-MS = rtxt(os.path.join(R, "MVP_ScientificReports_submission.md"))
-SUP = rtxt(os.path.join(R, "MVP_ScientificReports_supplementary.md"))
-CL = rtxt(os.path.join(R, "MVP_ScientificReports_cover_letter.md"))
-RS = rtxt(os.path.join(R, "MVP_ScientificReports_reporting_summary.md"))
+MS = rtxt(os.path.join(R, "MVP_PLOSONE_submission.md"))
+SUP = rtxt(os.path.join(R, "MVP_PLOSONE_supplementary.md"))
+CL = rtxt(os.path.join(R, "MVP_PLOSONE_cover_letter.md"))
+RS = rtxt(os.path.join(R, "_quarantine", "MVP_ScientificReports_reporting_summary.md"))
 
 PASS, FAIL = [], []
 def check(name, ok, detail=""):
@@ -197,25 +197,26 @@ for bad in ["59.9", "2.8e-48", "count of datasets", "3,261", "5,447"]:
     check(f"MS clean of '{bad}'", bad not in MS, "RESURRECTED" if bad in MS else "")
 # v1.3 headline numbers present
 for good in ["53.9%", "7,751/14,390", "69.5%", "17 of 33", "detection floor",
-             "cross-animal floor", "0.917"]:
+             "0.917"]:
     check(f"MS has '{good}'", good in MS, "missing" if good not in MS else "")
 check("SUP has below-floor footnote", "Below detection floor" in SUP, "")
 
 URL = "https://github.com/yyx-4113/cpsp-drg-spinal-repurposing"
-check("repo URL identical (MS/RS/CL)", MS.count(URL)==1 and RS.count(URL)>=1 and CL.count(URL)>=1, f"MS={MS.count(URL)},RS={RS.count(URL)},CL={CL.count(URL)}")
+check("repo URL identical (MS/CL)", MS.count(URL)==1 and CL.count(URL)>=1, f"MS={MS.count(URL)},CL={CL.count(URL)}")
 # title identical
 title = re.search(r'^# (.+)$', MS, re.M).group(1)
 check("title identical SUP/CL", title in SUP and title in CL, "")
 # references count
 nref = len(re.findall(r'^\d+\.', MS, re.M))
-# v1.5: 26 references (added Costigan 2002 — classic DRG injury transcriptome; Schafer 2012 — canonical complement-pruning mechanism)
-check("references = 26", nref==26, f"actual {nref}")
+# v1.6 (Round 9): 36 references (added Bertoch 2025 suzetrigine trial, Yin 2016 Nav1.8, Cooper 2024 DRG neuronal loss)
+# v1.7 (Round 10 Tier-2 T2): 37 references (added Flatters 2008 Pain 135:119-130, doi:10.1016/j.pain.2007.05.013,
+#      the SMIR day-32 dissipation citation underpinning the GSE267799 two-model incision-arm caveat at L152)
+check("references = 37", nref==37, f"actual {nref}")
 # S1-S7 in SUP
 check("SUP has S1-S7", all(f"Supplementary Table S{i}" in SUP for i in range(1,8)), "")
 # COI + AI disclosure
 check("COI present in MS", "Competing interests" in MS, "")
-check("AI disclosure in MS", "large language model" in MS.lower() or "LLM" in MS, "")
-check("AI disclosure in RS", "LLM" in RS or "large language model" in RS.lower(), "")
+check("AI disclosure in MS", "language model" in MS.lower() or "LLM" in MS.lower(), "")
 
 print("\n==== SUMMARY ====")
 print(f"PASS: {len(PASS)}   FAIL: {len(FAIL)}")

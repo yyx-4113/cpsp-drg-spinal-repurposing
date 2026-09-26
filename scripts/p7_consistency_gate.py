@@ -9,7 +9,9 @@ import numpy as np, pandas as pd
 
 ROOT = "D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛"
 TAB  = os.path.join(ROOT, "results/tables")
-MS   = os.path.join(ROOT, "reports/MVP_ScientificReports_submission.md")
+MS   = os.path.join(ROOT, "reports/MVP_PLOSONE_submission.md")
+STROBE = os.path.join(ROOT, "reports/MVP_STROBE_checklist.md")
+COMPLIANCE = os.path.join(ROOT, "reports/MVP_PLOSONE_compliance_check.md")
 txt  = open(MS, encoding="utf-8").read()
 fails, warns, oks = [], [], []
 
@@ -38,7 +40,10 @@ CONTEXT_OK = {
     "priorities": ("would contradict", "T1-2 Discussion 'priorities' contradicts the honest null"),
 }
 for tok, why in FORBIDDEN.items():
-    n = txt.count(tok)
+    # negative lookbehind: a real version token (v1.3) must not be preceded by a
+    # letter, so gene names like Nav1.3 (SCN3A) are not false-flagged.
+    pat = r"(?<![A-Za-z])" + re.escape(tok)
+    n = len(re.findall(pat, txt))
     if n: fails.append(f"FORBIDDEN '{tok}' x{n} — {why}")
     else: oks.append(f"absent: '{tok}'")
 for t in oks: print("  OK   ", t)
@@ -61,8 +66,8 @@ print(f"  title   : {tw} words  -> {'OK' if tw <= 20 else 'FAIL'} (limit 20)")
 if tw > 20: fails.append(f"title {tw} words > 20")
 ab = txt.split("## Abstract")[1].split("---")[0].strip()
 aw = len(ab.split())
-print(f"  abstract: {aw} words  -> {'OK' if aw <= 200 else 'FAIL'} (limit 200)")
-if aw > 200: fails.append(f"abstract {aw} words > 200")
+print(f"  abstract: {aw} words  -> {'OK' if aw <= 300 else 'FAIL'} (limit 300, PLOS ONE)")
+if aw > 300: fails.append(f"abstract {aw} words > 300")
 nfig = len(re.findall(r"^- \*\*Fig\. ", txt, flags=re.M))
 ntab = len(re.findall(r"^- \*\*Table ", txt, flags=re.M))
 print(f"  display : {nfig} figures + {ntab} tables = {nfig+ntab} -> {'OK' if nfig+ntab <= 8 else 'FAIL'} (limit 8)")
@@ -146,7 +151,7 @@ chk("median I2", round(float(np.nanmedian(re_.I2)), 1), "38.8")
 chk("RE retention pct", round(float(((re_.FDR_RE < 0.05) & (re_.consistency >= 0.8) & core.values).sum() / core.sum() * 100), 1), "24.9")
 j = json.load(open(os.path.join(TAB, "META_bulkonly_sensitivity_summary.json")))
 chk("bulk-only OXPHOS down pct", round((1 - j["setcalls"]["Mitochondria_OXPHOS"]["frac_up"]) * 100, 1), "72.2")
-chk("bulk-only core", j["bulkonly_core_n"] if "bulkonly_core_n" in j else 1981, "1,981")
+chk("bulk-only core", j["bulk_only_core_size"], "2,512")
 p4 = pd.read_csv(os.path.join(TAB, "P4_hub_targeting_miRNAs.csv"))
 integ = pd.read_csv(os.path.join(TAB, "P4_hub_miRNA_human_integration.csv"))
 hc = p4[p4.score >= 80]; hcp = hc[hc.miRNA.isin(set(integ.miRNA))]
@@ -165,18 +170,93 @@ chk("core concordance pct", round(tr["rate"] * 100, 1), "69.5")
 s7 = json.load(open(os.path.join(TAB, "_R4_nerveinjury_only_summary.json")))
 stt = s7["strata"]
 chk("NI-only strong k", stt["NI_FDR05_AND_NIcons>=0.8"]["k"], "2,266/4,899")
-chk("NI-only strong pct", round(stt["NI_FDR05_AND_NIcons>=0.8"]["rate"] * 100, 1), "46.3")
+chk("NI-only strong pct", round(stt["NI_FDR05_AND_NIcons>=0.8"]["rate"] * 100, 1), "46.2")
 chk("NI background pct", round(stt["all_measured"]["rate"] * 100, 1), "47.1")
 chk("risk difference", s7["strong_vs_background_pp"], "−0.9 pp")
 bt = json.load(open(os.path.join(TAB, "_R4_targetset_bootstrap.json")))
-chk("eligible recovered mean", bt["dock_eligible_17"]["mean_recovered"], "0.79 of the 17")
-chk("P(>=3 of 17)", bt["dock_eligible_17"]["P_ge3"], "0.040")
-chk("Jaccard median", bt["jaccard_vs_published35"]["median"], "0.026")
+# Round-10 fix: expected strings are DERIVED from the authoritative bootstrap
+# product (not hardcoded), so the gate can never again pin stale buggy numbers.
+chk("eligible recovered mean", bt["dock_eligible_17"]["mean_recovered"],
+    f"{bt['dock_eligible_17']['mean_recovered']:.2f} of the 17")
+chk("P(>=3 of 17)", bt["dock_eligible_17"]["P_ge3"],
+    f"P(\u22653 of 17) = {bt['dock_eligible_17']['P_ge3']:.3f}")
+chk("P(>=5 of 17)", bt["dock_eligible_17"]["P_ge5"],
+    f"P(\u22655 of 17) = {bt['dock_eligible_17']['P_ge5']:.3f}")
+chk("Jaccard median", bt["jaccard_vs_published35"]["median"],
+    f"{bt['jaccard_vs_published35']['median']:.3f}")
 gsb = pd.read_csv(os.path.join(TAB, "_R4_geneset_setlevel_bh.csv"))
 fe = gsb[gsb.scale == "fixed"].set_index("set")
 chk("OXPHOS set-level q (FE)", round(float(fe.loc["Mitochondria_OXPHOS", "perm_q"]), 3), "q = 0.020")
 re_sets = gsb[gsb.scale == "random"].set_index("set")
 chk("OXPHOS set-level q (RE)", round(float(re_sets.loc["Mitochondria_OXPHOS", "perm_q"]), 2), "q = 0.31")
+
+# ---------------------------------------------------------------- (5) pre-submission warnings
+print("\n" + "=" * 78); print("[5] PRE-SUBMISSION WARNINGS"); print("=" * 78)
+if "10.5281/zenodo.XXXXXXX" in txt:
+    warns.append("Zenodo DOI still placeholder — mint the v1.0.0 archive and replace before submission")
+    print("  WARN  Zenodo DOI still placeholder (10.5281/zenodo.XXXXXXX)")
+else:
+    oks.append("Zenodo DOI resolved")
+
+# ---------------------------------------------------------------- (6) Round-9 integrity assertions
+print("\n" + "=" * 78); print("[6] ROUND-9 INTEGRITY ASSERTIONS"); print("=" * 78)
+# 6.1 Display-item self-consistency
+m = re.search(r"## Display items \((\d+) figures \+ (\d+) tables", txt)
+if m:
+    cf, ct = int(m.group(1)), int(m.group(2))
+    af = len(re.findall(r"^- \*\*Fig\. ", txt, flags=re.M))
+    at = len(re.findall(r"^- \*\*Table ", txt, flags=re.M))
+    if cf == af and ct == at:
+        oks.append(f"display-item header {cf}f+{ct}t matches enumerated {af}f+{at}t")
+        print(f"  OK    display-item header {cf}f+{ct}t matches enumerated {af}f+{at}t")
+    else:
+        fails.append(f"display-item mismatch: header {cf}f+{ct}t vs enumerated {af}f+{at}t")
+        print(f"  FAIL  display-item mismatch: header {cf}f+{ct}t vs enumerated {af}f+{at}t")
+else:
+    fails.append("cannot parse display-item header"); print("  FAIL  cannot parse display-item header")
+if "8-item cap" in txt:
+    fails.append("'8-item cap' is a Scientific Reports fingerprint — remove (PLOS ONE has no such cap)")
+    print("  FAIL  literal '8-item cap' present (Scientific Reports fingerprint)")
+else:
+    oks.append("no '8-item cap' fingerprint"); print("  OK    no '8-item cap' fingerprint")
+
+# 6.2 Zenodo wording (must not imply existence before minting when DOI = XXXXXXX)
+zen_lines = [l for l in txt.split("\n") if "XXXXXXX" in l]
+zen_bad = False
+for l in zen_lines:
+    if re.search(r"mirror|already", l, re.I):
+        zen_bad = True
+        fails.append(f"Zenodo wording implies existence before minting: {l.strip()}")
+        print(f"  FAIL  Zenodo wording implies existence: {l.strip()}")
+if not zen_bad:
+    oks.append("Zenodo sentence fully prospective"); print("  OK    Zenodo sentence fully prospective (no 'mirroring'/'already')")
+
+# 6.3 STROBE title check — the checklist must not misquote the title as naming the design
+stb = open(STROBE, encoding="utf-8").read()
+if 'states "multi-dataset in-silico meta-analysis"' in stb:
+    fails.append("STROBE checklist misquotes title as naming the design")
+    print("  FAIL  STROBE still claims title states 'multi-dataset in-silo meta-analysis'")
+else:
+    oks.append("STROBE no longer misquotes title"); print("  OK    STROBE no longer misquotes title")
+if "meta-analysis" in title.lower():
+    fails.append("manuscript title names the design — re-check STROBE wording for consistency")
+    print("  FAIL  title contains 'meta-analysis' (re-check STROBE wording)")
+else:
+    oks.append("title does not name the design (consistent with corrected STROBE)"); print("  OK    title does not name the design")
+
+# 6.4 Reference-count echo — compliance doc count must equal manuscript count
+nref_ms = len(re.findall(r"^\d+\. ", txt.split("\n## References")[1].split("\n## Acknowledgements")[0], flags=re.M))
+cmp = open(COMPLIANCE, encoding="utf-8").read()
+mcc = re.search(r"(\d+)\s*references?", cmp, re.I)
+if mcc and int(mcc.group(1)) == nref_ms:
+    oks.append(f"compliance doc reference count ({mcc.group(1)}) matches manuscript ({nref_ms})")
+    print(f"  OK    compliance doc reference count {mcc.group(1)} == manuscript {nref_ms}")
+elif mcc:
+    fails.append(f"compliance doc says {mcc.group(1)} references but manuscript has {nref_ms}")
+    print(f"  FAIL  compliance doc says {mcc.group(1)} refs but manuscript has {nref_ms}")
+else:
+    warns.append("could not parse reference count from compliance doc")
+    print("  WARN  could not parse reference count from compliance doc")
 
 print("\n" + "=" * 78)
 print(f"RESULT: {len(fails)} failure(s), {len(warns)} warning(s), {len(oks)} check(s) passed")

@@ -21,11 +21,11 @@ ANKRD13B,True,DorsalHorn,1.164,0.435,0.8355,0.182,restricted,1.7804,0.417,Mening
 NPY,True,DorsalHorn,2.591,0.775,0.6368,0.132,restricted,3.9565,0.3288,MeningealFibro:-0.73;WhiteMatter:-1.24;WhiteMatter:-1.38;DorsalHorn:2.59;VentralHorn:-0.53;Ependymal:0.62;MeningealFibro:-0.44,,n/a
 AXL,True,MeningealFibro,1.078,0.587,1.3314,0.283,restricted,3.0766,0.6924,MeningealFibro:-0.79;WhiteMatter:-0.02;WhiteMatter:-0.98;DorsalHorn:0.78;VentralHorn:0.55;Ependymal:0.69;MeningealFibro:1.08,Immune,divergent
 SERPINE1,True,MeningealFibro,3.827,0.038,0.0149,0.003,restricted,0.1173,0.1173,MeningealFibro:-13.87;WhiteMatter:0.44;WhiteMatter:-3.13;DorsalHorn:2.64;VentralHorn:-13.87;Ependymal:-0.16;MeningealFibro:3.83,,n/a
-CRISP3,True,MeningealFibro,0.0,0.0,0.0,0.0,broad/low,0.0,0.0,MeningealFibro:0.00;WhiteMatter:0.00;WhiteMatter:0.00;DorsalHorn:0.00;VentralHorn:0.00;Ependymal:0.00;MeningealFibro:0.00,,n/a
+CRISP3,False,MeningealFibro,0.0,0.0,0.0,0.0,broad/low,0.0,0.0,MeningealFibro:0.00;WhiteMatter:0.00;WhiteMatter:0.00;DorsalHorn:0.00;VentralHorn:0.00;Ependymal:0.00;MeningealFibro:0.00,,n/a
 WBP1L,True,MeningealFibro,1.039,0.385,0.8809,0.189,restricted,1.6687,0.174,MeningealFibro:-0.66;WhiteMatter:0.54;WhiteMatter:-0.98;DorsalHorn:0.73;VentralHorn:0.77;Ependymal:0.44;MeningealFibro:1.04,Immune,divergent
 ITPKC,True,DorsalHorn,1.523,0.123,0.1712,0.039,restricted,0.4863,0.1395,MeningealFibro:-0.61;WhiteMatter:-0.14;WhiteMatter:-1.30;DorsalHorn:1.52;VentralHorn:0.64;Ependymal:0.72;MeningealFibro:0.07,,n/a
 ACVR1,True,DorsalHorn,1.067,0.27,0.5173,0.118,restricted,0.9971,0.3957,MeningealFibro:-1.51;WhiteMatter:-0.24;WhiteMatter:-1.09;DorsalHorn:1.07;VentralHorn:0.88;Ependymal:0.73;MeningealFibro:0.63,,n/a
-LNP1,True,MeningealFibro,0.0,0.0,0.0,0.0,broad/low,0.0,0.0,MeningealFibro:0.00;WhiteMatter:0.00;WhiteMatter:0.00;DorsalHorn:0.00;VentralHorn:0.00;Ependymal:0.00;MeningealFibro:0.00,,n/a
+LNP1,False,MeningealFibro,0.0,0.0,0.0,0.0,broad/low,0.0,0.0,MeningealFibro:0.00;WhiteMatter:0.00;WhiteMatter:0.00;DorsalHorn:0.00;VentralHorn:0.00;Ependymal:0.00;MeningealFibro:0.00,,n/a
 AGRN,True,DorsalHorn,1.017,0.691,1.5394,0.324,restricted,3.148,0.2462,MeningealFibro:0.05;WhiteMatter:-0.25;WhiteMatter:-1.05;DorsalHorn:1.02;VentralHorn:0.69;Ependymal:0.68;MeningealFibro:0.64,,n/a
 VIP,True,Ependymal,1.332,0.036,0.0589,0.014,restricted,0.1418,0.0584,MeningealFibro:-15.85;WhiteMatter:-1.92;WhiteMatter:-1.22;DorsalHorn:1.05;VentralHorn:-15.85;Ependymal:1.33;MeningealFibro:-0.77,,n/a
 REG3B,True,MeningealFibro,2.468,0.01,0.0066,0.002,restricted,0.0125,0.0216,MeningealFibro:-12.68;WhiteMatter:-12.68;WhiteMatter:-0.80;DorsalHorn:-12.68;VentralHorn:1.89;Ependymal:0.67;MeningealFibro:2.47,,n/a

@@ -86,7 +86,10 @@ Cs = np.logspace(-4, 1.5, 30); C_min = Cs[int(np.argmax(cv.scores_[1].mean(0)))]
 
 def lasso_nonzero(X, y, C):
     lr = LogisticRegression(penalty="l1", solver="liblinear", C=C, max_iter=5000).fit(X, y)
-    return set(np.where(np.abs(lr.coef_[0]) > 1e-8)[0])
+    idx = np.where(np.abs(lr.coef_[0]) > 1e-8)[0]
+    # return gene SYMBOLS (not integer column indices) so the vote below is
+    # commensurable with the RF / XGBoost symbol sets
+    return set(POOL[i] for i in idx)
 
 pub = pd.read_csv(os.path.join(TAB, "P3_hub_genes.csv")); pubhub = pub.symbol.tolist()
 POOLSET = set(POOL)
@@ -96,6 +99,7 @@ print(f"POOL={len(POOL)}  published hubs={len(pubhub)}  dock-eligible in POOL={l
 
 elig_freq = {g: 0 for g in DOCK_ELIGIBLE}; dock_freq = {g: 0 for g in DOCKED_HUBS}
 elig_cnt = []; dock_cnt = []; jac = []; sizes = []
+resample_rows = []   # per-resample recovery-set audit trail (T3-2 reproducibility)
 done = 0
 for b in range(B):
     idx = rng.choice(len(yall), len(yall), replace=True)
@@ -108,8 +112,8 @@ for b in range(B):
     rftop = set(pd.Series(rf.feature_importances_, index=POOL).sort_values(ascending=False).head(80).index)
     clf = xgb.XGBClassifier(n_estimators=200, max_depth=3, learning_rate=0.05, subsample=0.8,
                             colsample_bytree=0.5, reg_lambda=2.0, eval_metric="logloss",
-                            random_state=SEED + b, n_jobs=-1).fit(Xp, yb)
-    sv = clf.get_booster().predict(xgb.DMatrix(Xp), pred_contribs=True)[:, :-1]
+                            random_state=SEED + b, n_jobs=-1).fit(Xbs, yb)
+    sv = clf.get_booster().predict(xgb.DMatrix(Xbs), pred_contribs=True)[:, :-1]
     xgbtop = set(pd.Series(np.abs(sv).mean(0), index=POOL).sort_values(ascending=False).head(80).index)
 
     votes = {}
@@ -125,6 +129,15 @@ for b in range(B):
         if g in hubs_b: elig_freq[g] += 1
     for g in dock_in_pool:
         if g in hubs_b: dock_freq[g] += 1
+    resample_rows.append({
+        "resample": done,
+        "recovered_hub_set_size": int(len(hubs_b)),
+        "jaccard_vs_published35": round(float(jac[-1]), 4),
+        "n_dock_eligible_17_recovered": int(ne),
+        "dock_eligible_recovered": ";".join(sorted(g for g in elig_in_pool if g in hubs_b)),
+        "n_docked_9_recovered": int(nd),
+        "docked_recovered": ";".join(sorted(g for g in dock_in_pool if g in hubs_b)),
+    })
     if (b + 1) % 25 == 0: print(f"  resample {b+1}/{B} done", flush=True)
 
 sizes = np.array(sizes); jac = np.array(jac); ec = np.array(elig_cnt); dc = np.array(dock_cnt)
@@ -147,6 +160,9 @@ for g in DOCKED_HUBS:
                  "recovery_freq": dock_freq.get(g, 0) / max(done, 1)})
 df = pd.DataFrame(rows).sort_values(["set", "recovery_freq"], ascending=[True, False])
 df.to_csv(os.path.join(TAB, "_R4_targetset_bootstrap.csv"), index=False)
+# T3-2: per-resample recovery-set audit trail (makes 'median size 6 (IQR 5-8)',
+# 'median Jaccard 0.026', 'P(>=3 of 17)=0.040' directly reproducible from raw rows).
+pd.DataFrame(resample_rows).to_csv(os.path.join(TAB, "_R4_targetset_bootstrap_resamples.csv"), index=False)
 print("\n" + df.to_string(index=False, float_format=lambda v: f"{v:.3f}"))
 
 json.dump({

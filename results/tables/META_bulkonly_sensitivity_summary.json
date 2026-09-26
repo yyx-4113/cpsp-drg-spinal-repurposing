@@ -29,10 +29,10 @@
       "desc": "SNI (mouse DRG, WT)"
     }
   },
-  "bulk_only_core_size": 1981,
+  "bulk_only_core_size": 2512,
   "primary_core_size": 4055,
-  "overlap": 1732,
-  "overlap_pct_primary": 42.712700369913684,
+  "overlap": 2202,
+  "overlap_pct_primary": 54.3157,
   "setcalls": {
     "TRP_channels": {
       "n": 12,

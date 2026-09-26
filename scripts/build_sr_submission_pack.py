@@ -39,12 +39,17 @@ TBL = os.path.join(ROOT, "results", "tables")
 FIG = os.path.join(ROOT, "figures")
 OUT = os.path.join(ROOT, "submission_pack")
 
-MS = os.path.join(REP, "MVP_ScientificReports_submission.md")
-SUP = os.path.join(REP, "MVP_ScientificReports_supplementary.md")
-CL = os.path.join(REP, "MVP_ScientificReports_cover_letter.md")
-RS = os.path.join(REP, "MVP_ScientificReports_reporting_summary.md")
+MS = os.path.join(REP, "MVP_PLOSONE_submission.md")
+SUP = os.path.join(REP, "MVP_PLOSONE_supplementary.md")
+CL = os.path.join(REP, "MVP_PLOSONE_cover_letter.md")
+RS = os.path.join(REP, "_quarantine", "MVP_ScientificReports_reporting_summary.md")
+STROBE = os.path.join(REP, "MVP_STROBE_checklist.md")
 
 BODY_FONT = "Times New Roman"
+
+MS_TITLE = ("Conserved nerve-injury-associated transcriptional response on the "
+            "dorsal root ganglion\u2013spinal axis: non-predictive incision "
+            "translation and an honest repurposing null")
 
 
 # --------------------------------------------------------------------------- #
@@ -52,6 +57,12 @@ BODY_FONT = "Times New Roman"
 # --------------------------------------------------------------------------- #
 def new_document() -> Document:
     doc = Document()
+    # A4-F9: set core document properties so the .docx is not left with the
+    # python-docx default "python-docx" author/title metadata.
+    cp = doc.core_properties
+    cp.author = "Yang Y"
+    cp.title = MS_TITLE
+    cp.last_modified_by = "Yang Y"
     normal = doc.styles["Normal"]
     normal.font.name = BODY_FONT
     normal.font.size = Pt(12)
@@ -219,7 +230,7 @@ def extract_legends(display_text: str) -> list[dict]:
             continue
         if not in_fig:
             continue
-        m = re.match(r"^- \*\*Fig\. (\d+)\*\*\s+`([^`]+)`\s+—\s+(.+)$", s)
+        m = re.match(r"^- \*\*Fig\. (\d+)\*\*\s+`([^`]+)`\s+(?:—|:)\s+(.+)$", s)
         if m:
             if cur:
                 figs.append(cur)
@@ -350,6 +361,14 @@ def build_cover_plosone() -> str:
     return path
 
 
+def build_strobe() -> str:
+    doc = new_document()
+    render_markdown(doc, open(STROBE, encoding="utf-8").read())
+    path = os.path.join(OUT, "STROBE_Checklist.docx")
+    doc.save(path)
+    return path
+
+
 def copy_figures() -> list[str]:
     out = []
     for fn in sorted(os.listdir(FIG)):
@@ -361,11 +380,11 @@ def copy_figures() -> list[str]:
 
 
 def copy_extras() -> list[str]:
-    out = []
-    dst = os.path.join(OUT, "Reporting_Summary.md")
-    shutil.copyfile(RS, dst)
-    out.append(dst)
-    return out
+    # PLOS ONE does not use the Nature 'Reporting Summary'; the STROBE checklist
+    # (built separately as STROBE_Checklist.docx) is the relevant reporting
+    # checklist for this observational reanalysis. No extra plain-md files are
+    # shipped in the PLOS pack.
+    return []
 
 
 def main() -> int:
@@ -374,10 +393,11 @@ def main() -> int:
     si = build_supporting()
     cl = build_cover()
     clp = build_cover_plosone()
+    strobe = build_strobe()
     figs = copy_figures()
     extras = copy_extras()
     print("built:")
-    for p in [ms, si, cl, clp, *figs, *extras]:
+    for p in [ms, si, cl, clp, strobe, *figs, *extras]:
         print(f"  {os.path.relpath(p, ROOT):55s} {os.path.getsize(p)/1024:8.1f} KB")
     return 0
 

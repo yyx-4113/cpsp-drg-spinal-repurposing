@@ -68,7 +68,10 @@ sc=cv.scores_[1].mean(0); se=cv.scores_[1].std(0)/np.sqrt(5); bi=int(np.argmax(s
 Cs=np.logspace(-4,1.5,30); C_min=Cs[bi]
 def lasso_nonzero(X,y,C):
     lr=LogisticRegression(penalty="l1",solver="liblinear",C=C,max_iter=5000).fit(X,y)
-    return set(np.where(np.abs(lr.coef_[0])>1e-8)[0])
+    idx=np.where(np.abs(lr.coef_[0])>1e-8)[0]
+    # return gene SYMBOLS (not integer column indices) so membership tests
+    # against symbol sets are meaningful
+    return set(POOL[i] for i in idx)
 
 pub=pd.read_csv(os.path.join(TAB,"P3_hub_genes.csv"))
 pubhub=pub.symbol.tolist()
@@ -82,8 +85,8 @@ for b in range(B):
     lnz=lasso_nonzero(Xbs,yb,C_min)
     rf=RandomForestClassifier(n_estimators=500,max_depth=5,min_samples_leaf=2,random_state=SEED+b,n_jobs=-1,class_weight="balanced").fit(Xbs,yb)
     rftop=set(pd.Series(rf.feature_importances_,index=POOL).sort_values(ascending=False).head(80).index)
-    clf=xgb.XGBClassifier(n_estimators=200,max_depth=3,learning_rate=0.05,subsample=0.8,colsample_bytree=0.5,reg_lambda=2.0,eval_metric="logloss",random_state=SEED+b,n_jobs=-1).fit(Xp,yb)
-    sv=clf.get_booster().predict(xgb.DMatrix(Xp),pred_contribs=True)
+    clf=xgb.XGBClassifier(n_estimators=200,max_depth=3,learning_rate=0.05,subsample=0.8,colsample_bytree=0.5,reg_lambda=2.0,eval_metric="logloss",random_state=SEED+b,n_jobs=-1).fit(Xbs,yb)
+    sv=clf.get_booster().predict(xgb.DMatrix(Xbs),pred_contribs=True)
     sv=sv[:, :-1]  # drop the bias column (n_features+1 returned)
     shap_rank=pd.Series(np.abs(sv).mean(0),index=POOL).sort_values(ascending=False)
     xgbtop=set(shap_rank.head(80).index)

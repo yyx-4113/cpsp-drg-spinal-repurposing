@@ -137,7 +137,7 @@ def fig1():
 
 # ---------------------------------------------------------------- Fig 2
 def fig2():
-    lodo = pd.read_csv(os.path.join(TBL, "P3_lodo_auc_ci.csv"))
+    lodo = pd.read_csv(os.path.join(TBL, "P3_lodo_auc_ci_leakage_controlled.csv"))
     lodo["short"] = (lodo["test_dataset"]
                      .str.replace("_ratDRG", " (rat DRG)", regex=False)
                      .str.replace("_mouseDRG", " (mouse DRG)", regex=False)
@@ -150,23 +150,23 @@ def fig2():
 
     # Panel A: LODO AUC with 95% CI
     y = np.arange(len(lodo))
-    axA.errorbar(lodo["auc"], y, xerr=[lodo["auc"] - lodo["lo"], lodo["hi"] - lodo["auc"]],
+    axA.errorbar(lodo["auc"], y, xerr=[lodo["auc"] - lodo["ci_lo"], lodo["ci_hi"] - lodo["auc"]],
                  fmt="o", color="#1F618D", ecolor="#5499C7", capsize=4, ms=6, zorder=3)
     for i, (_, r) in enumerate(lodo.iterrows()):
-        axA.text(r["auc"] + 0.012, i, f"{r['auc']:.3f}\n[{r['lo']:.3f}, {r['hi']:.3f}]",
+        axA.text(r["auc"] + 0.012, i, f"{r['auc']:.3f}\n[{r['ci_lo']:.3f}, {r['ci_hi']:.3f}]",
                  va="center", ha="left", fontsize=6.8)
     axA.axvline(0.5, color=GREY, ls="--", lw=1)
-    axA.axvline(0.917, color=C_PASS, ls=":", lw=1.2)
+    axA.axvline(0.677, color=C_PASS, ls=":", lw=1.2)
     axA.set_yticks(y); axA.set_yticklabels(lodo["short"], fontsize=8)
     axA.set_xlabel("Leave-one-dataset-out AUC\n(test set excluded from training)")
     axA.set_xlim(0.4, 1.2)
     axA.grid(axis="x", color=GRID, lw=0.7, zorder=0); axA.set_axisbelow(True)
-    axA.set_title("A. Generalisation (LODO)", loc="left", fontsize=10)
+    axA.set_title("A. Generalisation (LC-LODO, leakage-controlled)", loc="left", fontsize=10)
     from matplotlib.lines import Line2D
     axA.legend(handles=[Line2D([0], [0], color=GREY, ls="--", lw=1,
                                label="chance level (AUC 0.5)"),
                         Line2D([0], [0], color=C_PASS, ls=":", lw=1.4,
-                               label="cross-animal floor 0.917")],
+                               label="cross-animal floor 0.677")],
                loc="lower left", fontsize=6.8, frameon=True, edgecolor="#B0B0B0")
 
     # Panel B: method-importance heatmap for top hubs
