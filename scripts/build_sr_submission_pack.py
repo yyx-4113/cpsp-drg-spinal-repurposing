@@ -48,8 +48,8 @@ STROBE = os.path.join(REP, "MVP_STROBE_checklist.md")
 BODY_FONT = "Times New Roman"
 
 MS_TITLE = ("Conserved nerve-injury-associated transcriptional response on the "
-            "dorsal root ganglion\u2013spinal axis: non-predictive incision "
-            "translation and an honest repurposing null")
+            "DRG\u2013spinal axis: dorsal root ganglion analysis with "
+            "spinal-cord localisation and honest repurposing null")
 
 
 # --------------------------------------------------------------------------- #

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this code or the derived tables, please cite both the article and this repository (version v1.0.0; integrity verifiable via MANIFEST.sha256)."
-title: "Conserved nerve-injury-associated transcriptional response on the dorsal root ganglion–spinal axis: non-predictive incision translation and an honest repurposing null"
+message: "If you use this code or the derived tables, please cite both the article and this repository (version v1.1.0; integrity verifiable via MANIFEST.sha256)."
+title: "Conserved nerve-injury-associated transcriptional response on the DRG–spinal axis: dorsal root ganglion analysis with spinal-cord localisation and honest repurposing null"
 abstract: >-
   Computational study integrating public transcriptomic datasets across the DRG-spinal-cord axis:
   cross-dataset meta-analysis, dual-machine-learning hub-gene prioritisation, single-cell
