@@ -1,6 +1,6 @@
 # Supplementary Information
 
-**Title.** Conserved nerve-injury-associated transcriptional response on the DRG–spinal axis: dorsal root ganglion analysis with spinal-cord localisation and honest repurposing null
+**Title.** Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null
 
 **Author.** Yang Y
 
@@ -50,9 +50,9 @@ Consensus across three single-cell/nucleus datasets: GSE216039 (mouse DRG neuron
 
 ## Supplementary Table S2. Visium GSE325938 spatial regionalisation of the 35 hubs (P5)
 
-Spatial regionalisation of the 35 hubs across seven spinal-cord regions in Visium GSE325938 (mouse spinal cord, Sham/baseline tissue). 33/35 hubs were detectably expressed (CRISP3 and LNP1 were below the detection threshold, tier "broad/low", all log2 = 0). `top_region` = region of maximal mean log2 expression; `top_label_log2` = that region's label log2 value; `top_detection` = detection fraction in the top region; `tier` = restricted / enriched / broad-low; `snRNA_lineage` = lineage assigned by snRNA (blank = not localisable); `crossmodal` = consistent / divergent / n/a between Visium top region and snRNA lineage. **Detection floor (below-floor flag, marked \*):** hubs whose `top_detection` < 5% in their top region — CDHR5, SERPINE1, CRISP3, LNP1, VIP, REG3B and ANKRD1 — are flagged below-floor; their regional specificity ratios are driven by near-zero detection fractions and are therefore excluded from biological interpretation (see Methods). All 17 dorsal-horn assignments passed the 5% floor. The full per-region breakdown (`log2_all_regions`) is retained in `results/tables/P5_GSE325938_hub_regionalization.csv`.
+Spatial regionalisation of the 35 hubs across seven spinal-cord regions in Visium GSE325938 (mouse spinal cord, Sham/baseline tissue). 33/35 hubs were detectably expressed (CRISP3 and LNP1 were below the detection threshold, tier "broad/low", all log2 = 0). `top_region` = region of maximal mean log2 expression; `top_label_log2` = that region's label log2 value; `top_detection` = detection fraction in the top region; `tier` = restricted / enriched / broad-low; `snRNA_lineage` = lineage assigned by snRNA (blank = not localisable); `crossmodal` = consistent / divergent / n/a between Visium top region and snRNA lineage. The `In_35hub_set` column (=1 for all 35 rows) denotes membership in the 35-gene candidate set by construction; it is not a Visium-detection flag — actual detectability is given by the Tier and Top-detect columns (CRISP3 and LNP1 are all-zero, below detection). **Detection floor (below-floor flag, marked \*):** hubs whose `top_detection` < 5% in their top region — CDHR5, SERPINE1, CRISP3, LNP1, VIP, REG3B and ANKRD1 — are flagged below-floor; their regional specificity ratios are driven by near-zero detection fractions and are therefore excluded from biological interpretation (see Methods). All 17 dorsal-horn assignments passed the 5% floor. The full per-region breakdown (`log2_all_regions`) is retained in `results/tables/P5_GSE325938_hub_regionalization.csv`.
 
-| Symbol | Present | Top region | Top log2 | Top detect | Global mean | Global detect | Tier | snRNA lineage | Crossmodal |
+| Symbol | In_35hub_set | Top region | Top log2 | Top detect | Global mean | Global detect | Tier | snRNA lineage | Crossmodal |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | SPRR1A | 1 | VentralHorn | 2.540 | 0.098 | 0.089 | 0.018 | restricted | Neuronal | divergent |
 | ATF3 | 1 | MeningealFibro | 2.243 | 0.077 | 0.067 | 0.015 | restricted |  |  |
@@ -187,7 +187,6 @@ The 19 a priori gene sets were previously reported with permutation p-values but
 | Kv_KCNQ_KCNH | 13 | 0.7671 | **0.8488** | 0.5697 | 0.7948 | no |
 | CACNA | 18 | 0.8016 | **0.8488** | 0.8751 | 0.9541 | no |
 | TRP_channels | 12 | 0.8881 | **0.8881** | 0.961 | 0.961 | no |
-| Sigma1 | 1 | — | **—** | — | — | no |
 | Sigma1 | 1 | — | **—** | — | — | no |
 
 *Reading.* Under the fixed-effect meta-vector, neuroinflammation, complement, DAM microglia (q = 0.003 each) and mitochondrial OXPHOS (q = 0.0202) survive set-level BH; neuropeptides are borderline (q = 0.0468). Under the random-effects meta-vector the three upregulated programmes survive unchanged (q = 0.003) but **OXPHOS does not (q = 0.31)**, so energy-metabolism suppression is reported as a fixed-effect finding that is not robust to between-contrast heterogeneity. No ion-channel family survives under either model.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the Scientific Reports .docx pack lost nothing in conversion.
+"""Verify the PLOS ONE .docx pack lost nothing in conversion.
 
 Proof strategy (loss-free transformation of the *authored* text):
   1. FORWARD numeric-token check: every numeric token in the exported markdown
@@ -36,9 +36,9 @@ TBL = os.path.join(ROOT, "results", "tables")
 FIG = os.path.join(ROOT, "figures")
 OUT = os.path.join(ROOT, "submission_pack")
 
-MS = os.path.join(REP, "MVP_ScientificReports_submission.md")
-SUP = os.path.join(REP, "MVP_ScientificReports_supplementary.md")
-CL = os.path.join(REP, "MVP_ScientificReports_cover_letter.md")
+MS = os.path.join(REP, "MVP_PLOSONE_submission.md")
+SUP = os.path.join(REP, "MVP_PLOSONE_supplementary.md")
+CL = os.path.join(REP, "MVP_PLOSONE_cover_letter.md")
 
 NUM = re.compile(r"\d[\d,]*(?:\.\d+)?")
 OK, BAD = [], []
@@ -74,6 +74,11 @@ def docx_full_text(path: str) -> str:
 
 def docx_table_count(path: str) -> int:
     return len(Document(path).tables)
+
+
+def md_table_count(md_text: str) -> int:
+    """Count markdown pipe-tables in a source string (one per separator row)."""
+    return len(re.findall(r"^\|[\|:\- ]*\|\s*$", md_text, re.M))
 
 
 def docx_tables_rows(path: str) -> list[list[list[str]]]:
@@ -196,19 +201,21 @@ def main() -> int:
     chk("Manuscript has repo URL",
         "https://github.com/yyx-4113/cpsp-drg-spinal-repurposing" in ms_para)
     chk("Manuscript has ORCID", "0009-0004-9698-6552" in ms_para)
-    chk("Manuscript has AI disclosure", "large language model" in ms_para.lower())
+    chk("Manuscript has AI disclosure", "language model" in ms_para.lower())
     chk("Manuscript has Competing interests", "Competing interests" in ms_para)
     chk("Manuscript has ref1 (Macrae)", "Macrae" in ms_para)
     chk("Manuscript has ref18 (Luo/Mol Pain 2016)", "1744806916636385" in ms_para)
     chk("CoverLetter has repo URL",
         "https://github.com/yyx-4113/cpsp-drg-spinal-repurposing" in cl_para)
     chk("CoverLetter has ORCID", "0009-0004-9698-6552" in cl_para)
-    chk("CoverLetter names Scientific Reports", "Scientific Reports" in cl_para)
+    chk("CoverLetter names PLOS ONE", "PLOS ONE" in cl_para)
     for s in ["Table S1", "Table S2", "Table S3", "Table S4", "Table S5"]:
         chk(f"Supporting has {s}", s in docx_full_text(si))
 
-    # 4. table counts (v1.3: 4 docx tables in the manuscript)
-    chk("Manuscript table count == 4", docx_table_count(ms), 4)
+    # 4. table counts — the .docx must carry exactly as many tables as the
+    #    manuscript markdown defines (no dropped and no duplicated tables).
+    chk("Manuscript table count matches source",
+        docx_table_count(ms), md_table_count(mt))
     chk("Supporting table count >= 4", docx_table_count(si) >= 4, True)
     chk("CoverLetter table count == 0", docx_table_count(cl), 0)
 
@@ -225,13 +232,13 @@ def main() -> int:
     tables = docx_tables_rows(ms)
     t_txt = lambda t: "\n".join(" ".join(r) for r in t)
 
-    t_plaus = next((t for t in tables
-                    if any("n_holo_PDB" in c for c in t[0])), None)
-    chk("Table 3a (plausibility) found", t_plaus is not None)
-    if t_plaus:
-        chk("Table 3a = 10 target rows", len(t_plaus) - 1, 10)
-        chk("Table 3a has TNIK + ADRA2A",
-            "TNIK" in t_txt(t_plaus) and "ADRA2A" in t_txt(t_plaus))
+    t3a = [t for t in tables if t and t[0] and any("n_holo_PDB" in c for c in t[0])]
+    t3a_rows = sum(len(t) - 1 for t in t3a)
+    t3a_text = "\n".join(t_txt(t) for t in t3a)
+    chk("Table 3a (plausibility) found", bool(t3a))
+    chk("Table 3a = 10 target rows (Panel A 7 + Panel B 3)", t3a_rows, 10)
+    chk("Table 3a has TNIK + ADRA2A",
+        "TNIK" in t3a_text and "ADRA2A" in t3a_text)
 
     t_scn = next((t for t in tables
                   if t and t[0] and t[0][0].strip() == "Gene"), None)

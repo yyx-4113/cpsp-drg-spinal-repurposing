@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build the Scientific Reports submission pack from the v1.3 markdown sources.
+"""Build the PLOS ONE submission pack from the markdown sources.
 
 Adapted from the manuscript-submission-pack skill asset (originally *Anaesthesia*).
-Changes for Scientific Reports / CPSP:
-  - Times New Roman 12 pt, single spaced (SR norm), page numbers in footer
+Changes for PLOS ONE / CPSP:
+  - Times New Roman 12 pt, single spaced (PLOS ONE norm), page numbers in footer
   - Methods last; declarations after References; display items at the very end
   - Table 1 (incl. 1b SCN entity) and Table 3 (incl. 3b verdict entity) are
     rendered DIRECTLY from the manuscript's own Display-items block, so the
@@ -47,9 +47,9 @@ STROBE = os.path.join(REP, "MVP_STROBE_checklist.md")
 
 BODY_FONT = "Times New Roman"
 
-MS_TITLE = ("Conserved nerve-injury-associated transcriptional response on the "
-            "DRG\u2013spinal axis: dorsal root ganglion analysis with "
-            "spinal-cord localisation and honest repurposing null")
+MS_TITLE = ("Conserved nerve-injury-associated transcriptional response of the "
+            "dorsal root ganglion: spinal-cord localisation and an honest "
+            "repurposing null")
 
 
 # --------------------------------------------------------------------------- #
@@ -264,7 +264,7 @@ def manuscript_tables_block(display_text: str) -> str:
 
 def build_table2(doc) -> None:
     path = os.path.join(TBL, "P3_hub_genes.csv")
-    rows = [["Symbol", "n_methods", "LASSO freq", "RF Gini", "|SHAP|", "in meta-core"]]
+    rows = [["Hub", "Methods (n/3)", "In meta core", "LASSO freq", "RF Gini", "SHAP |abs|"]]
     with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             rows.append([
@@ -272,12 +272,13 @@ def build_table2(doc) -> None:
                 f"{float(r['lasso_freq']):.2f}",
                 f"{float(r['rf_gini']):.4f}",
                 f"{float(r['shap_meanabs']):.4f}",
-                r["in_meta_core"],
+                "Yes" if str(r["in_meta_core"]).strip().lower() in ("true", "1", "yes") else "No",
             ])
     cap = ("Table 2. Thirty-five candidate hub genes identified by the dual-machine-learning "
            "consensus (>=2 of 3 methods: LASSO bootstrap, Random Forest mean-decrease-Gini, "
-           "XGBoost |SHAP|). n_methods = number of methods flagging the gene; in meta-core = "
-           "membership in the 4,055-gene Stouffer meta signature. Source: P3_hub_genes.csv. "
+           "XGBoost |SHAP|). Methods (n/3) = number of methods flagging the gene; In meta core = "
+           "membership in the 4,055-gene Stouffer meta signature (the in_meta_core boolean in "
+           "P3_hub_genes.csv, rendered here as Yes/No). Source: P3_hub_genes.csv. "
            "Bootstrap stability caveat: a 200-resample bootstrap of the 72 pooled samples "
            "(P3_hub_bootstrap.csv) showed low per-gene recovery (max 15.5%, 0/35 at a >=0.9 "
            "threshold; LASSO contributed no selections under resampling), so this set is a "
@@ -302,8 +303,9 @@ def build_manuscript() -> str:
     render_markdown(doc, part_a)
 
     # figure legends extracted from the Display items block; the PNG images are
-    # EMBEDDED inline immediately after each legend (Scientific Reports technical
-    # check rejects manuscripts that only attach figures as separate EM items).
+    # EMBEDDED inline immediately after each legend (PLOS ONE's technical check,
+    # like other journals', rejects manuscripts that only attach figures as
+    # separate EM items).
     para(doc, "Figure legends", bold=True, size=13, space_before=12, space_after=6)
     for f in extract_legends(display):
         para(doc, f"Figure {f['num']}. {f['cap']}", bold=True, size=11,
@@ -317,7 +319,7 @@ def build_manuscript() -> str:
         doc.add_picture(png, width=Cm(15.2))
 
     # three main tables, after the references.
-    # v1.3 renders Tables 1 and 3 as editable entities inside the manuscript's
+    # Tables 1 and 3 are rendered as editable entities inside the manuscript's
     # Display-items block; render them verbatim from there. Table 2 is
     # materialised from P3_hub_genes.csv (all 35 rows) between its two halves.
     tbl = manuscript_tables_block(display)
@@ -325,8 +327,13 @@ def build_manuscript() -> str:
     t2_note, t3_part = post2.split("- **Table 3**", 1)
     para(doc, "Tables", bold=True, size=13, space_before=12, space_after=6)
     render_markdown(doc, strip_bullets(pre2), drop=("**Tables**",))
-    build_table2(doc)
-    render_markdown(doc, strip_bullets("- **Table 2**" + t2_note))
+    build_table2(doc)  # Table 2 materialised once from P3_hub_genes.csv (single source)
+    # The manuscript's markdown Table 2 is intentionally NOT re-rendered here: it
+    # is replaced by the CSV-materialised Table 2 above, so the .docx carries the
+    # hub table exactly once (rendering both produced a duplicate 35-row table).
+    # Only the descriptive note that follows Table 2 in the manuscript is kept.
+    if "*Note.*" in t2_note:
+        render_markdown(doc, "*Note.*" + t2_note.split("*Note.*", 1)[1])
     render_markdown(doc, strip_bullets("- **Table 3**" + t3_part))
 
     path = os.path.join(OUT, "Manuscript.docx")

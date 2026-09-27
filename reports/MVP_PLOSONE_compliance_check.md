@@ -1,8 +1,8 @@
 # PLOS ONE — Final Formatting & Compliance Check
 
-**Manuscript:** *Conserved nerve-injury-associated transcriptional response on the DRG–spinal axis: dorsal root ganglion analysis with spinal-cord localisation and honest repurposing null*
+**Manuscript:** *Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null*
 **Checked:** 2026-09-26 (Round 9) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
-**Verdict:** Content is PLOS ONE–ready. **References: 37 / 37 carry a Crossref-verified DOI.** Journal names are full; no abbreviated journal names remain.
+**Verdict:** Content is PLOS ONE–ready. **References: 37 / 37 carry a Crossref-verified DOI** (verified Round 9; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
 
 ---
 
@@ -19,7 +19,7 @@
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
 | 8 | **DOI for every reference where available** | ✅ PASS | 37 / 37 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
-| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.0.0, MANIFEST.sha256); explicit "not available on request" |
+| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.2.0, MANIFEST.sha256); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
 | 12 | Competing Interests | ✅ PASS | Declared; pending FJNSF grant (ADRA2A listed) disclosed, stated not to influence |
 | 13 | Author Contributions | ✅ PASS | Single-author prose statement |
@@ -42,6 +42,8 @@
 ## 3. Reference DOIs — resolved (Crossref, 2026-09-26)
 
 PLOS ONE requires a DOI for every reference **where available**. All 37 references were matched against Crossref and verified against the real article metadata (title + journal + year). **Result: 37 / 37 references carry a verified DOI; none is left blank.**
+
+> Provenance note (T3-3): this 37/37 Crossref verification was performed in Round 9 (2026-09-26) against the reference list as it then stood. Because the manuscript is now edited directly and the legacy `p7_renumber_refs.py` / `resolve_ref_dois.py` renumber/DOI scripts are disabled (see §3.3), the DOI claims are validated as of that round and should be re-verified only if the reference list is subsequently edited; no reference was added or removed in the present T2/T3 pass.
 
 ### 3.1 Round-9 additions (2026-09-26) and Round-10 Tier-2 addition (2026-09-26)
 Four references were added across these rounds, each carrying a Crossref-verified DOI (numbered by current first-citation order in the manuscript):

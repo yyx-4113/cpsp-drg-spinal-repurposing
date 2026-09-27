@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""Word gate for MVP_ScientificReports v1.1 (Scientific Reports limits)."""
+"""Word-count / structure gate for the MVP PLOS ONE submission."""
 import re, os, struct
 
-ROOT = "D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛"
-MS = open(os.path.join(ROOT, "reports", "MVP_ScientificReports_submission.md"), encoding="utf-8").read()
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MS = open(os.path.join(ROOT, "reports", "MVP_PLOSONE_submission.md"), encoding="utf-8").read()
 
 def wcount(s):
     """Journal-style word count (MS Word convention): whitespace-delimited
@@ -41,13 +41,13 @@ def png_dpi(path):
         i += 12 + ln
     return None
 
-print("=== WORD GATE (Scientific Reports) ===")
+print("=== WORD GATE (PLOS ONE) ===")
 checks = []
 def chk(name, ok, val=""):
     checks.append(ok); print(f"[{'PASS' if ok else 'FAIL'}] {name}" + (f"  {val}" if val else ""))
 
 chk("Title <= 20 words (Round-3-confirmed SR norm)", wcount(title) <= 20, f"{wcount(title)} words")
-chk("Abstract <= 200 words", wcount(abs_text) <= 200, f"{wcount(abs_text)} words")
+chk("Abstract <= 300 words (PLOS ONE norm)", wcount(abs_text) <= 300, f"{wcount(abs_text)} words")
 chk("Abstract has no refs", not abs_has_ref, "ref-like tokens" if abs_has_ref else "clean")
 chk("References <= 60", nref <= 60, f"{nref} refs")
 chk("Display items <= 8", display <= 8, f"{display} ({nfig} fig + {ntab} tab)")
@@ -55,7 +55,7 @@ chk("Figures == 5", nfig == 5, f"{nfig}")
 chk("Tables == 3", ntab == 3, f"{ntab}")
 print(f"[INFO] Total manuscript words (incl. refs/display): {total_words}")
 
-print("\n=== FIGURE DPI (Science Reports requires >=300) ===")
+print("\n=== FIGURE DPI (PLOS ONE requires >=300) ===")
 figdir = os.path.join(ROOT, "figures")
 dpi_ok = True
 for fn in sorted(os.listdir(figdir)):

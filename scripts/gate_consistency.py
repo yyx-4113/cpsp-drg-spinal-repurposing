@@ -1,8 +1,17 @@
 #!/usr/bin/env python
-"""Consistency gate for MVP_ScientificReports v1.1.
-Verifies every headline number in the manuscript against authoritative CSVs,
-and checks cross-document agreement (title / repo URL / refs / disclosures)."""
+"""DEPRECATED — Scientific-Reports-era consistency gate (legacy).
+
+The authoritative submission gate is scripts/p7_consistency_gate.py, which
+derives every expected value from authoritative CSVs/JSON and cannot silently
+drift. This legacy gate contains Scientific-Reports-era context (and several
+hardcoded reference counts, e.g. references = 37) and is retained only as a
+secondary sanity check; do NOT treat its pass as a submission gate. It still
+verifies headline numbers against CSVs and cross-document agreement
+(title / repo URL / refs / disclosures)."""
 import re, csv, os, sys
+
+print("DEPRECATED: scripts/gate_consistency.py is a legacy Scientific-Reports-era gate.")
+print("           Authoritative submission gate is scripts/p7_consistency_gate.py.")
 
 ROOT = "D:/2026.9/极速交付9月会员日优惠套路/01_AI生信-虚拟多重筛药/慢性疼痛"
 R = os.path.join(ROOT, "reports")
