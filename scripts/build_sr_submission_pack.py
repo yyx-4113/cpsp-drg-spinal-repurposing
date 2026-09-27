@@ -269,21 +269,28 @@ def build_table2(doc) -> None:
         for r in csv.DictReader(f):
             rows.append([
                 r["symbol"], r["n_methods"],
+                "Yes" if str(r["in_meta_core"]).strip().lower() in ("true", "1", "yes") else "No",
                 f"{float(r['lasso_freq']):.2f}",
                 f"{float(r['rf_gini']):.4f}",
                 f"{float(r['shap_meanabs']):.4f}",
-                "Yes" if str(r["in_meta_core"]).strip().lower() in ("true", "1", "yes") else "No",
             ])
+    # --- CI assertions (T0-1): header labels must align with body columns ---
+    assert rows[0][2] == "In meta core", "Table 2 header drift: col2 must be 'In meta core'"
+    body_col2 = {row[2] for row in rows[1:]}
+    assert body_col2 <= {"Yes", "No"}, f"Table 2 body col2 not Yes/No: {body_col2}"
+    for row in rows[1:]:
+        float(row[3]); float(row[4]); float(row[5])  # col3-5 must be numeric
     cap = ("Table 2. Thirty-five candidate hub genes identified by the dual-machine-learning "
            "consensus (>=2 of 3 methods: LASSO bootstrap, Random Forest mean-decrease-Gini, "
            "XGBoost |SHAP|). Methods (n/3) = number of methods flagging the gene; In meta core = "
            "membership in the 4,055-gene Stouffer meta signature (the in_meta_core boolean in "
            "P3_hub_genes.csv, rendered here as Yes/No). Source: P3_hub_genes.csv. "
            "Bootstrap stability caveat: a 200-resample bootstrap of the 72 pooled samples "
-           "(P3_hub_bootstrap.csv) showed low per-gene recovery (max 15.5%, 0/35 at a >=0.9 "
-           "threshold; LASSO contributed no selections under resampling), so this set is a "
-           "resampling-sensitive candidate list for prospective validation, not a rigidly "
-           "locked set (see Results).")
+           "(P3_hub_bootstrap.csv) showed low per-gene recovery (max 100.0%, 2/35 at a >=0.9 "
+           "threshold: SPRR1A 1.00, ATF3 0.94); all three methods (LASSO, Random Forest, XGBoost) "
+           "contributed selections under resampling, so the >=2/3 consensus is not a two-method "
+           "artefact), so this set is a resampling-sensitive candidate list for prospective "
+           "validation, not a rigidly locked set (see Results).")
     add_table(doc, rows, size=8.5, caption=cap)
 
 

@@ -1,0 +1,99 @@
+===== scripts/p7_consistency_gate.py (rc=0) =====
+trong k: '2,266/4,899' present (source 2266)
+  OK    NI-only strong pct: '46.2' present (source 46.2)
+  OK    NI background pct: '47.1' present (source 47.1)
+  OK    risk difference: '−0.9 pp' present (source -0.9)
+  OK    eligible recovered mean: '8.70 of the 17' present (source 8.7)
+  OK    P(>=3 of 17): 'P(≥3 of 17) = 1.000' present (source 1.0)
+  OK    P(>=5 of 17): 'P(≥5 of 17) = 0.990' present (source 0.99)
+  OK    Jaccard median: '0.304' present (source 0.304)
+  OK    OXPHOS set-level q (FE): 'q = 0.020' present (source 0.02)
+  OK    OXPHOS set-level q (RE): 'q = 0.31' present (source 0.31)
+
+==============================================================================
+[5] PRE-SUBMISSION WARNINGS
+==============================================================================
+
+==============================================================================
+[6] ROUND-9 INTEGRITY ASSERTIONS
+==============================================================================
+  OK    display-item header 5f+3t matches enumerated 5f+3t
+  OK    no '8-item cap' fingerprint
+  OK    Zenodo sentence fully prospective (no 'mirroring'/'already')
+  OK    STROBE no longer misquotes title
+  OK    title does not name the design
+  OK    compliance doc reference count 39 == manuscript 39
+
+==============================================================================
+RESULT: 0 failure(s), 0 warning(s), 47 check(s) passed
+==============================================================================
+===== scripts/verify_sr_docx.py (rc=0) =====
+[PASS] Fig1_geneset_programme.png: 350.012 DPI
+[PASS] Fig2_hub_convergence.png: 350.012 DPI
+[PASS] Fig3_DRG_neuron_subtype_localisation.png: 350.012 DPI
+[PASS] Fig4_spinal_lineage_visium.png: 350.012 DPI
+[PASS] Fig5_docking_honest_null.png: 350.012 DPI
+
+==== PASS 47 / FAIL 0 ====
+===== scripts/gate_consistency.py (rc=0) =====
+ed (Visium)  -- actual 33/35
+[PASS] 17/35 dorsal horn (Visium)  -- actual 17/35
+[PASS] ADRA2A full-library AUC=0.532  -- =0.532
+[PASS] ADRA2A full-library p=0.118  -- =0.11840851083882326
+[PASS] ADRA2A MW-adjusted AUC=0.578  -- =0.578
+[PASS] alpha2 MW AUC=0.428  -- =0.428
+[PASS] alpha2 p=0.76  -- =0.7598
+[PASS] precision@10=0.700  -- =0.7
+[PASS] lift@10=18.69  -- =18.69
+[PASS] p@10=9.4e-9  -- =9.44943776065854e-09
+[PASS] precision@20=0.450  -- =0.45
+[PASS] p@20=1.3e-8  -- =1.2637905517971617e-08
+[PASS] multivariate AXL LR p=2.5525834384141807e-05  -- raw=2.5525834384141807e-05
+[PASS] multivariate TNIK LR p=7.257140767509996e-05  -- raw=7.257140767509996e-05
+[PASS] multivariate ACVR1 LR p=0.0009566509554861977  -- raw=0.0009566509554861977
+[PASS] multivariate ADRA2A LR p=0.02685378064888338  -- raw=0.02685378064888338
+[PASS] BH ADRA2A size-independent q=0.0025  -- =0.0025
+[PASS] human set-level p=0.51
+[PASS] 253 plasma miRNAs
+[PASS] MS clean of '59.9'
+[PASS] MS clean of '2.8e-48'
+[PASS] MS clean of 'count of datasets'
+[PASS] MS clean of '3,261'
+[PASS] MS clean of '5,447'
+[PASS] MS has '53.9%'
+[PASS] MS has '7,751/14,390'
+[PASS] MS has '69.5%'
+[PASS] MS has '17 of 33'
+[PASS] MS has 'detection floor'
+[PASS] MS has '0.917'
+[PASS] SUP has below-floor footnote
+[PASS] repo URL identical (MS/CL)  -- MS=1,CL=1
+[PASS] title identical SUP/CL
+[PASS] references = 39  -- actual 39
+[PASS] SUP has S1-S7
+[PASS] COI present in MS
+[PASS] AI disclosure in MS
+
+==== SUMMARY ====
+PASS: 57   FAIL: 0
+===== scripts/gate_word.py (rc=0) =====
+=== WORD GATE (PLOS ONE) ===
+[PASS] Title <= 20 words (Round-3-confirmed SR norm)  16 words
+[PASS] Abstract <= 300 words (PLOS ONE norm)  272 words
+[PASS] Abstract has no refs  clean
+[PASS] References <= 60  39 refs
+[PASS] Display items <= 8  8 (5 fig + 3 tab)
+[PASS] Figures == 5  5
+[PASS] Tables == 3  3
+[INFO] Total manuscript words (incl. refs/display): 13898
+
+=== FIGURE DPI (PLOS ONE requires >=300) ===
+[PASS] Fig1_geneset_programme.png: 350.012 DPI
+[PASS] Fig2_hub_convergence.png: 350.012 DPI
+[PASS] Fig3_DRG_neuron_subtype_localisation.png: 350.012 DPI
+[PASS] Fig4_spinal_lineage_visium.png: 350.012 DPI
+[PASS] Fig5_docking_honest_null.png: 350.012 DPI
+[PASS] All figures >= 300 DPI
+
+=== SUMMARY ===
+WORD GATE: ALL PASS

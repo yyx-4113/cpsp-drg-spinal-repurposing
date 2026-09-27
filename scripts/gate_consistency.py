@@ -220,7 +220,9 @@ nref = len(re.findall(r'^\d+\.', MS, re.M))
 # v1.6 (Round 9): 36 references (added Bertoch 2025 suzetrigine trial, Yin 2016 Nav1.8, Cooper 2024 DRG neuronal loss)
 # v1.7 (Round 10 Tier-2 T2): 37 references (added Flatters 2008 Pain 135:119-130, doi:10.1016/j.pain.2007.05.013,
 #      the SMIR day-32 dissipation citation underpinning the GSE267799 two-model incision-arm caveat at L152)
-check("references = 37", nref==37, f"actual {nref}")
+# v1.3.0 (Round 12): 39 references (added Chen 2018 alpha2delta-1/gabapentinoid, doi:10.1016/j.celrep.2018.02.021
+#      and Yu 2020 DRG macrophages, doi:10.1038/s41467-019-13839-2; reference list renumbered to strict first-citation order)
+check("references = 39", nref==39, f"actual {nref}")
 # S1-S7 in SUP
 check("SUP has S1-S7", all(f"Supplementary Table S{i}" in SUP for i in range(1,8)), "")
 # COI + AI disclosure

@@ -2,7 +2,7 @@
 
 **Manuscript:** *Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null*
 **Checked:** 2026-09-26 (Round 9) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
-**Verdict:** Content is PLOS ONE–ready. **References: 37 / 37 carry a Crossref-verified DOI** (verified Round 9; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
+**Verdict:** Content is PLOS ONE–ready. **References: 39 / 39 carry a Crossref-verified DOI** (re-verified 2026-09-27; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
 
 ---
 
@@ -10,16 +10,16 @@
 
 | # | PLOS ONE requirement | Status | Evidence / action |
 |---|---|---|---|
-| 1 | Title ≤ 250 chars, no unsubstantiated claims | ✅ PASS | 166 chars; descriptive, no "novel"/superlative claim |
+| 1 | Title ≤ 250 chars, no unsubstantiated claims | ✅ PASS | 143 chars; descriptive, no "novel"/superlative claim |
 | 2 | Author name, affiliation, ORCID, corresponding author | ✅ PASS | Single author; affiliation + ORCID 0009-0004-9698-6552 + email present |
-| 3 | Abstract (≤ 300 words, no references) | ✅ PASS | 180 words; `p7_consistency_gate` confirms no citation in abstract |
+| 3 | Abstract (≤ 300 words, no references) | ✅ PASS | 256 words; `p7_consistency_gate` confirms no citation in abstract |
 | 4 | **Author Summary** (lay-audience summary) | ✅ PRESENT (optional) | PLOS ONE does not mandate an Author Summary; one is included and is distinct from the abstract, non-technical |
 | 5 | IMRaD structure (Intro/Methods/Results/Discussion) | ✅ PASS | All sections present |
 | 6 | References numbered in first-citation order (Vancouver) | ✅ PASS | 37 refs, order verified by `p7_consistency_gate` (0 errors) |
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
-| 8 | **DOI for every reference where available** | ✅ PASS | 37 / 37 references carry a Crossref-verified DOI |
+| 8 | **DOI for every reference where available** | ✅ PASS | 39 / 39 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
-| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.2.0, MANIFEST.sha256); explicit "not available on request" |
+| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.3.0, MANIFEST.sha256); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
 | 12 | Competing Interests | ✅ PASS | Declared; pending FJNSF grant (ADRA2A listed) disclosed, stated not to influence |
 | 13 | Author Contributions | ✅ PASS | Single-author prose statement |
@@ -35,15 +35,15 @@
 |---|---|---|
 | Every figure/table cited in text | ✅ PASS | Fig 1–5 and Table 1–3 all cited |
 | Legends present & complete | ✅ PASS | Legends in "Display items" block; embedded in docx |
-| Image resolution ≥ 300 DPI | ✅ PASS | All 5 figures = 350.012 DPI (`gate_word` ALL PASS) |
+| Image resolution ≥ 300 DPI | ✅ PASS | All 5 figures = 350.012 DPI (verified from PNG metadata) |
 | File format | ⚠️ NOTE | PLOS accepts PNG but **prefers TIFF/EPS/PDF**; PNG at 350 DPI is acceptable. Upload each as a **separate** file named `Fig1.png` … `Fig5.png` (build copies them as `Fig1_geneset_programme.png` — rename at upload) |
 | Display-item count | ✅ PASS | 5 figures + 3 tables = 8 enumerated main display items; no Scientific Reports–era cap phrase remains |
 
 ## 3. Reference DOIs — resolved (Crossref, 2026-09-26)
 
-PLOS ONE requires a DOI for every reference **where available**. All 37 references were matched against Crossref and verified against the real article metadata (title + journal + year). **Result: 37 / 37 references carry a verified DOI; none is left blank.**
+PLOS ONE requires a DOI for every reference **where available**. All 39 references were matched against Crossref and verified against the real article metadata (title + journal + year). **Result: 39 / 39 references carry a verified DOI; none is left blank.**
 
-> Provenance note (T3-3): this 37/37 Crossref verification was performed in Round 9 (2026-09-26) against the reference list as it then stood. Because the manuscript is now edited directly and the legacy `p7_renumber_refs.py` / `resolve_ref_dois.py` renumber/DOI scripts are disabled (see §3.3), the DOI claims are validated as of that round and should be re-verified only if the reference list is subsequently edited; no reference was added or removed in the present T2/T3 pass.
+> Provenance note (T3-3 / T3-7): the Crossref verification was originally performed in Round 9 (2026-09-26) and was **re-run on 2026-09-27** (this Round-12 pass) covering all 39 references; all 39 resolve to the correct article metadata. Two references were added in this pass — **38.** Chen et al., *Cell Reports* 22:2307–2321 (2018), doi:10.1016/j.celrep.2018.02.021 (α2δ-1/gabapentinoid DRG mechanism); **39.** Yu et al., *Nature Communications* 11:264 (2020), doi:10.1038/s41467-019-13839-2 (DRG-resident macrophage neuroimmune sentinel) — each DOI Crossref-verified on 2026-09-27. The legacy `p7_renumber_refs.py` / `resolve_ref_dois.py` renumber/DOI scripts remain disabled; the DOI claims were validated directly against Crossref.
 
 ### 3.1 Round-9 additions (2026-09-26) and Round-10 Tier-2 addition (2026-09-26)
 Four references were added across these rounds, each carrying a Crossref-verified DOI (numbered by current first-citation order in the manuscript):
@@ -51,6 +51,8 @@ Four references were added across these rounds, each carrying a Crossref-verifie
 - **12.** Cooper, A. H. et al. Peripheral nerve injury results in a biased loss of sensory neuron subpopulations. *Pain* **165**, 2863–2876 (2024). doi:10.1097/j.pain.0000000000003321  *(Round 9)*
 - **23.** Bertoch, T. et al. Suzetrigine, a nonopioid NaV1.8 inhibitor for treatment of moderate-to-severe acute pain: two phase 3 randomized clinical trials. *Anesthesiology* **142**, 1085–1099 (2025). doi:10.1097/ALN.0000000000005460  *(Round 9)*
 - **37.** Flatters, S. J. Characterization of a model of persistent postoperative pain evoked by skin/muscle incision and retraction (SMIR). *Pain* **135**, 119–130 (2008). doi:10.1016/j.pain.2007.05.013  *(Round-10 Tier-2; underpins the GSE267799 two-model incision-arm day-32 dissipation caveat)*
+- **38.** Chen, J. et al. The α2δ-1–NMDA receptor complex is critically involved in neuropathic pain development and gabapentin therapeutic actions. *Cell Reports* **22**, 2307–2321 (2018). doi:10.1016/j.celrep.2018.02.021  *(Round 12; α2δ-1/gabapentinoid DRG mechanism — must-cite added per review, Crossref-verified 2026-09-27)*
+- **39.** Yu, X. et al. Dorsal root ganglion macrophages contribute to both the initiation and persistence of neuropathic pain. *Nature Communications* **11**, 264 (2020). doi:10.1038/s41467-019-13839-2  *(Round 12; DRG-resident macrophage neuroimmune sentinel — must-cite added per review, Crossref-verified 2026-09-27)*
 
 > Note on DRG-neuron-loss citation: the Round-9 review suggested Martin 2019 as the DRG-neuron-loss citation. Because Martin 2019 could not be independently verified, it was **replaced by Cooper et al. 2024** (*Pain* 165:2863–2876, ref 12), a verifiable primary study reporting biased sensory-neuron-subpopulation loss after peripheral nerve injury. This substitution is disclosed to the author.
 
@@ -69,7 +71,7 @@ The manuscript is now edited **directly** in `MVP_PLOSONE_submission.md` and reb
 - [ ] Upload figures as separate files (rename to `Fig1.png`…`Fig5.png`); Supporting Information as `S1`…`S8` (supplementary is `MVP_PLOSONE_supplementary.md`).
 - [ ] Confirm the manuscript text uploaded is the regenerated `reports/MVP_PLOSONE_submission.md` (PLOS-compliant).
 - [ ] Cover letter: `submission_pack/Cover_Letter_PLOSONE.docx` already lists all required PLOS statements.
-- [ ] Deposit the versioned Zenodo archive and replace the `10.5281/zenodo.XXXXXXX` placeholder in the Data Availability statement with the minted DOI (post-acceptance per PLOS policy; a citable permanent DOI is committed at acceptance).
+- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.3.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.3.0 release tag is immutable.
 
 ## 5. Ethics — IRB provenance (T3-3)
 

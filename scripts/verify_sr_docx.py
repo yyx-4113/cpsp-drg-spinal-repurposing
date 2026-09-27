@@ -255,6 +255,21 @@ def main() -> int:
     if t_hubs:
         chk("Table 2 has SPRR1A", "SPRR1A" in t_txt(t_hubs))
         chk("Table 2 has MEGF11", "MEGF11" in t_txt(t_hubs))
+        # T0-1 regression guard: header labels must align with body columns.
+        # docx_tables_rows() returns list[list[list[str]]] (string cells), so
+        # the guard reads strings directly (no .text attribute).
+        hdr = t_hubs[0]
+        chk("Table 2 header col2 == 'In meta core'",
+            hdr[2] if len(hdr) > 2 else None, "In meta core")
+        body_col2 = {r[2] for r in t_hubs[1:]}
+        chk("Table 2 body col2 ⊆ {Yes,No}", body_col2 <= {"Yes", "No"}, True)
+        try:
+            for r in t_hubs[1:]:
+                float(r[3]); float(r[4]); float(r[5])
+            num_ok = True
+        except (ValueError, IndexError):
+            num_ok = False
+        chk("Table 2 body cols 3-5 numeric", num_ok, True)
 
     t_verd = next((t for t in tables
                    if any("Reverse-control" in c for c in t[0])), None)

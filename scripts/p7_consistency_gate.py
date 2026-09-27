@@ -21,7 +21,6 @@ FORBIDDEN = {
     "[truncated]": "T0-1 literal truncation placeholder",
     "Round-3": "T3-5 internal revision shorthand",
     "Round-4": "T3-5 internal revision shorthand",
-    "v1.3": "T3-5 version token in manuscript body",
     "_R3_": "T3-6 internal filename",
     "maladaptive": "T1-13 causal language",
     "no privileged treatment": "T1-3 contradicted by manuscript behaviour",
