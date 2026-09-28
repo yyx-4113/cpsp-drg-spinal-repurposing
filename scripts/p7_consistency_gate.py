@@ -58,6 +58,20 @@ for tok, (cue, why) in CONTEXT_OK.items():
             print(f"  FAIL  '{tok}' asserted: ...{s}...")
 
 # ---------------------------------------------------------------- (2) Nature limits
+# ---------------------------------------------------------------- (1b) stale version / stale number scan (Round-15 F2)
+print("\n" + "=" * 78); print("[1b] STALE-VERSION / STALE-NUMBER SCAN (Round-15 F2)"); print("=" * 78)
+STALE_TOKENS = ["v1.0.0", "v1.1.0", "v1.2.0", "v1.3.0", "v1.4.0", "v1.5.0",
+                "4,055", "4055", "54.3", "91.4", "MANIFEST.sha256"]
+for t in STALE_TOKENS:
+    if t in txt:
+        fails.append(f"STALE token '{t}' still present in manuscript"); print(f"  FAIL  STALE '{t}' present")
+    else:
+        oks.append(f"absent: '{t}'"); print(f"  OK    absent: '{t}'")
+if "v1.6.0" not in txt:
+    fails.append("v1.6.0 not present in manuscript Data Availability"); print("  FAIL  v1.6.0 absent")
+else:
+    oks.append("v1.6.0 present"); print("  OK    v1.6.0 present in manuscript")
+
 print("\n" + "=" * 78); print("[2] NATURE / SCIENTIFIC REPORTS LIMITS"); print("=" * 78)
 title = txt.split("\n")[0].lstrip("# ").strip()
 tw = len(title.split())
@@ -135,12 +149,39 @@ if nlist != max(firstseen): fails.append(f"reference list {nlist} entries != {ma
 
 # ---------------------------------------------------------------- (4) number re-derivation
 print("\n" + "=" * 78); print("[4] NUMBER RE-DERIVATION FROM SOURCES"); print("=" * 78)
+def num_tokens(s):
+    """Extract all numeric tokens from a string (handles U+2212 minus, commas, decimals)."""
+    s2 = s.replace("\u2212", "-")
+    out = []
+    for t in re.findall(r"-?\d[\d,]*\.?\d*(?:[eE][-+]?\d+)?", s2):
+        try: out.append(float(t.replace(",", "")))
+        except ValueError: pass
+    return out
+
 def chk(label, expect, needle, tol=0.0):
-    """expect: numeric target; needle: text that must appear; verify both."""
+    """expect: authoritative recomputed value (numeric or str). needle: literal text that
+    must appear. Round-15 F2: when expect is numeric we additionally verify that a number
+    parsed from the manuscript equals the recomputed value within tolerance, so the gate now
+    catches manuscript drift (a hardcoded needle diverging from the regenerated CSV), not just
+    string presence."""
     present = needle in txt
     if not present:
         fails.append(f"{label}: text '{needle}' absent"); print(f"  FAIL  {label}: '{needle}' absent"); return
     oks.append(label); print(f"  OK    {label}: '{needle}' present (source {expect})")
+    if isinstance(expect, bool):
+        return
+    if isinstance(expect, (int, float)):
+        parsed = num_tokens(needle)
+        if not parsed:
+            return
+        if float(expect).is_integer() and abs(expect) >= 1:
+            hit = any(abs(v - expect) < 0.5 for v in parsed)
+        else:
+            thr = max(1e-6, 0.05 * abs(expect))   # 5% relative tolerance for floats
+            hit = any(abs(v - expect) <= thr for v in parsed)
+        if not hit:
+            fails.append(f"{label}: manuscript value(s) {parsed} != recomputed {expect} (drift!)")
+            print(f"  FAIL  {label}: manuscript {parsed} != recomputed {expect}")
 
 st = pd.read_csv(os.path.join(TAB, "META_DRG_axis_stouffer.csv"))
 core = (st.meta_FDR < 0.05) & (st.consistency >= 0.8)
@@ -189,9 +230,9 @@ chk("Jaccard median", bt["jaccard_vs_published35"]["median"],
     f"{bt['jaccard_vs_published35']['median']:.3f}")
 gsb = pd.read_csv(os.path.join(TAB, "_R4_geneset_setlevel_bh.csv"))
 fe = gsb[gsb.scale == "fixed"].set_index("set")
-chk("OXPHOS set-level q (FE)", round(float(fe.loc["Mitochondria_OXPHOS", "perm_q"]), 3), "q = 0.0022")
+chk("OXPHOS set-level q (FE)", float(fe.loc["Mitochondria_OXPHOS", "perm_q"]), "q = 0.0022")
 re_sets = gsb[gsb.scale == "random"].set_index("set")
-chk("OXPHOS set-level q (RE)", round(float(re_sets.loc["Mitochondria_OXPHOS", "perm_q"]), 2), "q = 0.0022")
+chk("OXPHOS set-level q (RE)", float(re_sets.loc["Mitochondria_OXPHOS", "perm_q"]), "q = 0.0022")
 
 # ---------------------------------------------------------------- [4b] Table 3a ↔ authoritative CSV (Round-14 gate-blindness closure)
 print("\n" + "=" * 78)
@@ -261,6 +302,26 @@ else:
             print(f"  OK    Table 3a: {targets_checked}/10 targets reconciled against authoritative CSVs")
 
 # ---------------------------------------------------------------- (5) pre-submission warnings
+# ---------------------------------------------------------------- [4c] DERIVED-VALUE ASSERTIONS (Round-15 F2: dynamic expectations)
+print("\n" + "=" * 78); print("[4c] DERIVED-VALUE ASSERTIONS (Round-15 F2)"); print("=" * 78)
+def assert_val(label, expect, fmt):
+    s = fmt.format(expect)
+    if s in txt:
+        oks.append(f"{label}: recomputed {s} present"); print(f"  OK    {label}: recomputed {s} present")
+    else:
+        fails.append(f"{label}: recomputed {s} NOT in manuscript (drift!)"); print(f"  FAIL  {label}: recomputed {s} absent")
+# High-risk numbers re-derived from the authoritative products so the gate compares dynamic
+# expectations (not hardcoded needles): any CSV regeneration that shifts these will fail here.
+assert_val("core signature", int(core.sum()), "{:,}")
+assert_val("random-effects core", int(((re_.FDR_RE < 0.05) & (re_.consistency >= 0.8)).sum()), "{:,}")
+assert_val("median I2", round(float(np.nanmedian(re_.I2)), 1), "{:.1f}")
+assert_val("median tau2", round(float(np.nanmedian(re_.tau2)), 3), "{:.3f}")
+assert_val("bulk-only core", int(j["bulk_only_core_size"]), "{:,}")
+assert_val("bulk overlap pct", round(float(j["overlap_pct_primary"]), 1), "{:.1f}")
+_cl = pd.read_csv(os.path.join(TAB, "META_collapse_meta.csv"))
+assert_val("collapse retention pct", round(float(_cl.loc[_cl.metric == "retained_fraction", "value"].iloc[0]) * 100, 1), "{:.1f}")
+assert_val("OXPHOS set-level q", round(float(fe.loc["Mitochondria_OXPHOS", "perm_q"]), 4), "{:.4f}")
+
 print("\n" + "=" * 78); print("[5] PRE-SUBMISSION WARNINGS"); print("=" * 78)
 if "10.5281/zenodo.XXXXXXX" in txt:
     warns.append("Zenodo DOI still placeholder — mint the v1.0.0 archive and replace before submission")

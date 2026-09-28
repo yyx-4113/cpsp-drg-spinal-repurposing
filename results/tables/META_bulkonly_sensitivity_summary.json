@@ -30,9 +30,9 @@
     }
   },
   "bulk_only_core_size": 2512,
-  "primary_core_size": 4055,
-  "overlap": 2202,
-  "overlap_pct_primary": 54.3157,
+  "primary_core_size": 2750,
+  "overlap": 1737,
+  "overlap_pct_primary": 63.1636,
   "setcalls": {
     "TRP_channels": {
       "n": 12,

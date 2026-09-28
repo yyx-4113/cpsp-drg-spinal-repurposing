@@ -1,6 +1,6 @@
 # ⚠️ SUPERSEDED — Scientific Reports / Nature Portfolio Reporting Summary (DO NOT USE FOR PLOS ONE)
 
-> This Reporting Summary was written for the *Scientific Reports* submission (rejected). The current submission target is **PLOS ONE** (version **v1.5.0**). PLOS ONE has its own reporting-requirements checklist; this Nature Portfolio template is NOT uploaded. Key numbers were corrected (Round 14) to the current authoritative values: the fixed-effect meta core is **2,750 genes** (not 4,055), and the repository version is **v1.5.0**.
+> This Reporting Summary was written for the *Scientific Reports* submission (rejected). The current submission target is **PLOS ONE** (version **v1.6.0**). PLOS ONE has its own reporting-requirements checklist; this Nature Portfolio template is NOT uploaded. Key numbers were corrected to the current authoritative values: the fixed-effect meta core is **2,750 genes** (not 4,055), and the repository version is **v1.6.0**.
 
 # Nature Portfolio Reporting Summary — MVP CPSP DRG–Spinal Axis (to be transferred to the fillable PDF)
 
@@ -23,10 +23,10 @@
 
 ## Software and code
 - **Data collection:** Public GEO datasets retrieved via GEO/ENTREZ; no bespoke collection software.
-- **Data analysis:** Python 3.13 (managed venv) with numpy/scipy/scikit-learn/xgboost/RDKit/Meeko/Open Babel/gemmi; AutoDock Vina 1.2.5. Custom scripts in `scripts/` (p2–p6). Code deposited in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (MIT LICENSE, CITATION.cff; version v1.5.0, integrity verifiable via MANIFEST.sha256).
+- **Data analysis:** Python 3.13 (managed venv) with numpy/scipy/scikit-learn/xgboost/RDKit/Meeko/Open Babel/gemmi; AutoDock Vina 1.2.5. Custom scripts in `scripts/` (p2–p6). Code deposited in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (MIT LICENSE, CITATION.cff; version v1.6.0; integrity verifiable via the accompanying CITATION.cff and the immutable version tag).
 
 ## Data
-- **Availability statement (manuscript):** All code/tables/figures in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (version v1.5.0; integrity verifiable via MANIFEST.sha256); not "available on request". GEO accessions: GSE267799, GSE212311, GSE278227, GSE241361, GSE265957, GSE158825, GSE222979, GSE216039, GSE328175, GSE246288, GSE306403, GSE325938.
+- **Availability statement (manuscript):** All code/tables/figures in the public GitHub repository at https://github.com/yyx-4113/cpsp-drg-spinal-repurposing (version v1.6.0; integrity verifiable via the accompanying CITATION.cff and the immutable version tag); not "available on request". GEO accessions: GSE267799, GSE212311, GSE278227, GSE241361, GSE265957, GSE158825, GSE222979, GSE216039, GSE328175, GSE246288, GSE306403, GSE325938.
 - **Restrictions:** None beyond GEO access terms.
 
 ## Research involving human participants, their data, or biological material

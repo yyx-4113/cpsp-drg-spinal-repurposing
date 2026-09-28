@@ -1,7 +1,7 @@
 # PLOS ONE — Final Formatting & Compliance Check
 
 **Manuscript:** *Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null*
-**Checked:** 2026-09-26 (Round 9) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
+**Checked:** 2026-09-28 (Round 15) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
 **Verdict:** Content is PLOS ONE–ready. **References: 40 / 40 carry a Crossref-verified DOI** (re-verified 2026-09-27; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
 
 ---
@@ -12,14 +12,14 @@
 |---|---|---|---|
 | 1 | Title ≤ 250 chars, no unsubstantiated claims | ✅ PASS | 143 chars; descriptive, no "novel"/superlative claim |
 | 2 | Author name, affiliation, ORCID, corresponding author | ✅ PASS | Single author; affiliation + ORCID 0009-0004-9698-6552 + email present |
-| 3 | Abstract (≤ 300 words, no references) | ✅ PASS | 256 words; `p7_consistency_gate` confirms no citation in abstract |
-| 4 | **Author Summary** (lay-audience summary) | ✅ PRESENT (optional) | PLOS ONE does not mandate an Author Summary; one is included and is distinct from the abstract, non-technical |
+| 3 | Abstract (≤ 300 words, no references) | ✅ PASS | 266 words; `p7_consistency_gate` confirms no citation in abstract |
+| 4 | **Author Summary** (lay-audience summary) | ✅ PRESENT (mandatory) | PLOS ONE mandates an Author Summary; one is included and is distinct from the abstract, non-technical |
 | 5 | IMRaD structure (Intro/Methods/Results/Discussion) | ✅ PASS | All sections present |
-| 6 | References numbered in first-citation order (Vancouver) | ✅ PASS | 37 refs, order verified by `p7_consistency_gate` (0 errors) |
+| 6 | References numbered in first-citation order (Vancouver) | ✅ PASS | 40 refs, order verified by `p7_consistency_gate` (0 errors) |
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
 | 8 | **DOI for every reference where available** | ✅ PASS | 40 / 40 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
-| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.3.0, MANIFEST.sha256); explicit "not available on request" |
+| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.6.0, immutable release tag); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
 | 12 | Competing Interests | ✅ PASS | Declared; pending FJNSF grant (ADRA2A listed) disclosed, stated not to influence |
 | 13 | Author Contributions | ✅ PASS | Single-author prose statement |
@@ -71,7 +71,7 @@ The manuscript is now edited **directly** in `MVP_PLOSONE_submission.md` and reb
 - [ ] Upload figures as separate files (rename to `Fig1.png`…`Fig5.png`); Supporting Information as `S1`…`S8` (supplementary is `MVP_PLOSONE_supplementary.md`).
 - [ ] Confirm the manuscript text uploaded is the regenerated `reports/MVP_PLOSONE_submission.md` (PLOS-compliant).
 - [ ] Cover letter: `submission_pack/Cover_Letter_PLOSONE.docx` already lists all required PLOS statements.
-- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.3.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.3.0 release tag is immutable.
+- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.6.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.6.0 release tag is immutable.
 
 ## 5. Ethics — IRB provenance (T3-3)
 
@@ -83,5 +83,16 @@ The single human dataset, GSE158825 (human plasma miRNA, n = 60; lumbar surgery 
 - `reports/MVP_PLOSONE_cover_letter.md`: translation stat aligned to strict stratum (43.3% vs 47.1%, p = 0.0002).
 - `reports/MVP_PLOSONE_supplementary.md`: display-item cap phrase corrected.
 - `reports/MVP_PLOSONE_STROBE_checklist.md`: Item 1 satisfied via abstract + metadata (not title).
-- `reports/MVP_PLOSONE_compliance_check.md`: this document — updated to 37/37 DOIs, PLOS ONE filenames, 5+3 display items, STROBE S8, Zenodo placeholder, Cooper-2024 substitution note, Round-10 Tier-2 Flatters-2008 addition.
+- `reports/MVP_PLOSONE_compliance_check.md`: this document — updated to 40/40 DOIs, PLOS ONE filenames, 5+3 display items, STROBE S8, Zenodo placeholder, Cooper-2024 substitution note, Round-10 Tier-2 Flatters-2008 addition.
 - Gates: `gate_consistency` (references = 37), `p7_consistency_gate` (Round-9 integrity assertions) — see `scripts/`; `build_sr_submission_pack.py` rebuilds `Manuscript.docx`.
+
+## 7. Round 15 changelog (2026-09-28, v1.6.0)
+
+Round-15 enforced-independence four-expert review (A1–A4) returned minor-revision / no scientific blocker; the honest-negative boundary framing was affirmed. Three real defects were fixed and the pre-submission gate was hardened:
+
+- **B1 data-integrity (real bug).** `META_bulkonly_sensitivity_summary.json` (`primary_core_size` 4055 → 2750; `overlap` 2202 → 1737; `overlap_pct_primary` 54.3157 → 63.1636) and `META_collapse_meta.csv` (`orig_core` 4055 → 2750; `collapsed_core` 4294 → 3582; `shared_core` 3707 → 2502; `retained_fraction` 0.9142 → 0.9102) were rebuilt at the current 2,750-gene core. Manuscript L44's stale "overlap 54.3% / retention 91.4%" was corrected to "overlap 63.2% / retention 91.0%", matching the authoritative Table 1a (L321); the L50 "54.3% figure" parenthetical was rewritten to the consistent 63.2% framing.
+- **Structured abstract (PLOS ONE technical-check blocker).** The abstract's Background/Methods/Results/Conclusions labelled sections were removed; the abstract is now a single non-structured paragraph, 266 words (≤300), preserving every headline number and the two-filter docking logic.
+- **F1 compliance-check credibility.** `MVP_PLOSONE_compliance_check.md` corrected from v1.3.0 → v1.6.0 (two places), 37 → 40 references, 256 → 266 abstract words, and the false "MANIFEST.sha256" Data-Availability reference was removed (no MANIFEST exists; integrity now stated via CITATION.cff + immutable tag). Author Summary corrected from "optional" to "mandatory" per PLOS ONE policy.
+- **F2 gate hardening.** `p7_consistency_gate.py` `chk()` now additionally verifies, for every numeric needle, that a value parsed from the manuscript equals the recomputed authoritative value (catches manuscript drift, not just string presence); added derived-value assertions for the high-risk numbers (2,750 core, 508 RE core, 41.8% I², 0.266 τ², 2,512 bulk-only core, 63.2% bulk overlap, 91.0% collapse retention, 43.3/47.1/−3.7, q = 0.0022) and a stale-token scan (v1.0.0–v1.5.0, 4,055/4055, 54.3, 91.4) that fails on any regression.
+- Data Availability statement (manuscript L285/L287) bumped v1.5.0 → v1.6.0 and MANIFEST.sha256 reference removed; cover letter L13 bumped to v1.6.0, Author Summary corrected to mandatory, and CC BY license declaration added.
+- Gates: `gate_consistency` (references = 40), `p7_consistency_gate` (Round-15 hardened) — see `scripts/`; `build_sr_submission_pack.py` rebuilds `Manuscript.docx`.
