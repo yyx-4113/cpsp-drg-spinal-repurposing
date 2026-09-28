@@ -19,7 +19,7 @@
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
 | 8 | **DOI for every reference where available** | ✅ PASS | 40 / 40 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
-| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.7.0, immutable release tag); explicit "not available on request" |
+| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.8.0, immutable release tag); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
 | 12 | Competing Interests | ✅ PASS | Declared; pending FJNSF grant (ADRA2A listed) disclosed, stated not to influence |
 | 13 | Author Contributions | ✅ PASS | Single-author prose statement |
@@ -71,7 +71,7 @@ The manuscript is now edited **directly** in `MVP_PLOSONE_submission.md` and reb
 - [ ] Upload figures as separate files (rename to `Fig1.png`…`Fig5.png`); Supporting Information as `S1`…`S8` (supplementary is `MVP_PLOSONE_supplementary.md`).
 - [ ] Confirm the manuscript text uploaded is the regenerated `reports/MVP_PLOSONE_submission.md` (PLOS-compliant).
 - [ ] Cover letter: `submission_pack/Cover_Letter_PLOSONE.docx` already lists all required PLOS statements.
-- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.7.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.7.0 release tag is immutable.
+- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.8.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.8.0 release tag is immutable.
 
 ## 5. Ethics — IRB provenance (T3-3)
 
@@ -109,3 +109,11 @@ Round-16 enforced-independence four-expert review (A1–A4) returned minor-revis
 - **T0-1 reference first-citation order.** All 40 references renumbered by first-citation order (Vancouver); Unicode superscript citations remapped and verified leak-free.
 - **T1-3 P6 verdict vocabulary.** `P6_enrichment_mw_confounder_check.csv` verdict column renamed to a symmetric two-filter vocabulary (PASS_BOTH / FAIL_FILTER1 / FAIL_FILTER2 / FAIL_BOTH); AXL and TNIK (pass F1, fail F2) → FAIL_FILTER2, matching Table 3 prose. Figure 5 Panel A colours + legend updated; upstream `p6_stats.enrichment_verdict` and `p6_mw_confounder.py` updated to emit the same vocabulary.
 - Version markers (CITATION.cff, README.md, cover letter, this check) bumped v1.6.0 → v1.7.0. `p7_consistency_gate.py` no longer hardcodes the version — it reads `version:` from CITATION.cff dynamically, so future bumps cannot silently fail the gate.
+
+## 9. Round 17 changelog (2026-09-28, v1.8.0)
+
+Round-17 enforced-independence four-expert review (A1–A4, fresh, no prior-round reading) returned **minor revision** with a single binding numeric defect. All other DAM / Table-3 / P6 / translation / OXPHOS claims were independently recomputed from the artifact CSVs and matched. Changes in v1.8.0:
+
+- **REG3B nerve-injury-only FDR corrected 2.1 × 10⁻²⁰ → 3.18 × 10⁻²⁰.** The manuscript (L78) had drifted from the authoritative `_R4_nerveinjury_only_meta.csv` `FDR_NI` = 3.177e-20; the 2.1e-20 had no source in any artifact. The six-input REG3B FDR (1.38 × 10⁻¹³) was already correct and is unchanged.
+- **P2RX phrasing clarification (non-blocking).** L80 "…; p = 0.56 in the six-input meta" → "…; permutation p = 0.56 in the six-input meta" to disambiguate Stouffer p (0.04) from the permutation p (0.56) that the honest-null claim rests on.
+- Version markers bumped v1.7.0 → v1.8.0 (manuscript Data Availability, CITATION.cff, README, cover letter, this check).
