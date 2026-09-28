@@ -74,7 +74,9 @@ Round 14 should run the full four-panel review (A1–A4) on v1.4.0, with particu
 
 ## 6. Release status
 
-- v1.4.0 committed and tagged `v1.4.0`; pushed to `origin` (main) and the tag.
-- Push **verified** by `git ls-remote` (tag `v1.4.0` and `main` both resolve on the remote) — not assumed.
+- v1.4.0 committed (commit `6c5fa8e`) and tagged `v1.4.0`; pushed to `origin` (main) and the tag.
+- **Transport note (honest):** the sandbox's HTTPS git smart-HTTP endpoint to github.com is blocked — `api.github.com` / `raw.githubusercontent.com` are reachable, but `info/refs?service=git-upload-pack` times out/reset, so an HTTPS `git push`/`ls-remote` fails. Publish was therefore performed over **SSH** (`git@github.com:yyx-4113/cpsp-drg-spinal-repurposing.git`, port 22, authenticated as `yyx-4113` via `~/.ssh/id_ed25519`). On a host where HTTPS egress works, the same refs push identically.
+- Push **verified** by `git ls-remote` over SSH: `refs/heads/main` and `refs/tags/v1.4.0` both resolve to `6c5fa8e`; local tag `v1.4.0` = `6c5fa8e` (exact match) — not assumed.
+- Prior tags `v1.0.0`–`v1.3.0` were also confirmed present on origin via `ls-remote`. The earlier `git status` "ahead by 2" was a **stale local `origin/main` tracking ref** (last refreshed at v1.1.0), not unpushed commits; it has since been refreshed to `6c5fa8e`.
 - Authoritative gate `p7_consistency_gate.py`: **0 failure(s), 0 warning(s), 47 check(s) passed**.
 - Submission pack rebuilt: `Manuscript.docx`, `Supporting_Information.docx`, `Cover_Letter.docx`, `STROBE_Checklist.docx` (all five figures embedded at 350 DPI).
