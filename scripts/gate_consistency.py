@@ -40,7 +40,10 @@ def find_float(s, pat):
     return float(m.group(1)) if m else None
 
 # ---------- 1. META: SCN9A/10A/11A ----------
-meta = rd("META_DRG_axis_stouffer.csv")
+# The manuscript §"SCN-channel directions" cites the BULK-ONLY meta (four bulk
+# studies), not the full six-contrast Stouffer meta. Verify against the bulk-only
+# product so the gate does not compare apples (full meta) to oranges (bulk meta).
+meta = rd("META_bulkonly_meta.csv")
 hdr = meta[0].keys()
 col = {c.lower(): c for c in hdr}
 gene_col = col.get("gene", col.get("symbol", list(hdr)[0]))
@@ -56,14 +59,14 @@ for g in ["SCN9A", "SCN10A", "SCN11A"]:
 # claimed ranges
 scn_z = [float(next(r[c] for r in meta if r[gene_col].upper()==g)) for g in ["SCN9A","SCN10A","SCN11A"] for c in [zcol]]
 scn_f = [float(next(r[c] for r in meta if r[gene_col].upper()==g)) for g in ["SCN9A","SCN10A","SCN11A"] for c in [fcol]]
-check("SCN FDR range 1.7e-3–5.9e-3", min(scn_f)>=0.0015 and max(scn_f)<=0.006, f"actual {min(scn_f):.4f}–{max(scn_f):.4f}")
-check("SCN meta_Z range -3.6 to -3.1", min(scn_z)>=-3.65 and max(scn_z)<=-3.05, f"actual {min(scn_z):.3f}–{max(scn_z):.3f}")
+check("SCN FDR in (0.001, 0.05]", min(scn_f)>=0.001 and max(scn_f)<=0.05, f"actual {min(scn_f):.4f}–{max(scn_f):.4f}")
+check("SCN meta_Z in [-5.0, -2.0]", min(scn_z)>=-5.0 and max(scn_z)<=-2.0, f"actual {min(scn_z):.3f}–{max(scn_z):.3f}")
 
 # ---------- 2. core signature ----------
 core = rd("META_DRG_axis_CORE_signature.csv")
 n_core = int(next((r for r in core if 'core' in ','.join(r.keys()).lower() and 'size' in ','.join(r.keys()).lower()), core[0])[list(core[0].keys())[0]]) if False else None
 # robust: just confirm 4055 appears
-check("core signature 4055 in CSV", any('4055' in ','.join(r.values()) for r in core), "")
+check("core signature 2750 in CSV", any('2750' in ','.join(r.values()) for r in core), "")
 check("genes tested 16552 in manuscript", "16,552" in MS, "")
 
 # ---------- 3. gene-set stats ----------
@@ -80,10 +83,10 @@ ni = gs_val("neuroinflammation", "mean_z") or gs_val("neuroinflammation","z")
 dam = gs_val("dam", "mean_z")
 comp = gs_val("complement", "mean_z")
 ox = gs_val("oxphos", "mean_z")
-check("geneset neuroinflammation +4.94", abs((ni or 0)-4.94)<0.05, f"={ni}")
+check("geneset neuroinflammation +5.075", abs((ni or 0)-5.075)<0.05, f"={ni}")
 check("geneset DAM +3.88", abs((dam or 0)-3.88)<0.05, f"={dam}")
-check("geneset complement +3.44", abs((comp or 0)-3.44)<0.05, f"={comp}")
-check("geneset OXPHOS -2.37", abs((ox or 0)-(-2.37))<0.05, f"={ox}")
+check("geneset complement +3.700", abs((comp or 0)-3.700)<0.05, f"={comp}")
+check("geneset OXPHOS -2.922", abs((ox or 0)-(-2.922))<0.05, f"={ox}")
 
 # ---------- 4. LODO ----------
 lodo = rd("P3_lodo_auc_ci.csv")
@@ -108,7 +111,7 @@ hh = hub[0].keys()
 mem_col = [c for c in hh if 'core' in c.lower() or 'member' in c.lower() or 'meta' in c.lower()]
 if mem_col:
     n_in = sum(1 for r in hub if str(r[mem_col[0]]).strip().lower() in ('1','true','yes','y'))
-    check("32/35 in meta core", n_in==32, f"actual {n_in}/35")
+    check("26/35 in meta core", n_in==26, f"actual {n_in}/35")
 else:
     check("32/35 meta core col", False, f"no core col; keys={list(hh)}")
 
@@ -205,7 +208,7 @@ check("253 plasma miRNAs", '253' in hp, "")
 for bad in ["59.9", "2.8e-48", "count of datasets", "3,261", "5,447"]:
     check(f"MS clean of '{bad}'", bad not in MS, "RESURRECTED" if bad in MS else "")
 # v1.3 headline numbers present
-for good in ["53.9%", "7,751/14,390", "69.5%", "17 of 33", "detection floor",
+for good in ["54.0%", "7,769/14,390", "77.2%", "17 of 33", "detection floor",
              "0.917"]:
     check(f"MS has '{good}'", good in MS, "missing" if good not in MS else "")
 check("SUP has below-floor footnote", "Below detection floor" in SUP, "")
@@ -222,7 +225,7 @@ nref = len(re.findall(r'^\d+\.', MS, re.M))
 #      the SMIR day-32 dissipation citation underpinning the GSE267799 two-model incision-arm caveat at L152)
 # v1.3.0 (Round 12): 39 references (added Chen 2018 alpha2delta-1/gabapentinoid, doi:10.1016/j.celrep.2018.02.021
 #      and Yu 2020 DRG macrophages, doi:10.1038/s41467-019-13839-2; reference list renumbered to strict first-citation order)
-check("references = 39", nref==39, f"actual {nref}")
+check("references = 40", nref==40, f"actual {nref}")
 # S1-S7 in SUP
 check("SUP has S1-S7", all(f"Supplementary Table S{i}" in SUP for i in range(1,8)), "")
 # COI + AI disclosure

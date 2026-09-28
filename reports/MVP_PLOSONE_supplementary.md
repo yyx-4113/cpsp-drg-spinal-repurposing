@@ -169,27 +169,27 @@ The 19 a priori gene sets were previously reported with permutation p-values but
 
 | Gene set | n_present | perm p (FE) | **BH q (FE)** | perm p (RE) | **BH q (RE)** | Survives set-level BH |
 | --- | --- | --- | --- | --- | --- | --- |
-| Neuroinflammation | 19 | 0.0004998 | **0.002999** | 0.0004998 | 0.002999 | yes |
-| Complement | 18 | 0.0004998 | **0.002999** | 0.0004998 | 0.002999 | yes |
-| DAM_microglia | 16 | 0.0004998 | **0.002999** | 0.0004998 | 0.002999 | yes |
-| Mitochondria_OXPHOS | 19 | 0.004498 | **0.02024** | 0.06897 | 0.3103 | fixed-effect only |
-| Neuropeptides_pain | 18 | 0.01299 | **0.04678** | 0.4898 | 0.7948 | fixed-effect only |
-| Synaptic | 20 | 0.1059 | **0.3178** | 0.6182 | 0.7948 | no |
-| Nav_SCN | 14 | 0.1724 | **0.4433** | 0.2354 | 0.5047 | no |
-| P2RX_P2RY | 12 | 0.4383 | **0.7736** | 0.2524 | 0.5047 | no |
-| MAPK_kinase | 15 | 0.4458 | **0.7736** | 0.1064 | 0.3193 | no |
-| Opioid_GPCR | 8 | 0.4893 | **0.7736** | 0.5522 | 0.7948 | no |
-| ASIC | 4 | 0.5262 | **0.7736** | 0.901 | 0.9541 | no |
-| K2P_KCNK | 14 | 0.5517 | **0.7736** | 0.09445 | 0.3193 | no |
-| Autophagy_mitophagy | 11 | 0.5877 | **0.7736** | 0.6172 | 0.7948 | no |
-| CPSP_literature | 24 | 0.6357 | **0.7736** | 0.6912 | 0.8294 | no |
-| Myelin_OL | 14 | 0.6447 | **0.7736** | 0.1284 | 0.3303 | no |
-| Kv_KCNQ_KCNH | 13 | 0.7671 | **0.8488** | 0.5697 | 0.7948 | no |
-| CACNA | 18 | 0.8016 | **0.8488** | 0.8751 | 0.9541 | no |
-| TRP_channels | 12 | 0.8881 | **0.8881** | 0.961 | 0.961 | no |
+| Neuroinflammation | 19 | 0.0005 | **0.0022** | 0.0005 | 0.0022 | yes (FE & RE) |
+| Complement | 18 | 0.0005 | **0.0022** | 0.0005 | 0.0022 | yes (FE & RE) |
+| Mitochondria_OXPHOS | 19 | 0.0005 | **0.0022** | 0.0005 | 0.0022 | yes (FE & RE) |
+| DAM_microglia | 16 | 0.0005 | **0.0022** | 0.0005 | 0.0022 | yes (FE & RE) |
+| Neuropeptides_pain | 18 | 0.0070 | **0.0252** | 0.3003 | 0.8469 | FE only |
+| Synaptic | 20 | 0.1344 | **0.4033** | 0.9575 | 0.9900 | no |
+| Nav_SCN | 14 | 0.2414 | **0.6207** | 0.4978 | 0.9900 | no |
+| P2RX_P2RY | 12 | 0.5607 | **0.9061** | 0.4783 | 0.9900 | no |
+| MAPK_kinase | 15 | 0.5297 | **0.9061** | 0.3293 | 0.8469 | no |
+| Opioid_GPCR | 8 | 0.5847 | **0.9061** | 0.7416 | 0.9900 | no |
+| ASIC | 4 | 0.4353 | **0.9061** | 0.6772 | 0.9900 | no |
+| K2P_KCNK | 14 | 0.7016 | **0.9061** | 0.2649 | 0.8469 | no |
+| Autophagy_mitophagy | 11 | 0.7431 | **0.9061** | 0.8426 | 0.9900 | no |
+| CPSP_literature | 24 | 0.7531 | **0.9061** | 0.8521 | 0.9900 | no |
+| Myelin_OL | 14 | 0.9235 | **0.9235** | 0.9865 | 0.9900 | no |
+| Kv_KCNQ_KCNH | 13 | 0.7551 | **0.9061** | 0.6537 | 0.9900 | no |
+| CACNA | 18 | 0.9030 | **0.9235** | 0.9900 | 0.9900 | no |
+| TRP_channels | 12 | 0.8941 | **0.9235** | 0.9105 | 0.9900 | no |
 | Sigma1 | 1 | — | **—** | — | — | no |
 
-*Reading.* Under the fixed-effect meta-vector, neuroinflammation, complement, DAM microglia (q = 0.003 each) and mitochondrial OXPHOS (q = 0.0202) survive set-level BH; neuropeptides are borderline (q = 0.0468). Under the random-effects meta-vector the three upregulated programmes survive unchanged (q = 0.003) but **OXPHOS does not (q = 0.31)**, so energy-metabolism suppression is reported as a fixed-effect finding that is not robust to between-contrast heterogeneity. No ion-channel family survives under either model.
+*Reading.* Under the fixed-effect meta-vector, neuroinflammation, complement, DAM microglia and mitochondrial OXPHOS (q = 0.0022 each) all survive set-level BH, and all four also survive set-level BH under the random-effects meta-vector (q = 0.0022 each; their permutation p reaches the 2,000-permutation floor and is reported as an upper bound), so energy-metabolism suppression is now reliable under between-contrast heterogeneity rather than a fixed-effect-only finding; neuropeptides are borderline under fixed effects (q = 0.0252) but do not survive random effects. No ion-channel family survives set-level BH under either model.
 
 
 ## Supplementary Table S6. Random-effects sensitivity, heterogeneity, and the non-circular translation test
@@ -199,55 +199,54 @@ The 19 a priori gene sets were previously reported with permutation p-values but
 | Quantity | Fixed effect | Random effects |
 | --- | --- | --- |
 | Genes tested | 16,552 | 16,552 |
-| Core (FDR < 0.05 and consistency ≥ 0.8) | **4,055** | **1,008** (24.9% of the fixed-effect core) |
-| Median τ² | — (assumed 0) | 0.232 |
-| Median I² | — (assumed 0) | 38.8% |
-| Genes with I² > 50% | — | 41.9% |
-| Genes with τ² > 0 | — | 68.1% |
-| 35 hubs retaining FDR < 0.05 | 35/35 | 18/35 |
+| Core (FDR < 0.05 and consistency ≥ 0.8) | **2,750** | **508** (18.5% of the fixed-effect core) |
+| Median τ² | — (assumed 0) | 0.266 |
+| Median I² | — (assumed 0) | 41.8% |
+| Genes with I² > 50% | — | 43.9% |
+| Genes with τ² > 0 | — | 69.7% |
+| 35 hubs retaining FDR < 0.05 | 35/35 | 7/35 |
 
-*Reading.* Between-contrast heterogeneity is moderate overall (median I² = 38.8%) and high among the hubs (median I² = 72.8%), and the core is heterogeneity-sensitive: only 24.9% of the fixed-effect core persists under random effects. The fixed-effect core is reported as the primary result with the random-effects core as its sensitivity bound.
+*Reading.* Between-contrast heterogeneity is moderate overall (median I² = 41.8%) and high among the hubs (median I² = 79.1%), and the core is heterogeneity-sensitive: only 18.5% of the fixed-effect core persists under random effects. The fixed-effect core is reported as the primary result with the random-effects core as its sensitivity bound.
 
 **Panel B — nerve-injury-to-incision translation, circular versus non-circular.** The originally reported concordance figures were produced by a circular design: both the meta_Z and the pooled consistency filter (≥0.8 across all six contrasts) **include the incision contrast**, so a gene could enter the core partly because it already agreed with the incision direction. Panel B reports (i) those circular figures for reference only, (ii) the same test with consistency restricted to the five nerve-injury contrasts, and (iii) the fully non-circular test in which the signature is built on the five nerve-injury contrasts only and the incision contrast is used once, as a held-out test. Wilson 95% confidence intervals and a 5,000-draw label-permutation null against the measured background are given in place of a binomial test against 50%, which is not the correct reference for a contrast with a global directional skew. Sources: `results/tables/_R4_translation_concordance_effectsize.csv`, `_R4_translation_noncircular.csv`, `_R4_nerveinjury_only_meta.csv`.
 
 | Stratum | k / n | Agreement | Wilson 95% CI | Permutation p vs background | Circular? |
 | --- | --- | --- | --- | --- | --- |
-| Circular: all measured genes (6-contrast meta_Z) | 7,751/14,390 | 53.9% | 53.0–54.7% | — | yes |
-| Circular: core (pooled consistency ≥ 0.8) | 2,473/3,556 | 69.5% | 68.0–71.0% | 0.0002 | yes |
-| Semi-corrected: meta FDR < 0.05 and nerve-injury consistency ≥ 0.8 | 2,318/4,306 | 53.8% | 52.3–55.3% | 0.79 | partial (FDR still 6-contrast) |
-| **Non-circular background (all measured)** | 6,779/14,390 | **47.1%** | 46.3–47.9% | 1.00 | no |
-| **Non-circular test: NI FDR < 0.05 and NI consistency ≥ 0.8** | 2,266/4,899 | **46.2%** | 44.9–47.6% | 0.14 | no |
-| Non-circular comparator: NI FDR < 0.05 and NI consistency < 0.8 | 978/2,185 | 44.8% | 42.7–46.9% | 0.0148 | no |
+| Circular: all measured genes (6-contrast meta_Z) | 7,769/14,390 | 54.0% | 53.2–54.8% | — | yes |
+| Circular: 2,750-gene core (pooled consistency ≥ 0.8) | 1,822/2,361 | 77.2% | 75.4–78.8% | — | yes |
+| Semi-corrected: nerve-injury consistency ≥ 0.8 (FDR still 6-contrast) | 3,023/6,256 | 48.3% | 47.1–49.6% | — | partial |
+| **Non-circular background (all measured)** | 6,772/14,390 | **47.1%** | 46.3–47.9% | 1.00 | no |
+| **Non-circular test: NI FDR < 0.05 and NI consistency ≥ 0.8** | 1,660/3,830 | **43.3%** | 41.8–44.9% | 0.0002 | no |
 
-*Reading.* The apparent core "translation" of 69.5% collapses to 53.8% once consistency is restricted to nerve-injury contrasts and to **46.2%** under the fully non-circular test, versus a **47.1%** background — a risk difference of **-0.9 pp** (permutation p = 0.14). Knowing that a gene is strongly and consistently regulated by nerve injury therefore carries essentially no information about its direction in the incision model. A nerve-injury-only core (incision excluded) comprised 5,412 genes under fixed effects and 3,099 under random effects.
+*Reading.* The apparent core "translation" of 77.2% (circular) collapses to 48.3% once consistency is restricted to nerve-injury contrasts and to **43.3%** under the fully non-circular test, versus a **47.1%** background — a risk difference of **-3.7 pp** (permutation p = 0.0002, significant depletion). Knowing that a gene is strongly and consistently regulated by nerve injury therefore carries essentially no information about its direction in the incision model. A nerve-injury-only core (incision excluded) comprised 4,234 genes under fixed effects and 1,974 under random effects.
 
-**Panel C — consistency split for the reported 4,055-gene core.** `nerve_injury_consistency` is computed across the five nerve-injury contrasts only; `incision_agreement` is the indicator that the incision log₂FC has the same sign as the meta Z. Source: `results/tables/_R4_random_effects_meta.csv`.
+**Panel C — consistency split for the reported 2,750-gene core.** `nerve_injury_consistency` is computed across the five nerve-injury contrasts only; `incision_agreement` is the indicator that the incision log₂FC has the same sign as the meta Z. Source: `results/tables/_R4_random_effects_meta.csv`.
 
 | Quantity | Value |
 | --- | --- |
-| Core genes with an incision measurement | 3,556 |
-| ... incision-concordant | 2,473 (69.5%) |
-| ... incision-**discordant** (core-consistent yet incision-opposed) | 1,083 (30.5%) |
-| Core genes with nerve-injury consistency ≥ 0.8 | 3,889/4,055 (95.9%) |
-| Core genes both NI-consistent ≥ 0.8 **and** incision-concordant | 2,308 |
-| Mean nerve-injury consistency in the core | 0.938 (pooled consistency 0.903) |
+| Core genes with an incision measurement | 2,361 |
+| ... incision-concordant | 1,822 (77.2%) |
+| ... incision-**discordant** (core-consistent yet incision-opposed) | 539 (22.8%) |
+| Core genes with nerve-injury consistency ≥ 0.8 | 2,590/2,750 (94.2%) |
+| Core genes both NI-consistent ≥ 0.8 **and** incision-concordant | 1,663 |
+| Mean nerve-injury consistency in the core | 0.914 (pooled consistency 0.897) |
 
 **Panel D — the ten docking targets under fixed versus random effects.** Source: `results/tables/_R4_targets_fixed_vs_random.csv`.
 
 | Target | Z (FE) | FDR (FE) | Z (RE) | FDR (RE) | I² (%) | τ² | Retains RE significance |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| TNIK | 8.00 | 4.3e-13 | 3.34 | 0.0212 | 68.9 | 0.86 | yes |
-| SLC2A1 | 6.83 | 6.3e-10 | 6.83 | 7.02e-08 | 0.0 | 0.00 | yes |
-| ACVR1 | 6.95 | 3.2e-10 | 2.15 | 0.188 | 82.0 | 1.77 | no |
-| SERPINE1 | 6.92 | 3.7e-10 | 2.87 | 0.0596 | 72.8 | 1.04 | no |
-| MAPK14 | 6.09 | 3.9e-08 | 2.43 | 0.126 | 75.1 | 1.17 | no |
-| AXL | 6.14 | 2.9e-08 | 2.79 | 0.0677 | 66.8 | 0.78 | no |
-| VASH2 | 6.00 | 6.4e-08 | 2.15 | 0.186 | 74.9 | 1.16 | no |
-| GALNS | 5.79 | 1.8e-07 | 3.27 | 0.0251 | 45.8 | 0.33 | yes |
-| ITPKC | 7.18 | 8.1e-11 | 1.77 | 0.296 | 84.4 | 2.10 | no |
-| ADRA2A | 4.84 | 1.5e-05 | 3.08 | 0.0386 | 44.3 | 0.31 | yes |
+| TNIK | 8.00 | 8.59e-13 | 3.33 | 0.0343 | 69.0 | 0.86 | yes |
+| SLC2A1 | 5.59 | 6.57e-7 | 1.80 | 0.360 | 73.9 | 1.10 | no |
+| ACVR1 | 6.95 | 5.42e-10 | 2.15 | 0.249 | 82.0 | 1.77 | no |
+| SERPINE1 | 6.92 | 6.34e-10 | 2.87 | 0.0873 | 72.8 | 1.04 | no |
+| MAPK14 | 5.12 | 5.39e-6 | 1.09 | 0.616 | 83.8 | 2.01 | no |
+| AXL | 6.14 | 4.04e-8 | 2.79 | 0.098 | 66.8 | 0.78 | no |
+| VASH2 | 5.94 | 1.13e-7 | 2.06 | 0.275 | 75.7 | 1.21 | no |
+| GALNS | 6.08 | 5.53e-8 | 5.21 | 0.0001 | 13.5 | 0.06 | yes |
+| ITPKC | 6.76 | 1.56e-9 | 1.26 | 0.551 | 86.8 | 2.56 | no |
+| ADRA2A | 4.45 | 8.35e-5 | 2.12 | 0.255 | 60.2 | 0.59 | no |
 
-*Reading.* Only 4 of the 10 targets retain FDR < 0.05 under random effects (SLC2A1, TNIK, ADRA2A, GALNS), so target ranking is model-dependent and no target is either privileged or excluded by the meta-analysis on this basis.
+*Reading.* Only 2 of the 10 targets retain FDR < 0.05 under random effects (TNIK, GALNS), so target ranking is model-dependent and no target is either privileged or excluded by the meta-analysis on this basis.
 
 
 ## Supplementary Table S7. Bootstrap stability of the docking target set (P3/P6)

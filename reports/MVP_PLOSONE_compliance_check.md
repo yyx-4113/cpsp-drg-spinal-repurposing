@@ -79,8 +79,8 @@ The single human dataset, GSE158825 (human plasma miRNA, n = 60; lumbar surgery 
 
 ## 6. What was changed in this pass (Round 9, 2026-09-26)
 
-- `reports/MVP_PLOSONE_submission.md`: standardized on **46.2%** (abstract, body, cover letter); inserted EPV note; reframed ML paragraph; added explicit FE-primary qualifier; added DAM hallmark-gene quantitative justification (TREM2/TYROBP in FDR<0.05 core; APOE consistency 6/6 but FDR 0.070); added separate "## Conclusions"; strengthened ethics IRB provenance.
-- `reports/MVP_PLOSONE_cover_letter.md`: 46.3% → 46.2%.
+- `reports/MVP_PLOSONE_submission.md`: the non-circular translation test is reported with the **strict** stratum (NI FDR < 0.05 AND NI consistency ≥ 0.8) = **43.3% (1,660/3,830) vs 47.1% (6,772/14,390) background, risk difference −3.7 pp, permutation p = 0.0002 (significant depletion)**, used consistently in abstract, body and cover letter; the older loose 46.2% / p = 0.14 figure was superseded (Round 14) after independent re-derivation from `_R4_nerveinjury_only_summary.json`. Also inserted EPV note; reframed ML paragraph; added explicit FE-primary qualifier; added DAM hallmark-gene quantitative justification (TREM2/TYROBP in FDR<0.05 core; APOE consistency 6/6 but FDR 0.070); added separate "## Conclusions"; strengthened ethics IRB provenance.
+- `reports/MVP_PLOSONE_cover_letter.md`: translation stat aligned to strict stratum (43.3% vs 47.1%, p = 0.0002).
 - `reports/MVP_PLOSONE_supplementary.md`: display-item cap phrase corrected.
 - `reports/MVP_PLOSONE_STROBE_checklist.md`: Item 1 satisfied via abstract + metadata (not title).
 - `reports/MVP_PLOSONE_compliance_check.md`: this document — updated to 37/37 DOIs, PLOS ONE filenames, 5+3 display items, STROBE S8, Zenodo placeholder, Cooper-2024 substitution note, Round-10 Tier-2 Flatters-2008 addition.

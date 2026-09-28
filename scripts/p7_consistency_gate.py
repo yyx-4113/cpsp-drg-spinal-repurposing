@@ -193,6 +193,73 @@ chk("OXPHOS set-level q (FE)", round(float(fe.loc["Mitochondria_OXPHOS", "perm_q
 re_sets = gsb[gsb.scale == "random"].set_index("set")
 chk("OXPHOS set-level q (RE)", round(float(re_sets.loc["Mitochondria_OXPHOS", "perm_q"]), 2), "q = 0.0022")
 
+# ---------------------------------------------------------------- [4b] Table 3a ↔ authoritative CSV (Round-14 gate-blindness closure)
+print("\n" + "=" * 78)
+print("[4b] TABLE 3a ↔ AUTHORITATIVE CSV (Round-14 gate-blindness closure)")
+print("=" * 78)
+# Root cause of the Round-14 MAJOR finding: the pre-submission gate re-derived *summary*
+# numbers (core size, RE core, etc.) but NEVER reconciled the per-target Table 3a values
+# (meta_Z / meta_FDR / consistency / FDR_RE / n_holo_PDB) against the regenerated meta CSVs.
+# When T0-1 regenerated META_DRG_axis_stouffer.csv and _R4_random_effects_meta.csv, the
+# downstream Table 3a drifted and the gate stayed green. This block makes the gate actually
+# catch that class of bug: it parses the manuscript's Table 3a and compares every cell to
+# the authoritative source (meta_Z/meta_FDR/consistency from META_DRG_axis_stouffer.csv;
+# FDR_RE from _R4_random_effects_meta.csv; n_holo_PDB from P6_target_selection.csv).
+st_df = pd.read_csv(os.path.join(TAB, "META_DRG_axis_stouffer.csv")).set_index("symbol")
+re_df = pd.read_csv(os.path.join(TAB, "_R4_random_effects_meta.csv")).set_index("symbol")
+p6_df = pd.read_csv(os.path.join(TAB, "P6_target_selection.csv")).set_index("symbol")
+# Table 3a is rendered as two pipe-blocks (Panel A biological candidates; Panel B
+# accessibility/negative controls) separated by a prose line, so there are TWO identical
+# header rows. Capture BOTH with finditer (re.search would only see Panel A and silently
+# under-check 3 targets — exactly the kind of partial-coverage gap this block exists to close).
+m3a_iter = re.finditer(r"\|\s*Target\s*\|\s*meta_Z\s*\|\s*meta_FDR\s*\|\s*consistency\s*\|\s*FDR_RE\s*\|\s*n_holo_PDB\s*\|.*?(?=\n\n|\Z)", txt, flags=re.S)
+blocks = [m.group(0) for m in m3a_iter]
+if not blocks:
+    fails.append("Table 3a header not found in manuscript"); print("  FAIL  Table 3a header not found")
+else:
+    targets_checked = 0
+    for block in blocks:
+        rows = [ln for ln in block.split("\n")
+                if ln.strip().startswith("|") and not re.fullmatch(r"\s*\|[\s:\-|]+\|\s*", ln)]
+        for ln in rows:
+            cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+            if len(cells) < 6:
+                continue
+            sym = cells[0]
+            if sym == "Target" or sym not in st_df.index:
+                continue
+            try:
+                mz, mfdr, cons, fre, nholo = (float(cells[1]), float(cells[2]),
+                                              float(cells[3]), float(cells[4]), int(float(cells[5])))
+            except ValueError:
+                fails.append(f"Table 3a row {sym} unparseable: {cells}")
+                continue
+            row_ok = True
+            if abs(mz - float(st_df.loc[sym, "meta_Z"])) > 0.01:
+                fails.append(f"Table 3a {sym} meta_Z {mz} != CSV {float(st_df.loc[sym,'meta_Z']):.4f}")
+                row_ok = False
+            csv_fdr = float(st_df.loc[sym, "meta_FDR"])
+            if abs(mfdr - csv_fdr) / max(csv_fdr, 1e-30) > 0.02:
+                fails.append(f"Table 3a {sym} meta_FDR {mfdr:.3e} != CSV {csv_fdr:.3e}")
+                row_ok = False
+            if abs(cons - float(st_df.loc[sym, "consistency"])) > 0.01:
+                fails.append(f"Table 3a {sym} consistency {cons} != CSV {float(st_df.loc[sym,'consistency']):.4f}")
+                row_ok = False
+            if abs(fre - float(re_df.loc[sym, "FDR_RE"])) > 0.002:
+                fails.append(f"Table 3a {sym} FDR_RE {fre} != CSV {float(re_df.loc[sym,'FDR_RE']):.4f}")
+                row_ok = False
+            if nholo != int(p6_df.loc[sym, "n_pdb_holo"]):
+                fails.append(f"Table 3a {sym} n_holo_PDB {nholo} != P6 {int(p6_df.loc[sym,'n_pdb_holo'])}")
+                row_ok = False
+            if row_ok:
+                targets_checked += 1
+                print(f"  OK    Table 3a {sym}: meta_Z {mz} meta_FDR {mfdr:.2e} consistency {cons} FDR_RE {fre} n_holo_PDB {nholo}")
+        if targets_checked == 0:
+            fails.append("Table 3a parsed 0 target rows"); print("  FAIL  Table 3a parsed 0 target rows")
+        else:
+            oks.append(f"Table 3a all {targets_checked}/10 targets reconcile against authoritative CSVs")
+            print(f"  OK    Table 3a: {targets_checked}/10 targets reconciled against authoritative CSVs")
+
 # ---------------------------------------------------------------- (5) pre-submission warnings
 print("\n" + "=" * 78); print("[5] PRE-SUBMISSION WARNINGS"); print("=" * 78)
 if "10.5281/zenodo.XXXXXXX" in txt:

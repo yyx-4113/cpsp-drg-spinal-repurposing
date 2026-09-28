@@ -283,7 +283,7 @@ def build_table2(doc) -> None:
     cap = ("Table 2. Thirty-five candidate hub genes identified by the dual-machine-learning "
            "consensus (>=2 of 3 methods: LASSO bootstrap, Random Forest mean-decrease-Gini, "
            "XGBoost |SHAP|). Methods (n/3) = number of methods flagging the gene; In meta core = "
-           "membership in the 4,055-gene Stouffer meta signature (the in_meta_core boolean in "
+           "membership in the 2,750-gene core (meta_FDR < 0.05 and consistency ≥ 0.8) (the in_meta_core boolean in "
            "P3_hub_genes.csv, rendered here as Yes/No). Source: P3_hub_genes.csv. "
            "Bootstrap stability caveat: a 200-resample bootstrap of the 72 pooled samples "
            "(P3_hub_bootstrap.csv) showed low per-gene recovery (max 100.0%, 2/35 at a >=0.9 "
