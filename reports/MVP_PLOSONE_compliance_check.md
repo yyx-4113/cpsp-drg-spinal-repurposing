@@ -2,7 +2,7 @@
 
 **Manuscript:** *Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null*
 **Checked:** 2026-09-26 (Round 9) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
-**Verdict:** Content is PLOS ONE–ready. **References: 39 / 39 carry a Crossref-verified DOI** (re-verified 2026-09-27; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
+**Verdict:** Content is PLOS ONE–ready. **References: 40 / 40 carry a Crossref-verified DOI** (re-verified 2026-09-27; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
 
 ---
 
@@ -17,7 +17,7 @@
 | 5 | IMRaD structure (Intro/Methods/Results/Discussion) | ✅ PASS | All sections present |
 | 6 | References numbered in first-citation order (Vancouver) | ✅ PASS | 37 refs, order verified by `p7_consistency_gate` (0 errors) |
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
-| 8 | **DOI for every reference where available** | ✅ PASS | 39 / 39 references carry a Crossref-verified DOI |
+| 8 | **DOI for every reference where available** | ✅ PASS | 40 / 40 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
 | 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.3.0, MANIFEST.sha256); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
@@ -41,9 +41,9 @@
 
 ## 3. Reference DOIs — resolved (Crossref, 2026-09-26)
 
-PLOS ONE requires a DOI for every reference **where available**. All 39 references were matched against Crossref and verified against the real article metadata (title + journal + year). **Result: 39 / 39 references carry a verified DOI; none is left blank.**
+PLOS ONE requires a DOI for every reference **where available**. All 40 references were matched against Crossref and verified against the real article metadata (title + journal + year). **Result: 40 / 40 references carry a verified DOI; none is left blank.**
 
-> Provenance note (T3-3 / T3-7): the Crossref verification was originally performed in Round 9 (2026-09-26) and was **re-run on 2026-09-27** (this Round-12 pass) covering all 39 references; all 39 resolve to the correct article metadata. Two references were added in this pass — **38.** Chen et al., *Cell Reports* 22:2307–2321 (2018), doi:10.1016/j.celrep.2018.02.021 (α2δ-1/gabapentinoid DRG mechanism); **39.** Yu et al., *Nature Communications* 11:264 (2020), doi:10.1038/s41467-019-13839-2 (DRG-resident macrophage neuroimmune sentinel) — each DOI Crossref-verified on 2026-09-27. The legacy `p7_renumber_refs.py` / `resolve_ref_dois.py` renumber/DOI scripts remain disabled; the DOI claims were validated directly against Crossref.
+> Provenance note (T3-3 / T3-7): the Crossref verification was originally performed in Round 9 (2026-09-26) and was **re-run on 2026-09-27** (this Round-12 pass) covering all 40 references; all 40 resolve to the correct article metadata. Two references were added in this pass — **38.** Chen et al., *Cell Reports* 22:2307–2321 (2018), doi:10.1016/j.celrep.2018.02.021 (α2δ-1/gabapentinoid DRG mechanism); **39.** Yu et al., *Nature Communications* 11:264 (2020), doi:10.1038/s41467-019-13839-2 (DRG-resident macrophage neuroimmune sentinel) — each DOI Crossref-verified on 2026-09-27. The legacy `p7_renumber_refs.py` / `resolve_ref_dois.py` renumber/DOI scripts remain disabled; the DOI claims were validated directly against Crossref.
 
 ### 3.1 Round-9 additions (2026-09-26) and Round-10 Tier-2 addition (2026-09-26)
 Four references were added across these rounds, each carrying a Crossref-verified DOI (numbered by current first-citation order in the manuscript):

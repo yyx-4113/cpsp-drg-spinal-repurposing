@@ -136,11 +136,16 @@ primary={
 }
 # add GSE265957 DRG from provided Xtail log2FC/p (derive Z), Day4 (acute) + Day63 (chronic)
 def xt_tab_from(fn):
-    xt=pd.read_csv(os.path.join(OUT,fn)).dropna(subset=["gene","mRNA_log2FC","pvalue_final"])
+    xt=pd.read_csv(os.path.join(OUT,fn)).dropna(subset=["gene","log2FC_TE_final","pvalue_final"])
     xt["symbol"]=[std_symbol(g) for g in xt["gene"]]
     xt=xt[xt["symbol"].notna()]
-    z=np.sign(xt["mRNA_log2FC"])*stats.norm.isf(xt["pvalue_final"].clip(1e-300,1)/2)
-    t=pd.DataFrame({"log2FC":xt["mRNA_log2FC"].values,"Z":z.values},index=xt["symbol"].values)
+    # T0-1 fix (round13): translatome Z must take direction AND magnitude from the SAME
+    # Xtail estimand. GSE265957 is a ribosome-profiling (translation-efficiency) study; its
+    # significance lives in pvalue_final (the TE p-value), so the sign must come from
+    # log2FC_TE_final, NOT from mRNA_log2FC (which is a different omic layer and disagrees
+    # in ~90% of TE-significant genes). log2FC reported below is also the TE log2FC.
+    z=np.sign(xt["log2FC_TE_final"])*stats.norm.isf(xt["pvalue_final"].clip(1e-300,1)/2)
+    t=pd.DataFrame({"log2FC":xt["log2FC_TE_final"].values,"Z":z.values},index=xt["symbol"].values)
     return t.groupby(t.index).mean()
 xt_d4=xt_tab_from("GSE265957_Xtail_DRG_Day4_SNI_vs_SHM.csv")
 xt_d63=xt_tab_from("GSE265957_Xtail_DRG_Day63_SNI_vs_SHM.csv")

@@ -1,50 +1,50 @@
 {
   "strata": {
     "all_measured": {
-      "k": 7751,
+      "k": 7769,
       "n": 14445,
-      "rate": 0.5366,
+      "rate": 0.5378,
       "ci": [
-        0.5284,
-        0.5447
+        0.5297,
+        0.546
       ],
       "perm_p": 1.0
     },
     "meta_FDR05_NIcons_ge08": {
-      "k": 2318,
-      "n": 4306,
-      "rate": 0.5383,
+      "k": 1681,
+      "n": 3208,
+      "rate": 0.524,
       "ci": [
-        0.5234,
-        0.5532
+        0.5067,
+        0.5412
       ],
-      "perm_p": 0.7866426714657069
+      "perm_p": 0.08098380323935213
     },
     "meta_FDR05_NIcons_lt08": {
-      "k": 1048,
-      "n": 1598,
-      "rate": 0.6558,
+      "k": 1486,
+      "n": 2414,
+      "rate": 0.6156,
       "ci": [
-        0.6322,
-        0.6787
+        0.596,
+        0.6348
       ],
       "perm_p": 0.0001999600079984003
     },
     "meta_FDR05_pooled_ge08": {
-      "k": 2473,
-      "n": 3564,
-      "rate": 0.6939,
+      "k": 1822,
+      "n": 2368,
+      "rate": 0.7694,
       "ci": [
-        0.6786,
-        0.7088
+        0.752,
+        0.7859
       ],
       "perm_p": 0.0001999600079984003
     }
   },
-  "noncircular_risk_difference_pp": -11.8,
-  "circularity_inflation_pp": 15.6,
-  "hubs_p_RE_lt05": 32,
-  "hubs_FDR_RE_lt05": 18,
+  "noncircular_risk_difference_pp": -9.2,
+  "circularity_inflation_pp": 24.5,
+  "hubs_p_RE_lt05": 21,
+  "hubs_FDR_RE_lt05": 7,
   "hubs_p_FE_lt05": 35,
-  "hubs_median_I2": 72.8
+  "hubs_median_I2": 79.1
 }

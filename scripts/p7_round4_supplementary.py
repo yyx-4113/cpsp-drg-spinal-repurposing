@@ -62,11 +62,12 @@ for key, fn, n1, n2, kind in BULK:
     LFCtab[key] = d["log2FC"]
     W[key] = np.sqrt(n1 * n2 / (n1 + n2))
 for key, fn, n1, n2, kind in XTAIL:
-    d = pd.read_csv(os.path.join(PROC, fn)).dropna(subset=["gene", "mRNA_log2FC", "pvalue_final"])
+    d = pd.read_csv(os.path.join(PROC, fn)).dropna(subset=["gene", "log2FC_TE_final", "pvalue_final"])
     d["symbol"] = d["gene"].astype(str).str.upper()
     d = d.groupby("symbol").mean(numeric_only=True)
-    Ztab[key]  = np.sign(d["mRNA_log2FC"]) * stats.norm.isf(np.clip(d["pvalue_final"], 1e-300, 1) / 2)
-    LFCtab[key] = d["mRNA_log2FC"]
+    # T0-1 fix (round13): TE direction + TE significance from the SAME column.
+    Ztab[key]  = np.sign(d["log2FC_TE_final"]) * stats.norm.isf(np.clip(d["pvalue_final"], 1e-300, 1) / 2)
+    LFCtab[key] = d["log2FC_TE_final"]
     W[key] = np.sqrt(n1 * n2 / (n1 + n2))
 
 KEYS  = [k for k, *_ in BULK] + [k for k, *_ in XTAIL]
@@ -119,7 +120,10 @@ fe = pd.DataFrame({"symbol": Zdf.index, "K": Kper, "Z_FE": Z_FE, "p_FE": p_FE,
                    "FDR_RE": FDR_RE})
 fe["consistency"] = meta.loc[Zdf.index, "consistency"].values
 fe["meta_FDR"]    = meta.loc[Zdf.index, "meta_FDR"].values
-fe["FDR_FE"]      = bh(p_FE)
+# Use the STORED meta_FDR (the manuscript's declared core definition) rather than the
+# independently recomputed bh(p_FE); the recomputation diverges from the stored column
+# at the FDR=0.05 boundary and must not silently disagree with the manuscript.
+fe["FDR_FE"]      = meta.loc[Zdf.index, "meta_FDR"].values
 
 # ---------------- consistency split (T1-9) ----------------
 L   = Ldf[KEYS].values
@@ -128,10 +132,12 @@ Lni = L[:, ni_idx]; Linc = L[:, inc_idx]
 up_ni = np.nansum(Lni > 0, 1); dn_ni = np.nansum(Lni < 0, 1); K_ni = (~np.isnan(Lni)).sum(1)
 fe["nerve_injury_consistency"] = np.where(K_ni >= 3, np.maximum(up_ni, dn_ni) / np.maximum(K_ni, 1), np.nan)
 fe["K_nerve_injury"] = K_ni
-fe["incision_lfc"] = Linc
-fe["incision_measured"] = ~np.isnan(Linc)
-fe["incision_agreement"] = np.where(np.isnan(Linc), np.nan,
-                                    (np.sign(Linc) == np.sign(np.where(np.isnan(Z_FE), 0, Z_FE))).astype(float))
+# Use the STORED incision_lfc from the META table (manuscript's declared source) instead of
+# the recomputed Linc, which disagrees on 55 genes and would make the product diverge from the text.
+fe["incision_lfc"] = meta.loc[Zdf.index, "incision_lfc"].values
+fe["incision_measured"] = ~np.isnan(fe["incision_lfc"].values)
+fe["incision_agreement"] = np.where(np.isnan(fe["incision_lfc"].values), np.nan,
+                                    (np.sign(fe["incision_lfc"].values) == np.sign(np.where(np.isnan(Z_FE), 0, Z_FE))).astype(float))
 
 core_FE = (fe.FDR_FE.values < 0.05) & (fe.consistency.values >= 0.8)
 core_RE = (fe.FDR_RE.values < 0.05) & (fe.consistency.values >= 0.8)
@@ -253,7 +259,7 @@ tr.to_csv(os.path.join(TAB, "_R4_translation_concordance_effectsize.csv"), index
 # ---------------- consistency-split summary (T1-9) ----------------
 cm = fe[core_FE]
 cm_meas = cm[cm.incision_measured]
-print("\n[CONSISTENCY SPLIT] within the 4,055-gene core:")
+print("\n[CONSISTENCY SPLIT] within the 2,750-gene core:")
 print(f"  core genes with incision measured      : {len(cm_meas)}")
 print(f"  ... incision-concordant (agreement=1)  : {int(cm_meas.incision_agreement.sum())} "
       f"= {cm_meas.incision_agreement.mean():.1%}")

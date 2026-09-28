@@ -34,9 +34,10 @@ primaries={
  "GSE241361_S1R_DRG__SNI_vs_Naive_WT":"results/tables/DEG_GSE241361_S1R_DRG__SNI_vs_Naive_WT.csv",
 }
 def xt_tab(fn):
-    xt=pd.read_csv(os.path.join(OUT,fn)).dropna(subset=["gene","mRNA_log2FC","pvalue_final"])
-    z=np.sign(xt["mRNA_log2FC"])*stats.norm.isf(xt["pvalue_final"].clip(1e-300,1)/2)
-    t=pd.DataFrame({"log2FC":xt["mRNA_log2FC"].values,"Z":z.values},index=xt["gene"].astype(str).str.upper().values)
+    xt=pd.read_csv(os.path.join(OUT,fn)).dropna(subset=["gene","log2FC_TE_final","pvalue_final"])
+    # T0-1 fix (round13): TE direction + TE significance from the SAME column.
+    z=np.sign(xt["log2FC_TE_final"])*stats.norm.isf(xt["pvalue_final"].clip(1e-300,1)/2)
+    t=pd.DataFrame({"log2FC":xt["log2FC_TE_final"].values,"Z":z.values},index=xt["gene"].astype(str).str.upper().values)
     return t.groupby(t.index).mean()
 xt_d4=xt_tab("GSE265957_Xtail_DRG_Day4_SNI_vs_SHM.csv")
 xt_d63=xt_tab("GSE265957_Xtail_DRG_Day63_SNI_vs_SHM.csv")

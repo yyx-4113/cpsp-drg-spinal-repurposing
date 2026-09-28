@@ -1,31 +1,28 @@
-===== scripts/p7_consistency_gate.py (rc=0) =====
-trong k: '2,266/4,899' present (source 2266)
-  OK    NI-only strong pct: '46.2' present (source 46.2)
-  OK    NI background pct: '47.1' present (source 47.1)
-  OK    risk difference: '−0.9 pp' present (source -0.9)
-  OK    eligible recovered mean: '8.70 of the 17' present (source 8.7)
-  OK    P(>=3 of 17): 'P(≥3 of 17) = 1.000' present (source 1.0)
-  OK    P(>=5 of 17): 'P(≥5 of 17) = 0.990' present (source 0.99)
-  OK    Jaccard median: '0.304' present (source 0.304)
-  OK    OXPHOS set-level q (FE): 'q = 0.020' present (source 0.02)
-  OK    OXPHOS set-level q (RE): 'q = 0.31' present (source 0.31)
-
-==============================================================================
-[5] PRE-SUBMISSION WARNINGS
-==============================================================================
-
-==============================================================================
-[6] ROUND-9 INTEGRITY ASSERTIONS
+===== scripts/p7_consistency_gate.py (rc=1) =====
 ==============================================================================
   OK    display-item header 5f+3t matches enumerated 5f+3t
   OK    no '8-item cap' fingerprint
   OK    Zenodo sentence fully prospective (no 'mirroring'/'already')
   OK    STROBE no longer misquotes title
   OK    title does not name the design
-  OK    compliance doc reference count 39 == manuscript 39
+  FAIL  compliance doc says 39 refs but manuscript has 40
 
 ==============================================================================
-RESULT: 0 failure(s), 0 warning(s), 47 check(s) passed
+RESULT: 14 failure(s), 0 warning(s), 36 check(s) passed
+  ! abstract 366 words > 300
+  ! reference order wrong: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26, 24, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39] != [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+  ! reference list 40 entries != 39 citations
+  ! meta FDR<0.05: text '6,869' absent
+  ! random-effects core: text '1,008' absent
+  ! median tau2: text '0.232' absent
+  ! median I2: text '38.8' absent
+  ! RE retention pct: text '24.9' absent
+  ! core concordance n: text '2,473/3,556' absent
+  ! core concordance pct: text '69.5' absent
+  ! NI-only strong k: text '2,266/4,899' absent
+  ! OXPHOS set-level q (FE): text 'q = 0.020' absent
+  ! OXPHOS set-level q (RE): text 'q = 0.31' absent
+  ! compliance doc says 39 references but manuscript has 40
 ==============================================================================
 ===== scripts/verify_sr_docx.py (rc=0) =====
 [PASS] Fig1_geneset_programme.png: 350.012 DPI
@@ -35,19 +32,8 @@ RESULT: 0 failure(s), 0 warning(s), 47 check(s) passed
 [PASS] Fig5_docking_honest_null.png: 350.012 DPI
 
 ==== PASS 47 / FAIL 0 ====
-===== scripts/gate_consistency.py (rc=0) =====
-ed (Visium)  -- actual 33/35
-[PASS] 17/35 dorsal horn (Visium)  -- actual 17/35
-[PASS] ADRA2A full-library AUC=0.532  -- =0.532
-[PASS] ADRA2A full-library p=0.118  -- =0.11840851083882326
-[PASS] ADRA2A MW-adjusted AUC=0.578  -- =0.578
-[PASS] alpha2 MW AUC=0.428  -- =0.428
-[PASS] alpha2 p=0.76  -- =0.7598
-[PASS] precision@10=0.700  -- =0.7
-[PASS] lift@10=18.69  -- =18.69
-[PASS] p@10=9.4e-9  -- =9.44943776065854e-09
-[PASS] precision@20=0.450  -- =0.45
-[PASS] p@20=1.3e-8  -- =1.2637905517971617e-08
+===== scripts/gate_consistency.py (rc=1) =====
+3e-8  -- =1.2637905517971617e-08
 [PASS] multivariate AXL LR p=2.5525834384141807e-05  -- raw=2.5525834384141807e-05
 [PASS] multivariate TNIK LR p=7.257140767509996e-05  -- raw=7.257140767509996e-05
 [PASS] multivariate ACVR1 LR p=0.0009566509554861977  -- raw=0.0009566509554861977
@@ -60,32 +46,43 @@ ed (Visium)  -- actual 33/35
 [PASS] MS clean of 'count of datasets'
 [PASS] MS clean of '3,261'
 [PASS] MS clean of '5,447'
-[PASS] MS has '53.9%'
-[PASS] MS has '7,751/14,390'
-[PASS] MS has '69.5%'
+[FAIL] MS has '53.9%'  -- missing
+[FAIL] MS has '7,751/14,390'  -- missing
+[FAIL] MS has '69.5%'  -- missing
 [PASS] MS has '17 of 33'
 [PASS] MS has 'detection floor'
 [PASS] MS has '0.917'
 [PASS] SUP has below-floor footnote
 [PASS] repo URL identical (MS/CL)  -- MS=1,CL=1
 [PASS] title identical SUP/CL
-[PASS] references = 39  -- actual 39
+[FAIL] references = 39  -- actual 40
 [PASS] SUP has S1-S7
 [PASS] COI present in MS
 [PASS] AI disclosure in MS
 
 ==== SUMMARY ====
-PASS: 57   FAIL: 0
+PASS: 47   FAIL: 10
+FAILURES:
+  - SCN FDR range 1.7e-3–5.9e-3: actual 0.0100–0.0924
+  - SCN meta_Z range -3.6 to -3.1: actual -2.986–-2.030
+  - geneset neuroinflammation +4.94: =5.074931793213525
+  - geneset complement +3.44: =3.7001191118421435
+  - geneset OXPHOS -2.37: =-2.921792023177107
+  - 32/35 in meta core: actual 26/35
+  - MS has '53.9%': missing
+  - MS has '7,751/14,390': missing
+  - MS has '69.5%': missing
+  - references = 39: actual 40
 ===== scripts/gate_word.py (rc=0) =====
 === WORD GATE (PLOS ONE) ===
 [PASS] Title <= 20 words (Round-3-confirmed SR norm)  16 words
-[PASS] Abstract <= 300 words (PLOS ONE norm)  272 words
+[FAIL] Abstract <= 300 words (PLOS ONE norm)  355 words
 [PASS] Abstract has no refs  clean
-[PASS] References <= 60  39 refs
+[PASS] References <= 60  40 refs
 [PASS] Display items <= 8  8 (5 fig + 3 tab)
 [PASS] Figures == 5  5
 [PASS] Tables == 3  3
-[INFO] Total manuscript words (incl. refs/display): 13898
+[INFO] Total manuscript words (incl. refs/display): 14653
 
 === FIGURE DPI (PLOS ONE requires >=300) ===
 [PASS] Fig1_geneset_programme.png: 350.012 DPI
@@ -96,4 +93,4 @@ PASS: 57   FAIL: 0
 [PASS] All figures >= 300 DPI
 
 === SUMMARY ===
-WORD GATE: ALL PASS
+WORD GATE: SEE WARNINGS

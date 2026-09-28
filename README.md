@@ -235,14 +235,14 @@ All input data are public and are re-downloaded by the scripts in `scripts/` fro
 repositories (NCBI GEO; ChEMBL; RCSB PDB; Drug Repurposing Hub). No primary data were generated.
 
 Code, derived tables and figures are deposited at
-`https://github.com/yyx-4113/cpsp-drg-spinal-repurposing` (version v1.3.0; integrity verifiable via
-`MANIFEST.sha256`, included in the repository's `_manifest/` directory).
+`https://github.com/yyx-4113/cpsp-drg-spinal-repurposing` (version v1.4.0; a versioned, citable archive is
+available under the GitHub release tag v1.4.0).
 
 ---
 
 ## 8. Citation
 
-See [`CITATION.cff`](CITATION.cff). Please cite the article and the repository (version v1.3.0); no repository DOI is minted — the citable version is the GitHub release tag.
+See [`CITATION.cff`](CITATION.cff). Please cite the article and the repository (version v1.4.0); no repository DOI is minted — the citable version is the GitHub release tag.
 
 ## 9. License
 

@@ -44,9 +44,10 @@ for key,fn,n1,n2,kind in BULK:
     d["symbol"]=d["symbol"].astype(str).str.upper(); d=d.groupby("symbol").mean(numeric_only=True)
     Zt[key]=np.sign(d["t"])*stats.norm.isf(np.clip(d["p"],1e-300,1)/2); W[key]=np.sqrt(n1*n2/(n1+n2))
 for key,fn,n1,n2,kind in XTAIL:
-    d=pd.read_csv(os.path.join(PROC,fn)).dropna(subset=["gene","mRNA_log2FC","pvalue_final"])
+    d=pd.read_csv(os.path.join(PROC,fn)).dropna(subset=["gene","log2FC_TE_final","pvalue_final"])
     d["symbol"]=d["gene"].astype(str).str.upper(); d=d.groupby("symbol").mean(numeric_only=True)
-    Zt[key]=np.sign(d["mRNA_log2FC"])*stats.norm.isf(np.clip(d["pvalue_final"],1e-300,1)/2); W[key]=np.sqrt(n1*n2/(n1+n2))
+    # T0-1 fix (round13): TE direction + TE significance from the SAME column.
+    Zt[key]=np.sign(d["log2FC_TE_final"])*stats.norm.isf(np.clip(d["pvalue_final"],1e-300,1)/2); W[key]=np.sqrt(n1*n2/(n1+n2))
 
 NI=[k for k,*_ in BULK+XTAIL if k!="GSE267799_SMIR_DRG"]
 INC="GSE267799_SMIR_DRG"

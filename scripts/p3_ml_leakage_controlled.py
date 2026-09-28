@@ -129,8 +129,12 @@ for probe in allnames:
     if len(sel)<5:
         print(f"[LC-LODO] {probe}: too few selected ({len(sel)}), skip"); continue
     si={g:i for i,g in enumerate(common)}
-    Xtr_s=StandardScaler().fit_transform(Xtr[:,[si[g] for g in sel]])
-    Xte_s=StandardScaler().fit_transform(Xte[:,[si[g] for g in sel]])
+    # T1-3 fix (round13): fit the scaler ONCE on the training fold, then transform both
+    # train and test with it. Fitting on the test fold (old code) adapts preprocessing to
+    # test data and can move scores/AUC unpredictably at n=6-28.
+    sc=StandardScaler().fit(Xtr[:,[si[g] for g in sel]])
+    Xtr_s=sc.transform(Xtr[:,[si[g] for g in sel]])
+    Xte_s=sc.transform(Xte[:,[si[g] for g in sel]])
     lr=LogisticRegression(max_iter=5000).fit(Xtr_s,ytr)
     s=lr.decision_function(Xte_s)
     auc,(lo,hi)=delong_bootstrap_ci(yte,s)
