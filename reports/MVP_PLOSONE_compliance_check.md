@@ -1,7 +1,7 @@
 # PLOS ONE — Final Formatting & Compliance Check
 
 **Manuscript:** *Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null*
-**Checked:** 2026-09-28 (Round 15) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
+**Checked:** 2026-09-28 (Round 15–16) · **Source of record:** `reports/MVP_PLOSONE_submission.md` → rendered into `submission_pack/Manuscript.docx` by `scripts/build_sr_submission_pack.py`
 **Verdict:** Content is PLOS ONE–ready. **References: 40 / 40 carry a Crossref-verified DOI** (re-verified 2026-09-27; see §3.3 — the legacy renumber/DOI scripts are now disabled after manual edits). Journal names are full; no abbreviated journal names remain.
 
 ---
@@ -19,7 +19,7 @@
 | 7 | **Full journal names** (no abbreviations) | ✅ PASS | All journal names expanded to full PLOS style; 0 abbreviations remain |
 | 8 | **DOI for every reference where available** | ✅ PASS | 40 / 40 references carry a Crossref-verified DOI |
 | 9 | Ethics statement | ✅ PASS | "### Ethics statement" covers secondary public-data reanalysis; GSE158825 IRB documented in the original deposition (see §5) |
-| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.6.0, immutable release tag); explicit "not available on request" |
+| 10 | Data Availability statement | ✅ PASS | Public GitHub repo (v1.7.0, immutable release tag); explicit "not available on request" |
 | 11 | **Funding** section (standalone) | ✅ PASS | Dedicated "## Funding" — "The author received no specific funding for this work." + pending-grant note |
 | 12 | Competing Interests | ✅ PASS | Declared; pending FJNSF grant (ADRA2A listed) disclosed, stated not to influence |
 | 13 | Author Contributions | ✅ PASS | Single-author prose statement |
@@ -71,7 +71,7 @@ The manuscript is now edited **directly** in `MVP_PLOSONE_submission.md` and reb
 - [ ] Upload figures as separate files (rename to `Fig1.png`…`Fig5.png`); Supporting Information as `S1`…`S8` (supplementary is `MVP_PLOSONE_supplementary.md`).
 - [ ] Confirm the manuscript text uploaded is the regenerated `reports/MVP_PLOSONE_submission.md` (PLOS-compliant).
 - [ ] Cover letter: `submission_pack/Cover_Letter_PLOSONE.docx` already lists all required PLOS statements.
-- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.6.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.6.0 release tag is immutable.
+- [ ] (Optional, deferred per author instruction) Deposit a versioned Zenodo/figshare archive post-acceptance for a citable permanent DOI. The manuscript Data Availability statement currently cites the versioned GitHub release (v1.7.0) and explicitly states no Zenodo snapshot has been deposited; **no `10.5281/zenodo.XXXXXXX` placeholder exists in the manuscript**, so no placeholder replacement is required. If staying GitHub-only, confirm the v1.7.0 release tag is immutable.
 
 ## 5. Ethics — IRB provenance (T3-3)
 
@@ -96,3 +96,16 @@ Round-15 enforced-independence four-expert review (A1–A4) returned minor-revis
 - **F2 gate hardening.** `p7_consistency_gate.py` `chk()` now additionally verifies, for every numeric needle, that a value parsed from the manuscript equals the recomputed authoritative value (catches manuscript drift, not just string presence); added derived-value assertions for the high-risk numbers (2,750 core, 508 RE core, 41.8% I², 0.266 τ², 2,512 bulk-only core, 63.2% bulk overlap, 91.0% collapse retention, 43.3/47.1/−3.7, q = 0.0022) and a stale-token scan (v1.0.0–v1.5.0, 4,055/4055, 54.3, 91.4) that fails on any regression.
 - Data Availability statement (manuscript L285/L287) bumped v1.5.0 → v1.6.0 and MANIFEST.sha256 reference removed; cover letter L13 bumped to v1.6.0, Author Summary corrected to mandatory, and CC BY license declaration added.
 - Gates: `gate_consistency` (references = 40), `p7_consistency_gate` (Round-15 hardened) — see `scripts/`; `build_sr_submission_pack.py` rebuilds `Manuscript.docx`.
+
+## 8. Round 16 changelog (2026-09-28, v1.7.0)
+
+Round-16 enforced-independence four-expert review (A1–A4) returned minor-revision / no scientific blocker (MINOR REVISION, not accept). The following real defects were fixed and the version bumped to v1.7.0:
+
+- **T1-1 DAM core-gate honesty.** Discussion (L116) corrected to authoritative six-input Stouffer values: TYROBP meta_FDR = 1.2 × 10⁻⁷, consistency 4/5 = 0.80 (in core); TREM2 meta_FDR = 3.0 × 10⁻³ (six-input) / 1.3 × 10⁻³ (four-bulk), consistency 4/6 = 0.67 (fails core gate); APOE meta_FDR = 0.84 (six-input) / 0.30 (four-bulk), consistency 4/6 = 0.67 (not meta-significant). Prior "TYROBP 8.8e-9 / TREM2 1.3e-3 / APOE 0.070" were stale four-input values.
+- **T1-2 / T2-1 numeric corrections.** P2RX six-input meta p corrected 0.440 → 0.56 (authoritative P3_geneset_stats.csv = 0.5797; four-bulk fixed = 0.5607); REG3B six-input Stouffer FDR corrected 7.1 × 10⁻¹⁴ → 1.38 × 10⁻¹³.
+- **T2-3 translation permutation floor.** Five "permutation p = 0.0002" → "p ≤ 0.0002" (1/5,000 relabel floor); two annotated "(significant; 1/5,000 relabel floor)".
+- **T3-3 Nav1.8 / axotomy miscitation.** "SCN10A/Nav1.8 mRNA is down-regulated after axotomy" (mis-citing ref 12) weakened to "Nav1.8 (SCN10A) transcript is known to fall after axotomy (e.g., in spared-nerve/axotomised DRG neuron studies)".
+- **T3-2 / T3-1 framing.** Author Summary reframed from "no drug target that held up reliably" to "no target cleared both enrichment filters"; CC BY license declaration added (Additional Information).
+- **T0-1 reference first-citation order.** All 40 references renumbered by first-citation order (Vancouver); Unicode superscript citations remapped and verified leak-free.
+- **T1-3 P6 verdict vocabulary.** `P6_enrichment_mw_confounder_check.csv` verdict column renamed to a symmetric two-filter vocabulary (PASS_BOTH / FAIL_FILTER1 / FAIL_FILTER2 / FAIL_BOTH); AXL and TNIK (pass F1, fail F2) → FAIL_FILTER2, matching Table 3 prose. Figure 5 Panel A colours + legend updated; upstream `p6_stats.enrichment_verdict` and `p6_mw_confounder.py` updated to emit the same vocabulary.
+- Version markers (CITATION.cff, README.md, cover letter, this check) bumped v1.6.0 → v1.7.0. `p7_consistency_gate.py` no longer hardcodes the version — it reads `version:` from CITATION.cff dynamically, so future bumps cannot silently fail the gate.

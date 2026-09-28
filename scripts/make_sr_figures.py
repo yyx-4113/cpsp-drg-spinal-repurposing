@@ -69,8 +69,9 @@ plt.rcParams.update({
 C_UP = "#C0392B"       # neuroimmune activation / enrichment (warm)
 C_DOWN = "#2471A3"     # metabolic suppression (cool)
 C_NS = "#7F8C8D"       # not significant / other
-C_PASS = "#1E8449"     # size-independent enrichment
-C_FAIL = "#B9770E"     # size-only match / not significant
+C_PASS = "#1E8449"     # both filters passed
+C_FAIL = "#B9770E"     # failed filter 1 (size-only match / not significant)
+C_PARTIAL = "#D4AC0D"  # passed filter 1, failed filter 2 (amber)
 C_NEUR = "#8E44AD"     # neuronal lineage
 C_GLIA = "#16A085"     # glial lineage
 C_IMM = "#C0392B"      # immune lineage
@@ -289,15 +290,15 @@ def fig5():
 
     fig, (axA, axB) = plt.subplots(1, 2, figsize=(7.8, 4.4))
 
-    # Panel A: reverse-control AUCs with MW verdict colours
+    # Panel A: reverse-control AUCs with two-filter verdict colours
     rc2 = rc.dropna(subset=["auc_known_vs_rest"]).copy()
     verdict = dict(zip(mw["symbol"], mw["verdict"]))
-    cols = {"PASS_size_independent": C_PASS, "FAIL_size_only_matches": C_FAIL,
-            "NS_not_significant": C_NS}
+    cols = {"PASS_BOTH": C_PASS, "FAIL_FILTER1": C_FAIL, "FAIL_FILTER2": C_PARTIAL,
+            "FAIL_BOTH": C_FAIL}
     order_sym = ["AXL", "TNIK", "ACVR1", "MAPK14", "SLC2A1", "ADRA2A"]
     rc2 = rc2.set_index("symbol").loc[order_sym].reset_index()
     y = np.arange(len(rc2))
-    bar_cols = [cols.get(verdict.get(s, "NS_not_significant"), C_NS) for s in rc2["symbol"]]
+    bar_cols = [cols.get(verdict.get(s), C_NS) for s in rc2["symbol"]]
     axA.barh(y, rc2["auc_known_vs_rest"], color=bar_cols, edgecolor="white",
              height=0.72, zorder=3)
     axA.axvline(0.5, color=GREY, ls="--", lw=1)
@@ -308,10 +309,11 @@ def fig5():
     axA.set_xlabel("Reverse positive-control AUC\n(method-validation signal type)")
     axA.set_xlim(0.45, 1.0)
     axA.grid(axis="x", color=GRID, lw=0.7, zorder=0); axA.set_axisbelow(True)
-    axA.set_title("A. Reverse positive controls\n(green = size-independent)", loc="left", fontsize=10)
-    axA.legend(handles=[Patch(color=C_PASS, label="PASS (size-independent)"),
-                        Patch(color=C_FAIL, label="FAIL (size-only)"),
-                        Patch(color=C_NS, label="NS")],
+    axA.set_title("A. Reverse positive controls\n(colour = two-filter verdict)", loc="left", fontsize=10)
+    axA.legend(handles=[Patch(color=C_PASS, label="PASS_BOTH (both filters)"),
+                        Patch(color=C_PARTIAL, label="FAIL_FILTER2 (passed F1, failed F2)"),
+                        Patch(color=C_FAIL, label="FAIL_FILTER1 (failed F1)"),
+                        Patch(color=C_NS, label="Not assessed")],
                loc="upper right", fontsize=7, frameon=True, edgecolor="#B0B0B0")
 
     # Panel B: ADRA2A breadth flip

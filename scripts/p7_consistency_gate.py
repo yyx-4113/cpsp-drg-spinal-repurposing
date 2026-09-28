@@ -60,17 +60,24 @@ for tok, (cue, why) in CONTEXT_OK.items():
 # ---------------------------------------------------------------- (2) Nature limits
 # ---------------------------------------------------------------- (1b) stale version / stale number scan (Round-15 F2)
 print("\n" + "=" * 78); print("[1b] STALE-VERSION / STALE-NUMBER SCAN (Round-15 F2)"); print("=" * 78)
-STALE_TOKENS = ["v1.0.0", "v1.1.0", "v1.2.0", "v1.3.0", "v1.4.0", "v1.5.0",
-                "4,055", "4055", "54.3", "91.4", "MANIFEST.sha256"]
+# Expect the CURRENT version (read from CITATION.cff) and treat all earlier vX.Y.Z as stale.
+_cff_txt = open(os.path.join(ROOT, "CITATION.cff"), encoding="utf-8-sig").read()
+EXPECTED_VERSION = "v1.7.0"  # fallback if CITATION.cff has no version field
+for _ln in _cff_txt.splitlines():
+    if _ln.startswith("version:"):
+        EXPECTED_VERSION = _ln.split(":", 1)[1].strip().strip('"')
+        break
+STALE_TOKENS = [f"v1.{i}.0" for i in range(0, 7) if f"v1.{i}.0" != EXPECTED_VERSION] + \
+               ["4,055", "4055", "54.3", "91.4", "MANIFEST.sha256"]
 for t in STALE_TOKENS:
     if t in txt:
         fails.append(f"STALE token '{t}' still present in manuscript"); print(f"  FAIL  STALE '{t}' present")
     else:
         oks.append(f"absent: '{t}'"); print(f"  OK    absent: '{t}'")
-if "v1.6.0" not in txt:
-    fails.append("v1.6.0 not present in manuscript Data Availability"); print("  FAIL  v1.6.0 absent")
+if EXPECTED_VERSION not in txt:
+    fails.append(f"{EXPECTED_VERSION} not present in manuscript Data Availability"); print(f"  FAIL  {EXPECTED_VERSION} absent")
 else:
-    oks.append("v1.6.0 present"); print("  OK    v1.6.0 present in manuscript")
+    oks.append(f"{EXPECTED_VERSION} present"); print(f"  OK    {EXPECTED_VERSION} present in manuscript")
 
 print("\n" + "=" * 78); print("[2] NATURE / SCIENTIFIC REPORTS LIMITS"); print("=" * 78)
 title = txt.split("\n")[0].lstrip("# ").strip()

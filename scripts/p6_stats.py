@@ -21,15 +21,14 @@ p6_stats.py —— P6 的**唯一**统计口径模块（富集检验 / 尺寸控
 · mw_confounder 旧规则方向对（比的是"对接原始 AUC vs 仅 MW 原始 AUC"，同口径），
   但**漏了显著性**：AUC 0.532 / p=0.118 也会被判 PASS，等于把噪声说成信号。
 
-【本模块采用的规范判据（按优先级短路）】
-    0. 阳性数 < MIN_POS（或数值非有限）          → n/a_insufficient_positives
-    1. 仅 MW 基线 AUC ≥ 对接 AUC                 → FAIL_size_only_matches
-       （一个"按分子量排序"的一行式启发式就够好 → 对接没提供额外信息）
-    2. 对接 AUC 的 Mann-Whitney p ≥ 0.05         → NS_not_significant
-       （有方向但达不到显著 → 只能说"趋势"，不能说"富集"）
-    3. 校正后 AUC > 0.5                          → PASS_size_independent
-       （对接优于尺寸启发式，且扣掉尺寸趋势后仍有判别力）
-    4. 否则                                      → WEAK_residual_below_chance
+【本模块采用的规范判据（对称双滤网，按优先级短路）】
+    第一道滤网 = full-library MW 校正富集：对接 AUC > 仅 MW 基线 AUC 且 Mann-Whitney p < 0.05
+    第二道滤网 = 尺寸独立（MW 校正）富集：ΔAUC(vs 尺寸基线) 的 95% CI 排除 0
+    0. 阳性数 < MIN_POS（或数值非有限）                   → n/a_insufficient_positives
+    1. 未通过第一道滤网（对接 ≤ 尺寸基线，或 p ≥ 0.05）   → FAIL_FILTER1
+    2. 通过第一道滤网 + 通过第二道滤网 + 校正后 AUC > 0.5  → PASS_BOTH
+    3. 通过第一道滤网 + 未通过第二道滤网（增量不显著）     → FAIL_FILTER2
+    4. 两道滤网均未通过（残差 AUC ≤ 0.5）                 → FAIL_BOTH
 
 规范判据同时满足三条实质要求：**优于平凡基线**（1）+ **统计显著**（2）+ **非尺寸伪影**（3）。
 
@@ -269,34 +268,44 @@ def enrichment_verdict(n_pos, auc_dock, auc_size_only, auc_adj, p_dock,
                        delta_vs_size_ci=(np.nan, np.nan),
                        delta_vs_physchem_ci=(np.nan, np.nan)):
     """
-    全局唯一的富集裁决（判据见模块 docstring）。返回 (verdict, reason_zh)。
-    verdict ∈ {n/a_insufficient_positives, FAIL_size_only_matches, NS_not_significant,
-               PASS_size_independent, WEAK_residual_below_chance}
+    全局唯一的富集裁决（对称双滤网判据见模块 docstring）。返回 (verdict, reason_zh)。
+    verdict ∈ {n/a_insufficient_positives, FAIL_FILTER1, FAIL_FILTER2,
+               PASS_BOTH, FAIL_BOTH}
     """
     if (n_pos is None or n_pos < min_pos or not np.isfinite(auc_dock)
             or not np.isfinite(auc_size_only) or not np.isfinite(auc_adj)):
         return ("n/a_insufficient_positives", f"阳性数 {n_pos} 不足 {min_pos} 或数值不可用")
+    # 第一道滤网：full-library MW 校正富集 —— 对接 > 尺寸基线 且 显著
     if auc_size_only >= auc_dock:
-        return ("FAIL_size_only_matches",
+        return ("FAIL_FILTER1",
                 f"仅分子量基线 AUC {auc_size_only:.3f} ≥ 对接 AUC {auc_dock:.3f}："
-                "一行式尺寸启发式就够好，对接未提供增量信息")
+                "一行式尺寸启发式就够好，对接未提供增量信息（未通过第一道滤网）")
     if not (np.isfinite(p_dock) and p_dock < 0.05):
         pv = "nan" if not np.isfinite(p_dock) else f"{p_dock:.3g}"
-        return ("NS_not_significant",
-                f"对接 AUC {auc_dock:.3f} 方向正确但 p={pv} ≥ 0.05：只能称趋势，不能称富集")
-    if auc_adj > 0.5:
-        notes = []
-        if np.isfinite(auc_physchem) and auc_dock <= auc_physchem:
-            notes.append(f"2D 理化基线 AUC {auc_physchem:.3f} ≥ 对接 {auc_dock:.3f}")
-        lo_s, hi_s = delta_vs_size_ci
-        if np.isfinite(lo_s) and lo_s <= 0:
-            notes.append(f"ΔAUC(vs 尺寸基线) 的 95% CI [{lo_s:+.3f}, {hi_s:+.3f}] **含 0** → 增量不显著")
-        lo_p, hi_p = delta_vs_physchem_ci
-        if np.isfinite(lo_p) and lo_p <= 0:
-            notes.append(f"ΔAUC(vs 2D 理化基线) 的 95% CI [{lo_p:+.3f}, {hi_p:+.3f}] **含 0** → 增量不显著")
-        extra = ("；但注意：" + "；".join(notes)) if notes else ""
-        return ("PASS_size_independent",
+        return ("FAIL_FILTER1",
+                f"对接 AUC {auc_dock:.3f} 方向正确但 p={pv} ≥ 0.05：只能称趋势，不能称富集"
+                "（未通过第一道滤网）")
+    # 第一道滤网通过：对接 > 尺寸基线 且 p<0.05。检验第二道滤网（尺寸独立 ΔAUC）。
+    lo_s, hi_s = delta_vs_size_ci
+    notes = []
+    if np.isfinite(auc_physchem) and auc_dock <= auc_physchem:
+        notes.append(f"2D 理化基线 AUC {auc_physchem:.3f} ≥ 对接 {auc_dock:.3f}")
+    if np.isfinite(lo_s) and lo_s <= 0:
+        notes.append(f"ΔAUC(vs 尺寸基线) 的 95% CI [{lo_s:+.3f}, {hi_s:+.3f}] **含 0** → 增量不显著（未通过第二道滤网）")
+    lo_p, hi_p = delta_vs_physchem_ci
+    if np.isfinite(lo_p) and lo_p <= 0:
+        notes.append(f"ΔAUC(vs 2D 理化基线) 的 95% CI [{lo_p:+.3f}, {hi_p:+.3f}] **含 0** → 增量不显著")
+    extra = ("；但注意：" + "；".join(notes)) if notes else ""
+    size_indep_passed = np.isfinite(lo_s) and lo_s > 0
+    if size_indep_passed and auc_adj > 0.5:
+        return ("PASS_BOTH",
                 f"对接 AUC {auc_dock:.3f} > 尺寸基线 {auc_size_only:.3f}、p={p_dock:.2g}、"
-                f"校正后 {auc_adj:.3f} > 0.5{extra}")
-    return ("WEAK_residual_below_chance",
-            f"扣掉尺寸趋势后 AUC {auc_adj:.3f} ≤ 0.5：残差已无判别力")
+                f"校正后 {auc_adj:.3f} > 0.5；尺寸独立 ΔAUC 95% CI [{lo_s:+.3f}, {hi_s:+.3f}] "
+                f"排除 0（两道滤网均通过）{extra}")
+    if (not size_indep_passed) and auc_adj > 0.5:
+        return ("FAIL_FILTER2",
+                f"对接 AUC {auc_dock:.3f} > 尺寸基线 {auc_size_only:.3f}、p={p_dock:.2g}、"
+                f"校正后 {auc_adj:.3f} > 0.5（通过第一道滤网），但尺寸独立 ΔAUC 95% CI 含 0"
+                f" → 未通过第二道滤网（增量不显著）{extra}")
+    return ("FAIL_BOTH",
+            f"扣掉尺寸趋势后 AUC {auc_adj:.3f} ≤ 0.5：残差已无判别力（两道滤网均未通过）")

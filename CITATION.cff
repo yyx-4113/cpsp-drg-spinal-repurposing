@@ -1,5 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this code or the derived tables, please cite both the article and this repository (version v1.6.0; a versioned, citable archive is available at the GitHub repository under tag v1.6.0)."
+version: v1.7.0
+message: "If you use this code or the derived tables, please cite both the article and this repository (version v1.7.0; a versioned, citable archive is available at the GitHub repository under tag v1.7.0)."
 title: "Conserved nerve-injury-associated transcriptional response of the dorsal root ganglion: spinal-cord localisation and an honest repurposing null"
 abstract: >-
   Computational study integrating public transcriptomic datasets across the DRG-spinal-cord axis:

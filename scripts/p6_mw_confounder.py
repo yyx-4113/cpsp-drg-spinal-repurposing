@@ -216,8 +216,8 @@ def main():
             "AUC_MW_adjusted", "AUC_physchem_2D_CV", "rho_affinity_MW", "p_mannwhitney", "verdict"]
     print()
     print(R[[c for c in cols if c in R.columns]].to_string(index=False))
-    n_pass = int((R.verdict == "PASS_size_independent").sum())
-    print(f"\n裁决汇总：PASS_size_independent {n_pass} / {len(R)}（唯一判据见 p6_stats.enrichment_verdict）")
+    vc = R.verdict.value_counts().to_dict()
+    print(f"\n裁决汇总（对称双滤网词表）：{vc}（唯一判据见 p6_stats.enrichment_verdict）")
     for _, r in R.iterrows():
         print(f"  · {r.symbol:8s} {r.verdict:32s} {r.verdict_reason}")
     print(f"\n表 -> {out}")
