@@ -1,5 +1,8 @@
 # Multi-dataset target lock-in and structure-based drug repurposing for chronic postsurgical pain (CPSP)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23031998.svg)](https://doi.org/10.5281/zenodo.23031998)
+
+
 Reproducibility package for a purely computational study of the **DRG → spinal-cord axis** in
 chronic postsurgical pain: integration of public transcriptomic datasets, dual-machine-learning
 hub-gene prioritisation, single-cell localisation, and **structure-based virtual screening of the

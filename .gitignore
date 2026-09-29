@@ -50,3 +50,9 @@ scripts/_*.py
 scripts/_deprecated/
 scripts/**/*.out
 scripts/**/*.err
+
+# ---- Zenodo deposit: token must NEVER be committed; zip + split volumes are regenerable ----
+zenodo_token.txt
+submission/zenodo/*.zip
+submission/zenodo/cpsp_drg_repurposing_deposit.zip.*
+submission/zenodo/00_REASSEMBLE.txt
